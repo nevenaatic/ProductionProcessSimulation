@@ -1,0 +1,116 @@
+<div class="header-div"> </div>
+<div>
+    <mat-card class="card" style="height:max-content" *ngIf="!editMode">
+        <div class="row">
+            <div class="col-md-3">
+                <mat-card-header>
+                    <div mat-card-avatar>
+                        <img class="profile-photo" src="../../../assets/civil-engineering-company.jpg">
+                    </div>
+
+                </mat-card-header>
+            </div>
+            <div class="col-md-9">
+                <div style="margin-left: 10%;">
+                    <mat-card-title>
+                        <p> Ime i prezime </p>
+                    </mat-card-title>
+                    <p> username</p>
+                    <p> Broj telefona </p>
+                    <p> pozicija</p>
+                    <p> email</p>
+                    <p> pol</p>
+                    <p> datum rodjenja</p>
+                    <p> adresa stanovanja</p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <button mat-button class="btn" (click)="edit()"> edit profile</button>
+            </div>
+            <div class="col-sm-7">
+                <button mat-button class="btn"> change password</button>
+            </div>
+        </div>
+    </mat-card>
+
+<!-- edit mode card -->
+    <mat-card class="card" style="height:max-content" *ngIf="editMode">
+        <div class="row">
+            <div class="col-md-3">
+                <mat-card-header>
+                    <div mat-card-avatar>
+                        <img class="profile-photo" src="../../../assets/civil-engineering-company.jpg">
+                    </div>
+
+                </mat-card-header>
+            </div>
+            <div class="col-md-9">
+                <form> 
+                <div style="margin-left: 10%;">
+                    <mat-card-content>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Ime</mat-label>
+                            <input type="Ime" matInput 
+                                   placeholder="Ex. Mark">
+                        
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Prezime</mat-label>
+                            <input type="Prezie" matInput 
+                                   placeholder="Ex. Twan">
+                        
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Username</mat-label>
+                            <input type="Username" matInput 
+                                   >
+                        
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput>
+                          </mat-form-field>
+
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Telephone</mat-label>
+                            <span matPrefix>SRB &nbsp;</span>
+                            <input type="tel" matInput placeholder="555-555-1234">
+                          </mat-form-field>
+                         
+                            <div class="sex-div">
+                              <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="1">Male</mat-radio-button>
+                            <mat-radio-button value="2">Female</mat-radio-button>
+                          </mat-radio-group>
+                               
+                            </div>
+                        
+                          <mat-form-field class="example-full-width"  appearance="fill">
+                            <mat-label>Date of birth</mat-label>
+                            <input matInput>
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Address</mat-label>
+                            <input matInput>
+                          </mat-form-field>
+                    </mat-card-content>
+                  
+                </div>
+
+</form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <button mat-button class="cancel-btn" (click)="cancelChanges()"> cancel</button>
+            </div>
+            <div class="col-sm-7">
+                <button mat-button class="btn" (click)="saveChanges()"> save changes</button>
+            </div>
+        </div>
+    </mat-card>
+</div>

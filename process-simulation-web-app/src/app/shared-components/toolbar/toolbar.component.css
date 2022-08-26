@@ -1,3 +1,16 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
+.main-photo{
+  background-image: url(../../../assets/shutterstock_1498742519.jpg);
+  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.welcome-note{
+  color: rgb(81, 5, 81);
+  font-style: italic;
+}

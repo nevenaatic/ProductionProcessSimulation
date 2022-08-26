@@ -9,15 +9,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { ToolbarModule } from './shared-components/toolbar/toolbar.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { HomePageModule } from './components/home-page/home-page.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+  
+   
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    ToolbarModule
+    HomePageModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

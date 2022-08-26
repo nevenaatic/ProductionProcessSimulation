@@ -1,0 +1,35 @@
+.profile-photo {
+    height: 7rem;
+    width: 8rem;
+    border-radius: 50%;
+}
+
+.card {
+    width: 30%;
+    max-height: max-content;
+    margin-left: 15%;
+    background-color: whitesmoke;
+}
+
+.header-div {
+    height: 5rem;
+}
+
+.example-card {
+    max-width: 400px;
+}
+
+.btn{
+    background-color: purple;
+    color: white;
+}
+
+.cancel-btn{
+    background-color: gray;
+    color: white;
+}
+
+.sex-div{
+    margin-top: 2px;
+   bottom: 5px;
+}

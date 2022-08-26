@@ -1,4 +1,16 @@
-<div class="container">
+
 <app-toolbar></app-toolbar>
-</div>
+
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened> 
+      <app-sidenav></app-sidenav>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="cover-photo"> 
+      
+        <router-outlet> </router-outlet>
+      </div>
+    </mat-drawer-content>
+    </mat-drawer-container>
+
 
