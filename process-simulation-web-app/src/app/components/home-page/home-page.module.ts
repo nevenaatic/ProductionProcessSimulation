@@ -23,10 +23,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ChangePasswordComponent } from '../profile/change-password/change-password.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StatisticsModule } from '../statistics/statistics.module';
+import {MatTableModule} from '@angular/material/table';
+import { ProcessTableComponent } from '../process/process-table/process-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ProcessComponent } from '../process/process.component';
 @NgModule({
   declarations: [
    HomePageComponent, 
-   ToolbarComponent, SidenavComponent, ProfileComponent
+   ToolbarComponent, SidenavComponent, ProfileComponent, ProcessTableComponent, ProcessComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ import { StatisticsModule } from '../statistics/statistics.module';
     MatNativeDateModule,
     MatDialogModule,
     FormsModule,
-    StatisticsModule
+    StatisticsModule,
+    MatTableModule,
+    MatPaginatorModule
     
   ],
   exports:[ HomePageComponent],

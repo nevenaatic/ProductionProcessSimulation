@@ -16,15 +16,18 @@ import { ChangePasswordComponent } from './components/profile/change-password/ch
 import { ProcessComponent } from './components/process/process.component';
 import { WorkersComponent } from './components/workers/workers.component';
 import { FailuresComponent } from './components/failures/failures.component';
+import { ProcessTableComponent } from './components/process/process-table/process-table.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
 ChangePasswordComponent,
-ProcessComponent,
+
 WorkersComponent,
 FailuresComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ FailuresComponent,
     MatButtonModule,
     MatIconModule,
     HomePageModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [ { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],
   bootstrap: [AppComponent]
