@@ -1,11 +1,12 @@
 .profile-photo {
-    height: 7rem;
-    width: 8rem;
+    margin-left: 2rem;
+    height: 9rem;
+    width: 10rem;
     border-radius: 50%;
 }
 
 .card {
-    width: 30%;
+    width: 60%;
     max-height: max-content;
     margin-left: 15%;
     background-color: whitesmoke;
@@ -19,17 +20,29 @@
     max-width: 400px;
 }
 
-.btn{
+.btn {
+    margin-left: 20%;
     background-color: purple;
     color: white;
 }
 
-.cancel-btn{
+.cancel-btn {
     background-color: gray;
     color: white;
 }
 
-.sex-div{
+.sex-div {
     margin-top: 2px;
-   bottom: 5px;
+    bottom: 5px;
+}
+
+.sex-col {
+    margin-bottom: 5px;
+}
+mat-radio-button{
+    margin-right: 3px;
+    margin-left: 4px;
+}
+mat-radio-label-content{
+    margin-right: 7px;
 }

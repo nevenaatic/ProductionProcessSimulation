@@ -11,14 +11,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HomePageModule } from './components/home-page/home-page.module';
-
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
+import { ProcessComponent } from './components/process/process.component';
+import { WorkersComponent } from './components/workers/workers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-  
-   
+ChangePasswordComponent,
+ProcessComponent,
+WorkersComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,9 @@ import { HomePageModule } from './components/home-page/home-page.module';
     MatButtonModule,
     MatIconModule,
     HomePageModule,
-  
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [ { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

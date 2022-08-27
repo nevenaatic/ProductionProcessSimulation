@@ -18,6 +18,10 @@ import { ToolbarComponent } from 'src/app/shared-components/toolbar/toolbar.comp
 import { SidenavComponent } from 'src/app/shared-components/sidenav/sidenav.component';
 import { MatRadioModule} from '@angular/material/radio';
 import { ProfileComponent } from '../profile/profile.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ChangePasswordComponent } from '../profile/change-password/change-password.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
    HomePageComponent, 
@@ -40,14 +44,16 @@ import { ProfileComponent } from '../profile/profile.component';
     AppRoutingModule,
     RouterModule,
     MatRadioModule,
-   
-    
+   MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule
     
   ],
   exports:[ HomePageComponent],
   providers: [],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
-  ]
+  ],
+  entryComponents: [ ChangePasswordComponent]
 })
 export class HomePageModule { }
