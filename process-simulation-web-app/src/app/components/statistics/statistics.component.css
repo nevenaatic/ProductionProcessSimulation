@@ -1,0 +1,14 @@
+.div-chart{
+    display: block;
+    height: 400px;
+    width: 400px;
+}
+
+.pie-chart{
+    margin-left: 15%;
+    background-color: whitesmoke;
+   
+}
+.header-div {
+    height: 5rem;
+}

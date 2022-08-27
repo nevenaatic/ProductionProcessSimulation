@@ -15,6 +15,7 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
 import { ProcessComponent } from './components/process/process.component';
 import { WorkersComponent } from './components/workers/workers.component';
+import { FailuresComponent } from './components/failures/failures.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { WorkersComponent } from './components/workers/workers.component';
     LoginPageComponent,
 ChangePasswordComponent,
 ProcessComponent,
-WorkersComponent
+WorkersComponent,
+FailuresComponent,
   ],
   imports: [
     BrowserModule,

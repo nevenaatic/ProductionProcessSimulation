@@ -22,6 +22,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChangePasswordComponent } from '../profile/change-password/change-password.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { StatisticsModule } from '../statistics/statistics.module';
 @NgModule({
   declarations: [
    HomePageComponent, 
@@ -46,7 +47,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRadioModule,
    MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    StatisticsModule
     
   ],
   exports:[ HomePageComponent],
