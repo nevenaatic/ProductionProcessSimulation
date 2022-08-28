@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NewProcessDialogComponent } from './new-process-dialog/new-process-dialog.component';
 
 @Component({
   selector: 'app-process-table',
@@ -14,7 +16,7 @@ export class ProcessTableComponent  implements OnInit{
 
  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
  dataSource : any;
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
   ngOnInit(): void {
     
   this.dataSource = new MatTableDataSource([
@@ -39,5 +41,10 @@ export class ProcessTableComponent  implements OnInit{
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-
+  readonly openDialog=() => {
+    const dialogRef =  this.dialog.open(NewProcessDialogComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

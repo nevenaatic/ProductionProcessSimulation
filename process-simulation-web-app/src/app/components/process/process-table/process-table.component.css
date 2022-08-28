@@ -1,3 +1,9 @@
 table{
     width: 85%;
 }
+
+.btn-new{
+    background-color: purple;
+    color: white;
+    font-size: larger
+}

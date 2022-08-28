@@ -17,3 +17,6 @@ mat-drawer-content{
     background-size: cover;
 }
 
+.header-div {
+    height: 5rem;
+}

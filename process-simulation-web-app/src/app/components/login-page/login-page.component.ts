@@ -29,6 +29,6 @@ export class LoginPageComponent implements OnInit {
   }
 
 readonly login = () => {
-   this.router.navigate(['/homepage']);
+   this.router.navigate(['/homepage/process']);
 }
 }

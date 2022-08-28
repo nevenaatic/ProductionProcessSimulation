@@ -12,10 +12,6 @@
     background-color: whitesmoke;
 }
 
-.header-div {
-    height: 5rem;
-}
-
 .example-card {
     max-width: 400px;
 }
@@ -45,4 +41,7 @@ mat-radio-button{
 }
 mat-radio-label-content{
     margin-right: 7px;
+}
+.header-div {
+    height: 5rem;
 }

@@ -1,9 +1,29 @@
 <div> 
-    <div class="example-header">
-        <mat-form-field>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+  <div class="row">
+    <div class="col-sm-3" style="margin-top: 12px;">
+      Completed proccesses
+    </div>
+    <div class="col-sm-9">
+      <div class="example-header">
+<div class="row">
+  <div class="col-sm-8">
+ <mat-form-field style="width: 100%;">
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filter completed proccesses">
         </mat-form-field>
+  </div>
+  <div class="col-sm-1">
+    <span> <mat-icon style="margin-top: 15px;">search</mat-icon></span>
+  </div>
+  <div class="col-sm-2">
+    <button mat-button class="btn-new" (click)="openDialog()" >+</button>
+  </div>
+</div>
+       
+
       </div>
+    </div>
+  </div>
+    
 <table mat-table [dataSource]="dataSource" matSort> 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

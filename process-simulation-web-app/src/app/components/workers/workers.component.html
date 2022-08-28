@@ -1,1 +1,38 @@
-<p>workers works!</p>
+<div class="header-div"></div>
+<div class="preview">
+    <div class="row search">
+        <div class="col-md-5">
+            <mat-form-field style="width: 100%;">
+                <input matInput (keyup)="search($event)" placeholder="Filter workers by name or surname">
+            </mat-form-field>
+        </div>
+        <div class="col-md-1">
+            <span>
+                <mat-icon style="margin-top: 10px;">search</mat-icon>
+            </span>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <app-worker-preview></app-worker-preview>
+        </div>
+        <div class="col-md-3">
+            <app-worker-preview></app-worker-preview>
+        </div>
+        <div class="col-md-3">
+            <app-worker-preview></app-worker-preview>
+        </div>
+        <div class="col-md-3">
+            <app-worker-preview></app-worker-preview>
+        </div>
+        <div class="col-md-3">
+            <app-worker-preview></app-worker-preview>
+        </div>
+        <div class="col-md-3">
+            <app-worker-preview></app-worker-preview>
+        </div>
+    </div>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
