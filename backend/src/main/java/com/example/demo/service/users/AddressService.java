@@ -1,6 +1,6 @@
 package com.example.demo.service.users;
 
-import com.example.demo.model.users.Address;
+import com.example.demo.model.others.Address;
 import com.example.demo.repository.users.AddressRepository;
 import org.springframework.stereotype.Service;
 

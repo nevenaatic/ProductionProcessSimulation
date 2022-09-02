@@ -1,5 +1,7 @@
 package com.example.demo.dto.users;
 
+import com.example.demo.enums.Gender;
+
 public class UserRequest {
 
     private String password;
@@ -12,6 +14,7 @@ public class UserRequest {
     private String city;
     private String street;
     private String number;
+    private Gender gender;
 
     public UserRequest() {}
 
@@ -86,4 +89,8 @@ public class UserRequest {
     public String getSurname() { return surname; }
 
     public void setSurname(String surname) { this.surname = surname; }
+
+    public Gender getGender() { return gender; }
+
+    public void setGender(Gender gender) { this.gender = gender; }
 }

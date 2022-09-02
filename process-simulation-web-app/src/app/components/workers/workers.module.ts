@@ -13,10 +13,12 @@ import { WorkerPreviewComponent } from './worker-preview/worker-preview.componen
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
+import { NewWorkerDialogComponent } from './new-worker-dialog/new-worker-dialog.component';
 @NgModule({
   declarations: [
     WorkersComponent,
-    WorkerPreviewComponent
+    WorkerPreviewComponent,
+    NewWorkerDialogComponent
   ],
   imports: [
     BrowserModule,

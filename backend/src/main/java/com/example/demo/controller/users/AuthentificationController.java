@@ -3,7 +3,7 @@ package com.example.demo.controller.users;
 import com.example.demo.dto.users.JwtAuthenticationRequest;
 import com.example.demo.dto.users.UserRequest;
 import com.example.demo.dto.users.UserTokenState;
-import com.example.demo.model.users.*;
+import com.example.demo.model.users.User;
 import com.example.demo.service.users.*;
 import com.example.demo.utils.TokenUtils;
 import org.springframework.http.HttpStatus;

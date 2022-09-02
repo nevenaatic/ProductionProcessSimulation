@@ -2,7 +2,7 @@
 <div>
     <mat-card class="card" style="height:max-content;" *ngIf="!editMode">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <mat-card-header>
                     <div mat-card-avatar>
                         <img class="profile-photo" src="../../../assets/civil-engineering-company.jpg">
@@ -25,26 +25,43 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <button mat-button class="btn" (click)="edit()"> edit profile</button>
             </div>
             <div class="col-sm-7">
-                <button mat-button class="btn" style="margin-left: 7%" (click)="openDialog()"> change password</button>
+                <button mat-button class="btn" style="margin-left: 10%" (click)="openDialog()"> change password</button>
             </div>
         </div>
     </mat-card>
 
     <!-- edit mode card -->
-    <mat-card class="card" style="height:max-content" *ngIf="editMode">
+    <mat-card class="card" style="height:max-content; width: 65%;" *ngIf="editMode">
         <div class="row">
-            <div class="col-md-3">
-                <mat-card-header>
-                    <div mat-card-avatar>
-                        <img class="profile-photo" src="../../../assets/civil-engineering-company.jpg">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="row">
+                        <mat-card-header>
+                            <div mat-card-avatar>
+                                <img class="profile-photo" *ngIf="!isImageSaved"
+                                    src="../../../assets/civil-engineering-company.jpg">
+                                <div class="img-space">
+                                    <ng-container *ngIf="isImageSaved;">
+                                        <img [src]="cardImageBase64" class="profile-photo" />
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </mat-card-header>
                     </div>
-                </mat-card-header>
+
+                    <div class="row update-new">
+                        Change profile picture:
+                        <div class="row">
+                            <input type="file" (change)="CreateBase64String($event)" class="form-control input-file" />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <form>
                     <div style="margin-left: 10%;">
                         <mat-card-content>
@@ -77,27 +94,27 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            
-<div class="row">
-    <div class="col">
-        <mat-form-field class="example-full-width" appearance="fill" style="width: 197px">
-                                <mat-label>Telephone</mat-label>
-                                <span matPrefix>SRB &nbsp;</span>
-                                <input type="tel" matInput placeholder="555-555-1234">
-                            </mat-form-field> 
-    </div>
-    <div class="col">
-        <mat-form-field appearance="fill" style="width: 197px">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </div>
-</div>
-                           
-<!-- <div class="row">
+
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 197px">
+                                        <mat-label>Telephone</mat-label>
+                                        <span matPrefix>SRB &nbsp;</span>
+                                        <input type="tel" matInput placeholder="555-555-1234">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field appearance="fill" style="width: 197px">
+                                        <mat-label>Choose a date</mat-label>
+                                        <input matInput [matDatepicker]="picker">
+                                        <mat-hint>MM/DD/YYYY</mat-hint>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <!-- <div class="row">
     <div class="col">
          <div class="sex-div">
                                 <mat-radio-group aria-label="Select an option">
@@ -107,13 +124,13 @@
                             </div>
     </div>
 </div>  -->
-                           
+
                             <div class="row">
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
-                                <mat-label>Street</mat-label>
-                                <input matInput>
-                            </mat-form-field> 
+                                        <mat-label>Street</mat-label>
+                                        <input matInput>
+                                    </mat-form-field>
                                 </div>
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
@@ -136,7 +153,7 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                           
+
                         </mat-card-content>
                     </div>
                 </form>

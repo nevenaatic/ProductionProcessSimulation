@@ -1,9 +1,11 @@
 package com.example.demo.model.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="ROLE")
@@ -15,6 +17,10 @@ public class Role implements GrantedAuthority {
 
     @Column(name="name")
     String name;
+
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("role")
+    private List<User> users;
 
     public Role(String role) {
         this.name=role;

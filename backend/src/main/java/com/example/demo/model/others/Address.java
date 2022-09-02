@@ -1,4 +1,4 @@
-package com.example.demo.model.users;
+package com.example.demo.model.others;
 
 import javax.persistence.*;
 

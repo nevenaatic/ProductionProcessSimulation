@@ -3,7 +3,7 @@ package com.example.demo.service.users;
 import com.example.demo.dto.users.UserRequest;
 import com.example.demo.model.users.Role;
 
-import com.example.demo.model.users.Address;
+import com.example.demo.model.others.Address;
 import com.example.demo.model.users.User;
 import com.example.demo.repository.users.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +30,6 @@ public class UserService {
 
     public User save(UserRequest user){
         User u = new User();
-
         Role role = roleService.findByName(user.getRole());
         if (role == null) {
             role = new Role(user.getRole());
