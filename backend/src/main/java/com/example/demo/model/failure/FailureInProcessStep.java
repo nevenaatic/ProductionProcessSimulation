@@ -1,8 +1,8 @@
-package com.example.demo.model.others;
+package com.example.demo.model.failure;
 
+import com.example.demo.model.failure.Failure;
 import com.example.demo.model.productionProcess.FinalProcessStep;
 import com.example.demo.model.productionProcess.ProcessStep;
-import com.example.demo.model.users.ProcessEngineer;
 import com.example.demo.model.users.QualityEngineer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,6 +32,14 @@ public class FailureInProcessStep {
     @JoinColumn(name = "quality_engineer_id")
     @JsonIgnoreProperties("qualityEngineer")
     private QualityEngineer qualityEngineer;
+
+    public QualityEngineer getQualityEngineer() {
+        return qualityEngineer;
+    }
+
+    public void setQualityEngineer(QualityEngineer qualityEngineer) {
+        this.qualityEngineer = qualityEngineer;
+    }
 
     public int getId() {
         return id;

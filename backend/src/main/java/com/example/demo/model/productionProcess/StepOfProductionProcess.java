@@ -1,6 +1,6 @@
 package com.example.demo.model.productionProcess;
 
-import com.example.demo.model.others.Failure;
+import com.example.demo.model.failure.Failure;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;

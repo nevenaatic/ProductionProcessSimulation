@@ -1,10 +1,10 @@
 package com.example.demo.model.productionProcess;
 
-import com.example.demo.model.others.Failure;
-import com.example.demo.model.others.FailureInProcessStep;
+import com.example.demo.model.failure.FailureInProcessStep;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class ProcessStep {

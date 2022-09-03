@@ -1,8 +1,6 @@
-package com.example.demo.model.others;
+package com.example.demo.model.failure;
 
 import com.example.demo.enums.FailureType;
-import com.example.demo.model.productionProcess.FinalProcessStep;
-import com.example.demo.model.productionProcess.StepOfProductionProcess;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -22,8 +20,6 @@ public class Failure {
     @OneToMany(mappedBy = "failure", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("failure")
     private List<FailureInProcessStep> failureInPSList;
-
-
 
     public int getId() {
         return id;

@@ -1,8 +1,7 @@
 package com.example.demo.model.users;
 
-import com.example.demo.model.others.FailureInProcessStep;
+import com.example.demo.model.failure.FailureInProcessStep;
 import com.example.demo.model.product.FinalProduct;
-import com.example.demo.model.productionProcess.ProcessStep;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;

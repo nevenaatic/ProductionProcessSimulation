@@ -1,10 +1,11 @@
 package com.example.demo.model.productionProcess;
 
-import com.example.demo.model.others.FailureInProcessStep;
-import com.example.demo.model.users.QualityEngineer;
+import com.example.demo.model.failure.FailureInProcessStep;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class FinalProcessStep {
@@ -17,7 +18,6 @@ public class FinalProcessStep {
     @JsonIgnoreProperties("stepOfPP")
     private StepOfProductionProcess stepOfPP;
 
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="failureInPS_id")
     @JsonIgnoreProperties("failureInPS")
@@ -27,6 +27,41 @@ public class FinalProcessStep {
     @JoinColumn(name="finalPP_id")
     @JsonIgnoreProperties("finalProductionProcess")
     private FinalProductionProcess finalProductionProcess;
+
+    @OneToMany(mappedBy = "finalProcessStep", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("finalProcessStep")
+    private List<EmployeeWithEngagement> employeesWithEngagements;
+
+    @Column
+    private Date dateStart; //when first employee start
+    @Column
+    private Date dateEnd; //when last employee end
+
+    public List<EmployeeWithEngagement> getEmployeesWithEngagements() {
+        return employeesWithEngagements;
+    }
+
+    public void setEmployeesWithEngagements(List<EmployeeWithEngagement> employeesWithEngagements) {
+        this.employeesWithEngagements = employeesWithEngagements;
+    }
+
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
     public int getId() {
         return id;
     }
