@@ -1,5 +1,6 @@
 package com.example.demo.service.users;
 
+import com.example.demo.dto.users.UserProfileInfoDto;
 import com.example.demo.dto.users.UserRequest;
 import com.example.demo.model.users.Role;
 
@@ -49,5 +50,16 @@ public class UserService {
         this.userRepository.save(u);
         return u;
     }
+    public User getById(int id) { return  userRepository.findById(id);}
 
+    public User updateProfile(UserProfileInfoDto updatedUser) {
+        User user = getById(updatedUser.id);
+        user.setName(updatedUser.name);
+        user.setSurname(updatedUser.surname);
+        user.setBirthday(updatedUser.birthday);
+        user.setTelephone(updatedUser.telephone);
+        user.setEmail(updatedUser.email);
+        user.setPicture(updatedUser.profilePhoto);
+        return userRepository.save(user);
+    }
 }

@@ -4,27 +4,31 @@
         <div class="row">
             <div class="col-md-5">
                 <mat-card-header>
-                    <div mat-card-avatar>
-                        <img class="profile-photo" src="../../../assets/civil-engineering-company.jpg">
-                    </div>
+
+                    <img class="profile-photo" [src]="user.profilePhoto">
+
                 </mat-card-header>
             </div>
             <div class="col-md-7">
                 <div style="margin-left: 10%;">
                     <mat-card-title>
-                        <p> Ime i prezime </p>
+                        <p> {{user.name}} {{user.surname}} </p>
+                        <br />
                     </mat-card-title>
-                    <p> username</p>
-                    <p> Broj telefona </p>
-                    <p> pozicija</p>
-                    <p> email</p>
-                    <p> pol</p>
-                    <p> datum rodjenja</p>
-                    <p> adresa stanovanja</p>
+                    <mat-card-content>
+                        <p> {{user.telephone}} </p>
+                        <p> {{user.type}}</p>
+                        <p> {{user.email}}</p>
+                        <p> {{user.gender}}</p>
+                        <p> {{user.birthday | date }}</p>
+                        <p> {{user.address.street}} {{user.address.number}} {{user.address.city}}
+                            {{user.address.country}}</p>
+                        <p> </p>
+                    </mat-card-content>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row buttons">
             <div class="col-sm-5">
                 <button mat-button class="btn" (click)="edit()"> edit profile</button>
             </div>
@@ -41,15 +45,14 @@
                 <div class="row">
                     <div class="row">
                         <mat-card-header>
-                            <div mat-card-avatar>
-                                <img class="profile-photo" *ngIf="!isImageSaved"
-                                    src="../../../assets/civil-engineering-company.jpg">
+                            
+                                <img class="profile-photo" *ngIf="!isImageSaved" [src]="user.profilePhoto">
                                 <div class="img-space">
                                     <ng-container *ngIf="isImageSaved;">
                                         <img [src]="cardImageBase64" class="profile-photo" />
                                     </ng-container>
                                 </div>
-                            </div>
+                            
                         </mat-card-header>
                     </div>
 
@@ -62,20 +65,20 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <form>
+                <form [formGroup]="userForm">
                     <div style="margin-left: 10%;">
                         <mat-card-content>
                             <div class="row">
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Ime</mat-label>
-                                        <input type="Ime" matInput placeholder="Ex. Mark">
+                                        <input type="Ime" formControlName="name" matInput placeholder="Ex. Mark">
                                     </mat-form-field>
                                 </div>
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Prezime</mat-label>
-                                        <input type="Prezie" matInput placeholder="Ex. Twan">
+                                        <input type="Prezie" matInput formControlName="surname" placeholder="Ex. Twan">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -90,7 +93,7 @@
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Email</mat-label>
-                                        <input type="email" matInput>
+                                        <input type="email" matInput formControlName="email">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -100,42 +103,31 @@
                                     <mat-form-field class="example-full-width" appearance="fill" style="width: 197px">
                                         <mat-label>Telephone</mat-label>
                                         <span matPrefix>SRB &nbsp;</span>
-                                        <input type="tel" matInput placeholder="555-555-1234">
+                                        <input type="tel" matInput placeholder="555-555-1234"
+                                            formControlName="telephone">
                                     </mat-form-field>
                                 </div>
                                 <div class="col">
                                     <mat-form-field appearance="fill" style="width: 197px">
                                         <mat-label>Choose a date</mat-label>
-                                        <input matInput [matDatepicker]="picker">
-                                        <mat-hint>MM/DD/YYYY</mat-hint>
+                                        <input matInput [matDatepicker]="picker" formControlName="birthday" value="birthday">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                             </div>
 
-                            <!-- <div class="row">
-    <div class="col">
-         <div class="sex-div">
-                                <mat-radio-group aria-label="Select an option">
-                                    <mat-radio-button class="sex-col" value="1">Male</mat-radio-button>
-                                    <mat-radio-button value="2">Female</mat-radio-button>
-                                </mat-radio-group>
-                            </div>
-    </div>
-</div>  -->
-
                             <div class="row">
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Street</mat-label>
-                                        <input matInput>
+                                        <input matInput formControlName="street">
                                     </mat-form-field>
                                 </div>
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Number</mat-label>
-                                        <input matInput>
+                                        <input matInput formControlName="number">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -143,13 +135,13 @@
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>City</mat-label>
-                                        <input matInput>
+                                        <input matInput formControlName="city">
                                     </mat-form-field>
                                 </div>
                                 <div class="col">
                                     <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Zip code</mat-label>
-                                        <input matInput>
+                                        <mat-label>Country</mat-label>
+                                        <input matInput formControlName="country">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -165,7 +157,7 @@
                 <button mat-button class="cancel-btn" (click)="cancelChanges()"> cancel</button>
             </div>
             <div class="col-sm-4">
-                <button mat-button class="btn" (click)="saveChanges()"> save changes</button>
+                <button mat-button class="btn" type="button" (click)="saveChanges()"> save changes</button>
             </div>
         </div>
     </mat-card>
