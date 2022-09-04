@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorColumn(name = "PE")
+@DiscriminatorValue("PE")
 public class ProcessEngineer extends User{
 
     @OneToMany(mappedBy = "processEngineer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

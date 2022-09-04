@@ -6,6 +6,7 @@ import com.example.demo.model.users.Role;
 import com.example.demo.model.others.Address;
 import com.example.demo.model.users.User;
 import com.example.demo.repository.users.UserRepository;
+import com.example.demo.service.others.AddressService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,7 @@ public class UserService {
         u.setTelephone(user.getTelephone());
         u.setEmail(user.getEmail());
         u.setEnabled(true);
+        u.setBirthday(user.getBirthday());
         u.setAddress(addressService.save(new Address(user.getCountry(), user.getCity(), user.getStreet(), user.getNumber())));
         this.userRepository.save(u);
         return u;

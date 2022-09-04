@@ -2,6 +2,8 @@ package com.example.demo.dto.users;
 
 import com.example.demo.enums.Gender;
 
+import java.util.Date;
+
 public class UserRequest {
 
     private String password;
@@ -15,6 +17,15 @@ public class UserRequest {
     private String street;
     private String number;
     private Gender gender;
+    private Date birthday;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
     public UserRequest() {}
 

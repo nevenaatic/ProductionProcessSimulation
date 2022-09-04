@@ -1,4 +1,4 @@
-package com.example.demo.service.users;
+package com.example.demo.service.others;
 
 import com.example.demo.model.others.Address;
 import com.example.demo.repository.users.AddressRepository;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   
-  constructor(private router : Router) { }
+  constructor(private router : Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +29,6 @@ export class LoginPageComponent implements OnInit {
     return this.signin.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
-readonly login = () => {
-   this.router.navigate(['/homepage/process']);
-}
+readonly login = () => this.authService.login(this.emailInput?.value,this.passwordInput?.value);
+
 }

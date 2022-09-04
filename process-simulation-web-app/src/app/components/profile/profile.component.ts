@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
 editMode: boolean= false;
 isImageSaved: boolean = false;
 cardImageBase64: string = '';
-  image: any;
+image: any;
 
   constructor( private dialog: MatDialog) { }
 

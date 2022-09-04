@@ -16,7 +16,7 @@ import { ChangePasswordComponent } from './components/profile/change-password/ch
 import { FailuresComponent } from './components/failures/failures.component';
 import { MatTableModule } from '@angular/material/table';
 import { NewProcessDialogComponent } from './components/process/process-table/new-process-dialog/new-process-dialog.component';
-import { WorkerPreviewComponent } from './components/workers/worker-preview/worker-preview.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { WorkerPreviewComponent } from './components/workers/worker-preview/work
     MatIconModule,
     HomePageModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule, 
+    HttpClientModule
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],
   bootstrap: [AppComponent],

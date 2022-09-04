@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  showMenu=false
-  constructor() { }
+  showMenu = false
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
+  public readonly signout = () => this.authService.signOut();
 }

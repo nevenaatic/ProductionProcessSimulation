@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorColumn(name = "QE")
+@DiscriminatorValue("QE")
 public class QualityEngineer extends User {
 
     @OneToMany(mappedBy = "qualityEngineer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

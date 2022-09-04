@@ -19,6 +19,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 public class User implements UserDetails {
 
     @Id
@@ -30,8 +32,8 @@ public class User implements UserDetails {
     private String name;
     @Column(name = "surname", nullable = false)
     private String surname;
-    @Column(name = "email", nullable = false, unique = false)
-    private String email;
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;//this will be username
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "telephone")
@@ -53,9 +55,6 @@ public class User implements UserDetails {
 
     @Column(name = "birthday", nullable = true)
     private Date birthday;
-
-    @Column(name = "username", nullable = false)
-    private String username;
 
     @Column(name = "picture", nullable = true, length = 1000000)
     private String picture;
@@ -84,10 +83,6 @@ public class User implements UserDetails {
         this.picture = picture;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public Date getBirthday() {
         return birthday;
     }
@@ -112,7 +107,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
