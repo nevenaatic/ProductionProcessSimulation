@@ -21,6 +21,14 @@ public class Failure {
     @JsonIgnoreProperties("failure")
     private List<FailureInProcessStep> failureInPSList;
 
+    public List<FailureInProcessStep> getFailureInPSList() {
+        return failureInPSList;
+    }
+
+    public void setFailureInPSList(List<FailureInProcessStep> failureInPSList) {
+        this.failureInPSList = failureInPSList;
+    }
+
     public int getId() {
         return id;
     }

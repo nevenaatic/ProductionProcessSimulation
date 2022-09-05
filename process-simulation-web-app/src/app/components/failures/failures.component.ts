@@ -12,4 +12,5 @@ export class FailuresComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

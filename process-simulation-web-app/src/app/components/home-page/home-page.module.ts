@@ -24,18 +24,16 @@ import { ChangePasswordComponent } from '../profile/change-password/change-passw
 import { MatDialogModule } from '@angular/material/dialog';
 import { StatisticsModule } from '../statistics/statistics.module';
 import { MatTableModule } from '@angular/material/table';
-import { ProcessTableComponent } from '../process/process-table/process-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ProcessComponent } from '../process/process.component';
 import { WorkersModule } from '../workers/workers.module';
+import { ProcessModule } from '../process/process.module';
+import { FailuresModule } from '../failures/failures.module';
 @NgModule({
   declarations: [
     HomePageComponent,
     ToolbarComponent, 
     SidenavComponent,
-     ProfileComponent,
-      ProcessTableComponent, 
-      ProcessComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,10 +55,11 @@ import { WorkersModule } from '../workers/workers.module';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    FormsModule,
     StatisticsModule,
-    MatTableModule,
-    MatPaginatorModule, WorkersModule
+    MatPaginatorModule, 
+    WorkersModule,
+    ProcessModule,
+    FailuresModule
 
   ],
   exports: [HomePageComponent],

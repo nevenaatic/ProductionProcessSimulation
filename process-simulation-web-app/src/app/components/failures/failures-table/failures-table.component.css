@@ -1,0 +1,13 @@
+table{
+    width: 85%;
+}
+
+.btn-new{
+    background-color: purple;
+    color: white;
+    font-size: larger;
+}
+
+.example-header{
+  text-align: right;
+}

@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Employee } from 'src/app/model/Employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { IEmpolyee } from 'src/app/interfaces/IEmployee';
 
 
 @Component({
@@ -17,7 +16,6 @@ export class WorkersComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort | undefined;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-
   workers: any;
   obs: Observable<any> | undefined;
   dataSorce: MatTableDataSource<Employee> = new MatTableDataSource<Employee>();

@@ -13,19 +13,15 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { HomePageModule } from './components/home-page/home-page.module';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
-import { FailuresComponent } from './components/failures/failures.component';
 import { MatTableModule } from '@angular/material/table';
-import { NewProcessDialogComponent } from './components/process/process-table/new-process-dialog/new-process-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FailuresTableComponent } from './components/failures/failures-table/failures-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    ChangePasswordComponent,
-    FailuresComponent,
-    NewProcessDialogComponent,
-
+    ChangePasswordComponent,  
   ],
   imports: [
     BrowserModule,
@@ -41,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomePageModule,
     MatSnackBarModule,
     MatTableModule, 
-    HttpClientModule
+    HttpClientModule,
+  
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],
   bootstrap: [AppComponent],
