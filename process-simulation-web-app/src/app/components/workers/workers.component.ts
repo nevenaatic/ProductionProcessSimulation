@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,7 +13,7 @@ import { IEmpolyee } from 'src/app/interfaces/IEmployee';
   templateUrl: './workers.component.html',
   styleUrls: ['./workers.component.css']
 })
-export class WorkersComponent implements OnInit {
+export class WorkersComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort | undefined;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -22,47 +22,33 @@ export class WorkersComponent implements OnInit {
   obs: Observable<any> | undefined;
   dataSorce: MatTableDataSource<Employee> = new MatTableDataSource<Employee>();
 
-  startNumber: number= 8;
-  size: number=0;
   constructor(private employeeSevice: EmployeeService) { }
+  ngOnDestroy(): void {
+    if (this.dataSorce) { 
+      this.dataSorce.disconnect(); 
+    }
+  }
 
   ngOnInit(): void {
-    this.employeeSevice.getEmployees().subscribe(
-      res=> { 
-      
-       
-       this.workers= res; 
-       this.dataSorce =  new MatTableDataSource<Employee>(this.workers);
-   this.dataSorce.paginator =this.paginator;
-    console.log(this.paginator);
-    this.obs = this.dataSorce.connect();
-       }
-
-    )
+    this.getEmployees();
 
   }
   ngAfterViewInit() {
-     this.dataSorce.paginator =this.paginator;
-    console.log(this.paginator);
-    this.obs = this.dataSorce.connect();
   }
-  readonly search= (event: any) => 
-  console.log("search")
 
-  readonly getEmployees =()=> {
+  readonly search = (event: Event) => {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSorce.filter = filterValue.trim().toLowerCase();
+  }
+
+  readonly getEmployees = () => {
     this.employeeSevice.getEmployees().subscribe(
-       res=> { 
-        this.workers =new MatTableDataSource<Employee>();
-        
-        this.workers= res;console.log(this.workers)
-        this.workers.paginator = this.paginator;
-        console.log(this.paginator)
-       // this.size = this.workers.length
+      res => {
+        this.workers = res;
+        this.dataSorce = new MatTableDataSource<Employee>(this.workers);
+        this.dataSorce.paginator = this.paginator;
+        this.obs = this.dataSorce.connect();
       })
   }
 
-  readonly onPageChange=(event: PageEvent)=>{
-    //this.startNumber = event.pageSize;
-    this.getEmployees();
-  }
 }
