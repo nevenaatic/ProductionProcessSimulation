@@ -14,4 +14,13 @@ public class Employee extends User{
     @JsonIgnoreProperties("employee")
     private List<EmployeeWithEngagement> engagementList;
 
+    public Employee() { }
+
+    public List<EmployeeWithEngagement> getEngagementList() {
+        return engagementList;
+    }
+
+    public void setEngagementList(List<EmployeeWithEngagement> engagementList) {
+        this.engagementList = engagementList;
+    }
 }

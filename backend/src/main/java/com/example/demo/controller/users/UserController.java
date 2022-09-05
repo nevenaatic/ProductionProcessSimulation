@@ -67,7 +67,6 @@ public class UserController {
     public ResponseEntity<HttpStatus> checkPassword(@RequestBody String password){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
-
             return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Employee } from 'src/app/model/Employee.model';
 
 @Component({
   selector: 'app-worker-preview',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkerPreviewComponent implements OnInit {
 
+  @Input() worker = new Employee();
   constructor() { }
 
   ngOnInit(): void {

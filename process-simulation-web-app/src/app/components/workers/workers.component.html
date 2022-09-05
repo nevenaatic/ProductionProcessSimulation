@@ -16,26 +16,11 @@
         </div>
 
     </div>
-    <div class="row">
+    <div class="row" >
         <div class="col-md-3">
-            <app-worker-preview></app-worker-preview>
-        </div>
-        <div class="col-md-3">
-            <app-worker-preview></app-worker-preview>
-        </div>
-        <div class="col-md-3">
-            <app-worker-preview></app-worker-preview>
-        </div>
-        <div class="col-md-3">
-            <app-worker-preview></app-worker-preview>
-        </div>
-        <div class="col-md-3">
-            <app-worker-preview></app-worker-preview>
-        </div>
-        <div class="col-md-3">
-            <app-worker-preview></app-worker-preview>
+            <app-worker-preview *ngFor="let worker of obs| async" [worker]="worker"></app-worker-preview>
         </div>
     </div>
   
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"  (page)="onPageChange($event)"></mat-paginator>
 </div>
