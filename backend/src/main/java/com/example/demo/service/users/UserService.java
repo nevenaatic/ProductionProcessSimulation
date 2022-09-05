@@ -1,5 +1,6 @@
 package com.example.demo.service.users;
 
+import com.example.demo.dto.users.UserPasswordDto;
 import com.example.demo.dto.users.UserProfileInfoDto;
 import com.example.demo.dto.users.UserRequest;
 import com.example.demo.model.users.Role;
@@ -60,6 +61,12 @@ public class UserService {
         user.setTelephone(updatedUser.telephone);
         user.setEmail(updatedUser.email);
         user.setPicture(updatedUser.profilePhoto);
+        user.setAddress(updatedUser.address);
         return userRepository.save(user);
+    }
+
+    public void updatePassword(UserPasswordDto passwordDto, User user) {
+        user.setPassword(passwordEncoder.encode(passwordDto.password));
+        userRepository.save(user);
     }
 }

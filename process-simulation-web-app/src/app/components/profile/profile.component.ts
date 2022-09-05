@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IUser } from 'src/app/model/IUser';
+import { IUser } from 'src/app/interfaces/IUser';
 import { User } from 'src/app/model/User.model';
 import { UserService } from 'src/app/services/user.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -18,6 +18,7 @@ isImageSaved: boolean = false;
 cardImageBase64: string = '';
 image: any;
 user = new User();
+
 userForm = new FormGroup({
   name: new FormControl('', [Validators.required]),
   surname: new FormControl('', [Validators.required]),
@@ -40,7 +41,7 @@ get controls(){
     return this.userForm.controls;
   }
 
-  readonly loadUserInfo = () => this.userService.getProfileInfo().subscribe( res => { this.user = res;console.log(this.user);});
+  readonly loadUserInfo = () => this.userService.getProfileInfo().subscribe( res => { this.user = res;});
 
   
   private readonly patchForm = () => {
@@ -105,10 +106,13 @@ get controls(){
     this.user.address.country = this.controls.country.value!;
     console.log(this.user)
    return this.userService.updateUserInfo(this.user).subscribe(
-       res => { this.snackbar.open("Personal informations updated");
-     this.editMode = false; console.log(res) },
-     err=> {
-      this.snackbar.open("Updating failed")
-     });
+       res => { 
+        this.snackbar.open("Personal informations updated");
+        this.editMode = false; },
+      err => {
+        this.snackbar.open("Updating failed");
+        this.loadUserInfo();
+      }
+     );
   }
 }

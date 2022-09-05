@@ -17,16 +17,16 @@ export class AuthenticationService {
       'email': email,
       'password': password
     };
-    return this._http.post<any>(`${this.baseUrl}/login`, body).subscribe( res=> {
+    return this._http.post<any>(`${this.baseUrl}/login`, body).subscribe(res => {
       localStorage.setItem("accessToken", res.accessToken);
       localStorage.setItem("role", res.role);
       this.router.navigate(['homepage/process'])
-    }, 
-    err => {
-      Swal.fire("Ooopss...", "Wrong credentials. Try again.")
-    })
+    },
+      err => {
+        Swal.fire("Ooopss...", "Wrong credentials. Try again.")
+      })
   }
- public readonly signOut=() => {
+  public readonly signOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("role");
     this.router.navigate([''])
