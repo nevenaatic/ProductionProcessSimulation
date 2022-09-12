@@ -27,4 +27,12 @@ public class ProcessEngineer extends User{
     public void setProductionProcessList(List<ProductionProcess> productionProcessList) {
         this.productionProcessList = productionProcessList;
     }
+
+    public List<FinalProductionProcess> getFinalProductionProcessList() {
+        return finalProductionProcessList;
+    }
+
+    public void setFinalProductionProcessList(List<FinalProductionProcess> finalProductionProcessList) {
+        this.finalProductionProcessList = finalProductionProcessList;
+    }
 }

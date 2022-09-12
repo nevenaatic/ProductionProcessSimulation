@@ -1,11 +1,8 @@
 package com.example.demo.controller.failure;
 
 import com.example.demo.dto.failures.FailuresPreviewDto;
-import com.example.demo.dto.users.EmployeePreviewDto;
 import com.example.demo.model.failure.Failure;
-import com.example.demo.model.users.Employee;
 import com.example.demo.model.users.User;
-import com.example.demo.repository.failure.FailureRepository;
 import com.example.demo.service.failure.FailureService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +21,7 @@ public class FailureController {
 
     private FailureService failureService;
     private User loggedUser;
+
     public FailureController(FailureService failureService){
         this.failureService = failureService;
     }

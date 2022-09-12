@@ -5,10 +5,13 @@ import com.example.demo.enums.MaterialType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.io.Serializable;
 
 @Entity
-public class ProcessStepMaterial implements Serializable {
+@IdClass(ProcessStepMaterialId.class)
+public class ProcessStepMaterial{
+
     @Id
     private int material_id;
     @Id

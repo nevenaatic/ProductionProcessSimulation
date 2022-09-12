@@ -23,9 +23,9 @@ public class FinalProductionProcess {
     @JsonIgnoreProperties("productionProcess")
     private ProductionProcess productionProcess;
 
-    @OneToMany(mappedBy = "finalProductionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("finalProductionProcess")
-    private List<FinalProcessStep> finalProcessStepList;
+//    @OneToMany(mappedBy = "finalProductionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JsonIgnoreProperties("finalProductionProcess")
+//    private List<FinalProcessStep> finalProcessStepList;
 
     public ProcessEngineer getProcessEngineer() {
         return processEngineer;
@@ -35,13 +35,13 @@ public class FinalProductionProcess {
         this.processEngineer = processEngineer;
     }
 
-    public List<FinalProcessStep> getFinalProcessStepList() {
-        return finalProcessStepList;
-    }
-
-    public void setFinalProcessStepList(List<FinalProcessStep> finalProcessStepList) {
-        this.finalProcessStepList = finalProcessStepList;
-    }
+//    public List<FinalProcessStep> getFinalProcessStepList() {
+//        return finalProcessStepList;
+//    }
+//
+//    public void setFinalProcessStepList(List<FinalProcessStep> finalProcessStepList) {
+//        this.finalProcessStepList = finalProcessStepList;
+//    }
 
     public int getId() {
         return id;

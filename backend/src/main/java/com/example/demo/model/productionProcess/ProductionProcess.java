@@ -11,17 +11,22 @@ import java.util.List;
 public class ProductionProcess {
 
     @Id
+    @SequenceGenerator(name = "processSeqGen", sequenceName = "processSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "processGen")
     private int id;
 
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private String description;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "product_id")
     @JsonIgnoreProperties("product")
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "engineer_id")
     @JsonIgnoreProperties("processEngineer")
     private ProcessEngineer processEngineer;
@@ -29,7 +34,6 @@ public class ProductionProcess {
     @OneToMany(mappedBy = "productionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("productionProcess")
     private List<FinalProductionProcess> finalProductionProcessList;
-
 
     public List<FinalProductionProcess> getFinalProductionProcessList() {
         return finalProductionProcessList;
@@ -69,5 +73,25 @@ public class ProductionProcess {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ProductionProcess() {
+    }
+
+    public ProductionProcess(int id, String name, String description, Product product, ProcessEngineer processEngineer, List<FinalProductionProcess> finalProductionProcessList) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.product = product;
+        this.processEngineer = processEngineer;
+        this.finalProductionProcessList = finalProductionProcessList;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -11,6 +11,9 @@ import { MatTableModule } from "@angular/material/table";
 import { NewProcessDialogComponent } from "./process-table/new-process-dialog/new-process-dialog.component";
 import { ProcessTableComponent } from "./process-table/process-table.component";
 import { ProcessComponent } from "./process.component";
+import {MatSelectModule} from '@angular/material/select';
+import { MatOptionModule } from "@angular/material/core";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -29,11 +32,14 @@ import { ProcessComponent } from "./process.component";
         MatDialogModule,
         MatTableModule,
         MatPaginatorModule,
+        MatSelectModule,
+        MatOptionModule, 
+        CommonModule
     ],
     exports: [ProcessComponent],
     providers: [],
     schemas: [
-      CUSTOM_ELEMENTS_SCHEMA
+      CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA
     ],
     entryComponents: []
   })

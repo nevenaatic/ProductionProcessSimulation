@@ -23,10 +23,10 @@ public class FinalProcessStep {
     @JsonIgnoreProperties("failureInPS")
     private FailureInProcessStep failureInPS;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name="finalPP_id")
-    @JsonIgnoreProperties("finalProductionProcess")
-    private FinalProductionProcess finalProductionProcess;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @JoinColumn(name="finalPP_id")
+//    @JsonIgnoreProperties("finalProductionProcess")
+//    private FinalProductionProcess finalProductionProcess;
 
     @OneToMany(mappedBy = "finalProcessStep", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("finalProcessStep")
@@ -86,12 +86,12 @@ public class FinalProcessStep {
         this.failureInPS = failureInPS;
     }
 
-    public FinalProductionProcess getFinalProductionProcess() {
-        return finalProductionProcess;
-    }
-
-    public void setFinalProductionProcess(FinalProductionProcess finalProductionProcess) {
-        this.finalProductionProcess = finalProductionProcess;
-    }
+//    public FinalProductionProcess getFinalProductionProcess() {
+//        return finalProductionProcess;
+//    }
+//
+//    public void setFinalProductionProcess(FinalProductionProcess finalProductionProcess) {
+//        this.finalProductionProcess = finalProductionProcess;
+//    }
 
 }

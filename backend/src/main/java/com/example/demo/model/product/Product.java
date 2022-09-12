@@ -14,6 +14,8 @@ public class Product {
     private double finalPrice;
     @Column(nullable = true)
     private String usageDescription;
+    @Column(nullable = true)
+    private String name;
 
     @OneToMany(mappedBy = "productForFinal", fetch=FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("productForFinal")
@@ -23,7 +25,13 @@ public class Product {
     @JsonIgnoreProperties("product")
     private List<ProductionProcess> productionProcessList;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
     public int getId() {
         return id;
     }

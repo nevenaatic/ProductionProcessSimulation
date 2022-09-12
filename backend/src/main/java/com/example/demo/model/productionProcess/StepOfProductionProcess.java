@@ -11,6 +11,8 @@ import java.util.List;
 public class StepOfProductionProcess implements Serializable {
     //this is table for TP between ProcessStep and ProductionProcess
     @Id
+    @SequenceGenerator(name = "soppSeqGen", sequenceName = "soppSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "soppSeqGen")
     private int id;
     @Column(nullable = false)
     private int id_production_process; //strani kljuc
@@ -19,7 +21,7 @@ public class StepOfProductionProcess implements Serializable {
     @Column(nullable = false)
     private int processStepNumber;
 
-    @OneToMany(mappedBy = "stepOfPP", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "stepOfPP", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("stepOfPP")
     private List<FinalProcessStep> finalProcessStepList;
 
@@ -75,4 +77,5 @@ public class StepOfProductionProcess implements Serializable {
     public void setProcessStepNumber(int processStepNumber) {
         this.processStepNumber = processStepNumber;
     }
+
 }

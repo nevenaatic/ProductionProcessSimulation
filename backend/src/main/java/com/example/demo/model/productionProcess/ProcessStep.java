@@ -58,4 +58,15 @@ public class ProcessStep {
     public void setProcessStepKind(ProcessStepKind processStepKind) {
         this.processStepKind = processStepKind;
     }
+
+    public ProcessStep( String name, String description, ProcessStepKind processStepKind, FailureInProcessStep failureInPS) {
+        this.name = name;
+        this.description = description;
+        this.processStepKind = processStepKind;
+        this.failureInPS = failureInPS;
+    }
+
+    public ProcessStep() {
+    }
+
 }
