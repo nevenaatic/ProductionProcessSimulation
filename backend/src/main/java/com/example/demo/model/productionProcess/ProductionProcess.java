@@ -21,6 +21,9 @@ public class ProductionProcess {
     @Column(nullable = true)
     private String description;
 
+    @Column(nullable = true)
+    private Boolean finished;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "product_id")
     @JsonIgnoreProperties("product")
@@ -78,13 +81,14 @@ public class ProductionProcess {
     public ProductionProcess() {
     }
 
-    public ProductionProcess(int id, String name, String description, Product product, ProcessEngineer processEngineer, List<FinalProductionProcess> finalProductionProcessList) {
+    public ProductionProcess(int id, String name, String description, Product product, ProcessEngineer processEngineer, List<FinalProductionProcess> finalProductionProcessList, Boolean finished) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.product = product;
         this.processEngineer = processEngineer;
         this.finalProductionProcessList = finalProductionProcessList;
+        this.finished = finished;
     }
 
     public String getDescription() {
@@ -93,5 +97,13 @@ public class ProductionProcess {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
     }
 }

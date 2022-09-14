@@ -15,18 +15,19 @@ public class FailureInProcessStep {
     @Id
     private int id;
 
-    @OneToMany(mappedBy = "failureInPS", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("failureInPS")
-    private List<FinalProcessStep> finalProcessStepList;
-
+    @ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="finaProcessStepId")
+    @JsonIgnoreProperties("finalProcessStep")
+    private FinalProcessStep finalProcessStep;
+  
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "failure_id")
     @JsonIgnoreProperties("failure")
     private Failure failure;
 
-    @OneToMany(mappedBy = "failureInPS", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("failureInPS")
-    private List<ProcessStep> processStepList;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("processStep")
+    private ProcessStep processStep;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "quality_engineer_id")
@@ -49,12 +50,12 @@ public class FailureInProcessStep {
         this.id = id;
     }
 
-    public List<FinalProcessStep> getFinalProcessStepList() {
-        return finalProcessStepList;
+    public FinalProcessStep getFinalProcessStep() {
+        return finalProcessStep;
     }
 
-    public void setFinalProcessStepList(List<FinalProcessStep> finalProcessStepList) {
-        this.finalProcessStepList = finalProcessStepList;
+    public void setFinalProcessStep(FinalProcessStep finalProcessStep) {
+        this.finalProcessStep = finalProcessStep;
     }
 
     public Failure getFailure() {
@@ -65,11 +66,11 @@ public class FailureInProcessStep {
         this.failure = failure;
     }
 
-    public List<ProcessStep> getProcessStepList() {
-        return processStepList;
+    public ProcessStep getProcessStepList() {
+        return processStep;
     }
 
-    public void setProcessStepList(List<ProcessStep> processStepList) {
-        this.processStepList = processStepList;
+    public void setProcessStepList(ProcessStep processStep) {
+        this.processStep = processStep;
     }
 }

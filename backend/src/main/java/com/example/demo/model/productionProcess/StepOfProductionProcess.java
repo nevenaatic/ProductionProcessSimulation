@@ -21,30 +21,20 @@ public class StepOfProductionProcess implements Serializable {
     @Column(nullable = false)
     private int processStepNumber;
 
-    @OneToMany(mappedBy = "stepOfPP", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("stepOfPP")
-    private List<FinalProcessStep> finalProcessStepList;
+   // @OneToMany(mappedBy = "stepOfPP", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+   // @JsonIgnoreProperties("stepOfPP")
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    private FinalProcessStep finalProcessStep;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name="failure_id")
-    @JsonIgnoreProperties("failure")
-    private Failure failure;
 
-    public List<FinalProcessStep> getFinalProcessStepList() {
-        return finalProcessStepList;
-    }
+//   public FinalProcessStep getFinalProcessStep() {
+//        return finalProcessStep;
+//    }
 
-    public void setFinalProcessStepList(List<FinalProcessStep> finalProcessStepList) {
-        this.finalProcessStepList = finalProcessStepList;
-    }
+//    public void setFinalProcessStepList(FinalProcessStep finalProcessStep) {
+//        this.finalProcessStep = finalProcessStep;
+//    }
 
-    public Failure getFailure() {
-        return failure;
-    }
-
-    public void setFailure(Failure failure) {
-        this.failure = failure;
-    }
 
     public int getId() {
         return id;

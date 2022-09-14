@@ -5,6 +5,8 @@ import com.example.demo.model.productionProcess.StepOfProductionProcess;
 import com.example.demo.repository.productionProcess.StepOfProductionProcessRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StepOfProductionProcessService {
 
@@ -26,5 +28,9 @@ public class StepOfProductionProcessService {
         stepOfProductionProcess.setId_production_step(psId);
         stepOfProductionProcess.setProcessStepNumber(num);
         stepOfProductionProcessRepository.save(stepOfProductionProcess);
+    }
+
+    public List<StepOfProductionProcess> findStepsForProcess(int id){
+        return stepOfProductionProcessRepository.findStepsForProcess(id);
     }
 }

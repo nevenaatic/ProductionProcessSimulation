@@ -19,11 +19,10 @@ public class ProcessStepService{
         return  processStepRepository.findAll();
     }
 
+    public ProcessStep findStep(int id){
+        return processStepRepository.findById(id);
+    }
     public ProcessStep save(ProcessStep processStep){
-        ProcessStep newProcessStep = new ProcessStep();
-        newProcessStep.setProcessStepKind(processStep.getProcessStepKind());
-        newProcessStep.setDescription(processStep.getDescription());
-        newProcessStep.setName(processStep.getName());
-        return processStepRepository.save(newProcessStep);
+        return processStepRepository.save(processStep);
     }
 }

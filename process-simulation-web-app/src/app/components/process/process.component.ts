@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProcessService } from 'src/app/services/process.service';
 
 @Component({
   selector: 'app-process',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProcessComponent implements OnInit {
 
-  constructor() { }
+  unfinishedList: any;
+
+  constructor(private processService: ProcessService) { }
 
   ngOnInit(): void {
+    this.getUnfinishedProcesses()
   }
+
+  public readonly getUnfinishedProcesses = () => this.processService.getUnfinishedProcesses()
+    .subscribe(res => {
+      this.unfinishedList = res;
+      console.log(this.unfinishedList)
+    });
 
 }

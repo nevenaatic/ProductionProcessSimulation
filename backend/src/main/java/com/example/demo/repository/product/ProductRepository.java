@@ -12,4 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select p from Product p left join fetch p.productionProcessList pp where p.id =?1")
     Product productWithProcesses(int id);
+
+    @Query("select p from Product p left join fetch p.productionProcessList pp where pp.id =?1")
+    Product findProductForProcess(int idProcess);
 }

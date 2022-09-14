@@ -5,3 +5,12 @@
 .header-div {
     height: 5rem;
 }
+
+.start-btn{
+   background-color: gray;
+   color: white;
+}
+
+.icon-color{
+    color: purple;
+}

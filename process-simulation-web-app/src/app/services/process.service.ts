@@ -16,7 +16,10 @@ export class ProcessService {
   public readonly getAllProcess = () => {
     return this.http.get<any>(`${this.baseUrl}/processes`, { headers: this.headers() });
   }
-
+  public readonly getUnfinishedProcesses = () => {
+    return this.http.get<any>(`${this.baseUrl}/current`, { headers: this.headers() });
+  }
+  
   public readonly createNewProcess = (newProcess: NewProcess) => {
     return this.http.post<any>(`${this.baseUrl}/process`,newProcess, { headers: this.headers()});
   }

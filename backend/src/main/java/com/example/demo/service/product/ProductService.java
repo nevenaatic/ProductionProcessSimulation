@@ -30,6 +30,10 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public Product findProductForProcess(int idProcess){
+        return productRepository.findProductForProcess(idProcess);
+    }
+
     public Product addFinalProduct(int id, FinalProduct fProduct) {
         Product product = getById(id); //IZMENI NA QUERY
         product.getFinalProductList().add(fProduct);

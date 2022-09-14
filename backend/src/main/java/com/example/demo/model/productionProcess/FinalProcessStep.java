@@ -13,15 +13,16 @@ public class FinalProcessStep {
     @Id
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name="SOfPP_id")
-    @JsonIgnoreProperties("stepOfPP")
+   // @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+  //  @JoinColumn(name="SOfPP_id")
+ //   @JsonIgnoreProperties("stepOfPP")
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private StepOfProductionProcess stepOfPP;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name="failureInPS_id")
-    @JsonIgnoreProperties("failureInPS")
-    private FailureInProcessStep failureInPS;
+    @OneToMany(mappedBy = "finalProcessStep",fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("finalProcessStep")
+    private List<FailureInProcessStep> failureInPSList;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 //    @JoinColumn(name="finalPP_id")
@@ -78,15 +79,15 @@ public class FinalProcessStep {
         this.stepOfPP = stepOfPP;
     }
 
-    public FailureInProcessStep getFailureInPS() {
-        return failureInPS;
+    public List<FailureInProcessStep> getFailureInPSList() {
+        return failureInPSList;
     }
 
-    public void setFailureInPS(FailureInProcessStep failureInPS) {
-        this.failureInPS = failureInPS;
+    public void setFailureInPSList(List<FailureInProcessStep> failureInPSList) {
+        this.failureInPSList = failureInPSList;
     }
 
-//    public FinalProductionProcess getFinalProductionProcess() {
+    //    public FinalProductionProcess getFinalProductionProcess() {
 //        return finalProductionProcess;
 //    }
 //

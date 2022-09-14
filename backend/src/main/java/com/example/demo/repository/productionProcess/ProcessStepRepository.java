@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProcessStepRepository extends JpaRepository<ProcessStep, Integer> {
+
+    ProcessStep findById(int id);
 }

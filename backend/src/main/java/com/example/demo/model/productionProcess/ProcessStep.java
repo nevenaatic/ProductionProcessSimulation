@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class ProcessStep {
@@ -22,10 +23,21 @@ public class ProcessStep {
     @JsonIgnoreProperties("processStepKind")
     private ProcessStepKind processStepKind;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "failure_PS_id")
-    @JsonIgnoreProperties("failureInPS")
-    private FailureInProcessStep failureInPS;
+    @OneToMany(mappedBy = "processStep", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("processStep")
+    private List<FailureInProcessStep> failureInPSList;
+
+    @Column(nullable = true)
+    private Boolean finished;
+
+
+    public Boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
+    }
 
     public int getId() {
         return id;
@@ -59,11 +71,12 @@ public class ProcessStep {
         this.processStepKind = processStepKind;
     }
 
-    public ProcessStep( String name, String description, ProcessStepKind processStepKind, FailureInProcessStep failureInPS) {
+    public ProcessStep( String name, String description, ProcessStepKind processStepKind, List<FailureInProcessStep> failureInPS, Boolean finished) {
         this.name = name;
         this.description = description;
         this.processStepKind = processStepKind;
-        this.failureInPS = failureInPS;
+        this.failureInPSList = failureInPS;
+        this.finished = finished;
     }
 
     public ProcessStep() {
