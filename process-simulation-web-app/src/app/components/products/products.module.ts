@@ -13,11 +13,13 @@ import { CommonModule } from "@angular/common";
 import { ProductsComponent } from "./products.component";
 import { ProductsTableComponent } from "./products-table/products-table.component";
 import { MatCardModule } from "@angular/material/card";
+import { NewProductDialogComponent } from './products-table/new-product-dialog/new-product-dialog.component';
 
 @NgModule({
     declarations: [
         ProductsComponent,
         ProductsTableComponent,
+        NewProductDialogComponent,
     ],
     imports: [
         MatFormFieldModule,

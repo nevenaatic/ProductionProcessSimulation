@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/services/product.service';
+import { NewProductDialogComponent } from './new-product-dialog/new-product-dialog.component';
 
 @Component({
   selector: 'app-products-table',
@@ -15,7 +17,8 @@ export class ProductsTableComponent implements OnInit {
 
   productsList: any;
   displayedColumns: string[] = ['name', 'description', 'price',];
-  constructor(private productService: ProductService) { }
+
+  constructor(private productService: ProductService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProducts()
@@ -29,5 +32,13 @@ export class ProductsTableComponent implements OnInit {
       this.productsList.sort = this.sort;
     })
 
-  public readonly openDialog = () => { }
+  public readonly openDialog = () => {
+    const dialogRef =  this.dialog.open(NewProductDialogComponent,{
+      height: 'max-content',
+      width: '400px',
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.getProducts()
+    });
+   }
 }
