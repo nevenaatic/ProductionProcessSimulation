@@ -1,5 +1,6 @@
 package com.example.demo.service.product;
 
+import com.example.demo.dto.ProductDto;
 import com.example.demo.model.product.FinalProduct;
 import com.example.demo.model.product.Product;
 import com.example.demo.model.productionProcess.ProductionProcess;
@@ -28,6 +29,10 @@ public class ProductService {
         Product product = productWithProcesses(id);
         product.getProductionProcessList().add(process);
         return productRepository.save(product);
+    }
+
+    public void saveProduct(Product product){
+        productRepository.save(product);
     }
 
     public Product findProductForProcess(int idProcess){

@@ -16,12 +16,15 @@ import { ChangePasswordComponent } from './components/profile/change-password/ch
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { FailuresTableComponent } from './components/failures/failures-table/failures-table.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductsTableComponent } from './components/products/products-table/products-table.component';
+import { ProductsModule } from './components/products/products.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    ChangePasswordComponent,  
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { FailuresTableComponent } from './components/failures/failures-table/fai
     MatSnackBarModule,
     MatTableModule, 
     HttpClientModule,
+    ProductsModule
   
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -34,4 +36,9 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @PostMapping(value="product")
+    public ResponseEntity<HttpStatus> saveProcess(@RequestBody ProductDto productDto) {
+        productService.saveProduct(new Product( productDto.finalPrice,productDto.description,productDto.name));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

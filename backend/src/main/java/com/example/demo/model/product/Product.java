@@ -27,6 +27,12 @@ public class Product {
     @JsonIgnoreProperties("product")
     private List<ProductionProcess> productionProcessList;
 
+    public Product(double finalPrice, String usageDescription, String name) {
+        this.finalPrice = finalPrice;
+        this.usageDescription = usageDescription;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -73,4 +79,9 @@ public class Product {
     public void setProductionProcessList(List<ProductionProcess> productionProcessList) {
         this.productionProcessList = productionProcessList;
     }
+
+    public Product() {
+    }
+
+
 }

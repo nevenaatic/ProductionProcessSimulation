@@ -38,7 +38,10 @@ INSERT INTO process_step(id, description, name, process_step_kind_id) VALUES (ne
 
 
 --products
-INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 50000, 'Membrane za sve i svasta','membrane');
+INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 50000, 'Membrane za sve i svasta','Membrane');
+INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 35000, 'Membrane za sve i svasta','Gumena membrana');
+INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 40000, 'Membrane za sve i svasta','Cisterna za kiselinu');
+INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 60000, 'Membrane za sve i svasta','Valjak');
 
 --production process
 INSERT INTO production_process(id, name, description, product_id, engineer_id) VALUES (nextval('production_process_seq_gen'), 'Proizvodnja membrani', 'Membrane za cisterne koje prevoze kiselinu', 1, 1);
