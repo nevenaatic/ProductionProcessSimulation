@@ -22,13 +22,13 @@ public class StepOfProductionProcessService {
 
     }
 
-    public void saveStepOfProductionProcess(int psId, int ppId, int num){
-        StepOfProductionProcess stepOfProductionProcess = new StepOfProductionProcess();
-        stepOfProductionProcess.setId_production_process(ppId);
-        stepOfProductionProcess.setId_production_step(psId);
-        stepOfProductionProcess.setProcessStepNumber(num);
-        stepOfProductionProcessRepository.save(stepOfProductionProcess);
-    }
+//    public void saveStepOfProductionProcess(int psId, int ppId, int num){
+//        StepOfProductionProcess stepOfProductionProcess = new StepOfProductionProcess();
+//        stepOfProductionProcess.setId_production_process(ppId);
+//        stepOfProductionProcess.setId_production_step(psId);
+//        stepOfProductionProcess.setProcessStepNumber(num);
+//        stepOfProductionProcessRepository.save(stepOfProductionProcess);
+//    }
 
     public List<StepOfProductionProcess> findStepsForProcess(int id){
         return stepOfProductionProcessRepository.findStepsForProcess(id);

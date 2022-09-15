@@ -9,6 +9,7 @@ import { ProcessService } from 'src/app/services/process.service';
 export class ProcessComponent implements OnInit {
 
   unfinishedList: any;
+  showFinished: boolean= false;
 
   constructor(private processService: ProcessService) { }
 
@@ -22,4 +23,7 @@ export class ProcessComponent implements OnInit {
       console.log(this.unfinishedList)
     });
 
+    public readonly showFinishedProcesses = () => this.showFinished = true;
+
+    public readonly back = () => this.showFinished = false;
 }

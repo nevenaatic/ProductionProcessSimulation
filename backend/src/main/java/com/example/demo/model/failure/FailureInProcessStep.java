@@ -29,6 +29,10 @@ public class FailureInProcessStep {
     @JsonIgnoreProperties("processStep")
     private ProcessStep processStep;
 
+    @OneToMany(mappedBy = "failureInPS", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("failureInPS")
+    private List<FinalProcessStep> finalProcessStepList;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "quality_engineer_id")
     @JsonIgnoreProperties("qualityEngineer")
@@ -72,5 +76,21 @@ public class FailureInProcessStep {
 
     public void setProcessStepList(ProcessStep processStep) {
         this.processStep = processStep;
+    }
+
+    public ProcessStep getProcessStep() {
+        return processStep;
+    }
+
+    public void setProcessStep(ProcessStep processStep) {
+        this.processStep = processStep;
+    }
+
+    public List<FinalProcessStep> getFinalProcessStepList() {
+        return finalProcessStepList;
+    }
+
+    public void setFinalProcessStepList(List<FinalProcessStep> finalProcessStepList) {
+        this.finalProcessStepList = finalProcessStepList;
     }
 }

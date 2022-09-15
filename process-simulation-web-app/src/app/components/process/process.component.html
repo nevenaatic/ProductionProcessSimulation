@@ -1,49 +1,65 @@
 <div class="header-div"></div>
 <div class="process-table">
-    <mat-card *ngFor="let process of unfinishedList">
-        <h3 style="color:purple; text-align: center;"> Unfinished processes: </h3>
-        <mat-card-content>
-            <div class="row">
-                <div class="col-md-5">
-                    <h2> {{process.name}}</h2>
-                </div>
-                <div class="col-md-3">
-                    <p>Product: {{process.productName}}</p>
-                </div>
-               
-                <div class="col"  style="text-align: right;"> <button mat-button class="start-btn">
-                        <mat-icon class="icon-color">touch_app</mat-icon> start process
-                    </button></div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-2"> About process:</div>
-                 <div class="col" style="font-style: italic;">
-                    {{process.description}}
-                </div>
-            </div>
-            <hr>
-            <div class="row" *ngFor="let step of process.steps" style="margin-left: 5%;">
-
-                <div class="col">
-                    <mat-icon style="padding-top: 5px;">forward</mat-icon>
-                    {{step.name}}
-                </div>
-                <div class="col">
-                    {{step.description}}
-                </div>
-                <div class="col">
-                    <mat-icon style="padding-top: 5px;">group</mat-icon> {{step.numberOfPeople}}
-                </div>
-            </div>
-        </mat-card-content>
-
-    </mat-card>
-
-</div>
-
-<!-- <div class="process-table">
     <mat-card>
+        <div class="row">
+            <div class="col-md-9">
+                <button mat-button (click)="back()">
+                    <h3 style="color:purple; text-align: center;"> All processes </h3>
+                </button> 
+            </div>
+       
+        <div class="col"> 
+            <button mat-button style="text-align: right; margin-left: 10%;" (click)="showFinishedProcesses()">
+                Finished processes
+            </button>
+        </div>
+     </div>
+   
+     <div *ngIf="!showFinished"> 
+        <mat-card *ngFor="let process of unfinishedList">
+
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2> {{process.name}}</h2>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Product: {{process.productName}}</p>
+                    </div>
+
+                    <div class="col" style="text-align: right;"> <button mat-button class="start-btn">
+                            <mat-icon class="icon-color">touch_app</mat-icon> start process
+                        </button></div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-2"> About process:</div>
+                    <div class="col" style="font-style: italic;">
+                        {{process.description}}
+                    </div>
+                </div>
+                <hr>
+                <div class="row" *ngFor="let step of process.steps" style="margin-left: 3%;">
+
+                    <div class="col-md-3">
+                        <mat-icon style="padding-top: 5px;">forward</mat-icon>
+                        {{step.name}}
+                    </div>
+                    <div class="col-md-7">
+                        {{step.description}}
+                    </div>
+                    <div class="col">
+                        <mat-icon style="padding-top: 5px;">group</mat-icon> {{step.numberOfPeople}}
+                    </div>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+    </div>
+    <mat-card  *ngIf="showFinished">
         <app-process-table> </app-process-table>
     </mat-card>
-</div> -->
+</mat-card>
+ 
+</div>
+

@@ -9,6 +9,8 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
+    @SequenceGenerator(name = "productSeqGen", sequenceName = "productSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productSeqGen")
     private int id;
     @Column(nullable = true)
     private double finalPrice;

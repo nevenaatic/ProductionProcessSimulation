@@ -14,10 +14,13 @@ public class ProcessStep {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "processStepSeqGen")
     @Column(name = "id")
     private int id;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = true)
     private String description;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "process_step_kind_id")
     @JsonIgnoreProperties("processStepKind")
@@ -27,16 +30,25 @@ public class ProcessStep {
     @JsonIgnoreProperties("processStep")
     private List<FailureInProcessStep> failureInPSList;
 
-    @Column(nullable = true)
-    private Boolean finished;
 
+    @OneToMany(mappedBy = "processStep", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("processStep")
+    private List<StepOfProductionProcess> stepOfProductionProcessList;
 
-    public Boolean getFinished() {
-        return finished;
+    public List<FailureInProcessStep> getFailureInPSList() {
+        return failureInPSList;
     }
 
-    public void setFinished(Boolean finished) {
-        this.finished = finished;
+    public void setFailureInPSList(List<FailureInProcessStep> failureInPSList) {
+        this.failureInPSList = failureInPSList;
+    }
+
+    public List<StepOfProductionProcess> getStepOfProductionProcessList() {
+        return stepOfProductionProcessList;
+    }
+
+    public void setStepOfProductionProcessList(List<StepOfProductionProcess> stepOfProductionProcessList) {
+        this.stepOfProductionProcessList = stepOfProductionProcessList;
     }
 
     public int getId() {
@@ -71,12 +83,12 @@ public class ProcessStep {
         this.processStepKind = processStepKind;
     }
 
-    public ProcessStep( String name, String description, ProcessStepKind processStepKind, List<FailureInProcessStep> failureInPS, Boolean finished) {
+    public ProcessStep( String name, String description, ProcessStepKind processStepKind, List<FailureInProcessStep> failureInPS) {
         this.name = name;
         this.description = description;
         this.processStepKind = processStepKind;
         this.failureInPSList = failureInPS;
-        this.finished = finished;
+
     }
 
     public ProcessStep() {

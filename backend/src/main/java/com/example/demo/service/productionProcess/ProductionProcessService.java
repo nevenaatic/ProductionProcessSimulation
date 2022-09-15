@@ -16,7 +16,6 @@ import com.example.demo.service.product.ProductService;
 import com.example.demo.service.users.ProcessEngineerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class ProductionProcessService {
 
         for (NewProcessStepDto p : newProcess.processSteps) {
             ProcessStepKind processStepKind = processStepKindService.getById(p.idStepKind);
-            steps.add(processStepService.save(new ProcessStep(p.name, p.description, processStepKind, null, false)));
+            steps.add(processStepService.save(new ProcessStep(p.name, p.description, processStepKind, null)));
         }
 
         ProductionProcess savedProcess = productionProcessRepository.save(productionProcess);
@@ -63,7 +62,7 @@ public class ProductionProcessService {
         if (savedProcess != null) {
             int num = 0;
             for (ProcessStep ps : steps) {
-                stepOfPPService.saveStepOfProductionProcess(ps.getId(), savedProcess.getId(), ++num); //OVDE PRODJE
+               // stepOfPPService.saveStepOfProductionProcess(ps.getId(), savedProcess.getId(), ++num); //OVDE PRODJE
             }
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -79,21 +78,21 @@ public class ProductionProcessService {
         productionProcessRepository.save(process);
     }
 
-    public List<UnfinishedProcessDto> currentProcess() {
-        List<ProductionProcess> processes = this.productionProcessRepository.unfinishedProcesses();
+    public List<UnfinishedProcessDto> getAllWithSteps() {
+        List<ProductionProcess> processes = this.productionProcessRepository.findAll();
         List<UnfinishedProcessDto> ret = new ArrayList<>();
         for (ProductionProcess p : processes) {
+            ProductionProcess pp = productionProcessRepository.processWithSteps(p.getId());
             List<ProcessStepDto> steps = new ArrayList<>();
-            List<StepOfProductionProcess> stepOfPP = this.stepOfPPService.findStepsForProcess(p.getId());
-            for (StepOfProductionProcess s : stepOfPP) {
-                ProcessStep ps = processStepService.findStep(s.getId_production_step());
+             List<StepOfProductionProcess> stepOfPP = this.stepOfPPService.findStepsForProcess(p.getId());
+              for (StepOfProductionProcess s : stepOfPP) {
+                ProcessStep ps = processStepService.findStep(s.getProcessStep().getId());
                 ProcessStepDto stepDto = new ProcessStepDto(ps);
                 steps.add(stepDto);
-            }
-            UnfinishedProcessDto unfinishedProcessDto = new UnfinishedProcessDto(p.getId(), p.getName(), p.getDescription(), steps, productService.findProductForProcess(p.getId()).getName());
+}
+            UnfinishedProcessDto unfinishedProcessDto = new UnfinishedProcessDto(p.getId(), p.getName(), p.getDescription(), steps, p.getProduct().getName());
             ret.add(unfinishedProcessDto);
         }
         return ret;
     }
-
 }

@@ -11,8 +11,8 @@ import java.util.List;
 public class ProductionProcess {
 
     @Id
-    @SequenceGenerator(name = "processSeqGen", sequenceName = "processSeqGen", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "processGen")
+    @SequenceGenerator(name = "productionProcessSeqGen", sequenceName = "productionProcessSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productionProcessSeqGen")
     private int id;
 
     @Column(nullable = false)
@@ -37,6 +37,10 @@ public class ProductionProcess {
     @OneToMany(mappedBy = "productionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("productionProcess")
     private List<FinalProductionProcess> finalProductionProcessList;
+
+    @OneToMany(mappedBy = "productionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("productionProcess")
+    private List<StepOfProductionProcess> stepOfPPList;
 
     public List<FinalProductionProcess> getFinalProductionProcessList() {
         return finalProductionProcessList;

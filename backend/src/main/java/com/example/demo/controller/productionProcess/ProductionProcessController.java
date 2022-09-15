@@ -39,7 +39,7 @@ public class ProductionProcessController {
     public ResponseEntity<List<UnfinishedProcessDto>> getCurrentProcess(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
-        List<UnfinishedProcessDto> ret = productionProcessService.currentProcess();
+        List<UnfinishedProcessDto> ret = productionProcessService.getAllWithSteps();
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 }

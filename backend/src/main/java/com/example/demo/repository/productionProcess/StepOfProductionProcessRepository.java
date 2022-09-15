@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface StepOfProductionProcessRepository extends JpaRepository<StepOfProductionProcess, Integer> {
 
-    @Query("select s from StepOfProductionProcess s where s.id_production_process =?1 order by s.processStepNumber")
+    @Query("select s from StepOfProductionProcess s where s.productionProcess.id = ?1 order by s.processStepNumber")
     List<StepOfProductionProcess> findStepsForProcess(int id);
 }

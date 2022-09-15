@@ -12,12 +12,12 @@ public class ProcessStepKind {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "processStepKindSeqGen")
     @Column(name = "id")
     private int id;
-    @Column(nullable = true)
+    @Column(name="numberOfPeople", nullable = true)
     private int numberOfPeople;
     @Column(nullable = true)
     private String name;
 
-    @OneToMany(mappedBy = "processStepKind", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "processStepKind", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("processStepKind")
     private List<ProcessStep> processStepList;
 
