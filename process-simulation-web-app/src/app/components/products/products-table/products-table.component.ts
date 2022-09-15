@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/services/product.service';
@@ -16,9 +17,9 @@ export class ProductsTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort | undefined;
 
   productsList: any;
-  displayedColumns: string[] = ['name', 'description', 'price',];
+  displayedColumns: string[] = ['name', 'description', 'price','delete'];
 
-  constructor(private productService: ProductService, private dialog: MatDialog) { }
+  constructor(private productService: ProductService, private dialog: MatDialog, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getProducts()
@@ -31,6 +32,16 @@ export class ProductsTableComponent implements OnInit {
       this.productsList.paginator = this.paginator;
       this.productsList.sort = this.sort;
     })
+
+    public readonly deleteProduct = (product: any) => this.productService.deleteProduct(product)
+    .subscribe(res => {
+      this.getProducts();
+      this.snackbar.open('You deleted product')
+    }, 
+    err=> {
+      this.snackbar.open('Something went wrong, try again later');
+    })
+
 
   public readonly openDialog = () => {
     const dialogRef =  this.dialog.open(NewProductDialogComponent,{

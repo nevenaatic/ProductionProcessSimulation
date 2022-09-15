@@ -17,8 +17,6 @@ export class NewProductDialogComponent implements OnInit {
     price: new FormControl('', [Validators.required])
   });
 
-
-
   constructor(public dialogRef: MatDialogRef<NewProductDialogComponent>,
     private snackbar: MatSnackBar,
     private productService: ProductService) { }
@@ -31,15 +29,18 @@ export class NewProductDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-
-   readonly createProduct = () => {
-    alert('loooo')
+  readonly createProduct = () => {
     const productNew = new Product();
     productNew.name = this.product.controls['name'].value;
     productNew.finalPrice = this.product.controls['price'].value;
     productNew.description = this.product.controls['description'].value;
-     this.productService.createNewProduct(productNew).subscribe(res => { this.snackbar.open('Product added!'); this.dialogRef.close() }, err=> {
-    this.snackbar.open('Something went wrong, try again later.')
-   })
+    this.productService.createNewProduct(productNew).subscribe(
+      res => {
+        this.snackbar.open('Product added!');
+        this.dialogRef.close()
+      },
+      err => {
+        this.snackbar.open('Something went wrong, try again later.')
+      })
   }
 }

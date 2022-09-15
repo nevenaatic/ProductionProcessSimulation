@@ -35,6 +35,11 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public void deleteById(int idProduct){
+        Product product = productRepository.findById(idProduct);
+        productRepository.deleteById(idProduct);
+    }
+
     public Product findProductForProcess(int idProcess){
         return productRepository.findProductForProcess(idProcess);
     }

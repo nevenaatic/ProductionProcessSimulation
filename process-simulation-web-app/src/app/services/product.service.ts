@@ -7,6 +7,7 @@ import { Product } from '../model/Product.model';
   providedIn: 'root'
 })
 export class ProductService {
+ 
 
   private readonly baseUrl = `${environment.apiUrl}/product`
   constructor(private http: HttpClient) { }
@@ -15,8 +16,10 @@ export class ProductService {
     return this.http.get<any>(`${this.baseUrl}/products`, { headers: this.headers() });
   }
   public readonly createNewProduct = (product: Product) =>  {
-    alert('alo')
     return this.http.post(`${this.baseUrl}/product`, product, {headers: this.headers()});
+  } 
+  deleteProduct(product: any) {
+    return this.http.delete(`${this.baseUrl}/delete/${product.id}`, {headers:this.headers()});
   }
   private readonly headers = () => {
     return new HttpHeaders({ Authorization: "Bearer " + localStorage.getItem("accessToken") });
