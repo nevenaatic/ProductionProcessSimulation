@@ -1,6 +1,7 @@
 package com.example.demo.model.productionProcess;
 
 import com.example.demo.model.failure.FailureInProcessStep;
+import com.example.demo.model.others.Material;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -34,6 +35,17 @@ public class ProcessStep {
     @OneToMany(mappedBy = "processStep", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("processStep")
     private List<StepOfProductionProcess> stepOfProductionProcessList;
+
+    @ManyToMany(mappedBy = "processSteps")
+    private List<Material> materials;
+
+    public List<Material> getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(List<Material> materials) {
+        this.materials = materials;
+    }
 
     public List<FailureInProcessStep> getFailureInPSList() {
         return failureInPSList;
@@ -91,7 +103,6 @@ public class ProcessStep {
 
     }
 
-    public ProcessStep() {
-    }
+    public ProcessStep() {}
 
 }

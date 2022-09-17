@@ -1,6 +1,6 @@
 .process-table{
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 .header-div {
     height: 5rem;
@@ -13,4 +13,10 @@
 
 .icon-color{
     color: purple;
+}
+
+.btn-new{
+    background-color: purple;
+    color: white;
+    font-size: larger;
 }

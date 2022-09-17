@@ -1,3 +1,5 @@
 .example-card {
     margin-bottom: 8px;
+    width: 290px;
+    height: fit-content;
   }

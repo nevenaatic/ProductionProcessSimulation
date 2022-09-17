@@ -15,6 +15,10 @@ export class ProcessStepsService {
     return this.http.get(`${this.baseUri}/processStepKind/stepKinds`, {headers: this.headers()});
   }
 
+  public readonly getProcessSteps = () => {
+    return this.http.get(`${this.baseUri}/processStep/steps`, {headers: this.headers()});
+  }
+
   private readonly headers = () => {
     return new HttpHeaders({ Authorization: "Bearer " + localStorage.getItem("accessToken") });
   }

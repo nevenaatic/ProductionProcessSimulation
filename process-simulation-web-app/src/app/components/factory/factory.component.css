@@ -1,0 +1,18 @@
+.header-div {
+    height: 5rem;
+}
+.card {
+    width: 75%;
+    max-height: max-content;
+    margin-left: 12%;
+}
+
+.profile-photo{
+    padding-top: 20%;
+}
+
+.photo-description{
+    height: 10rem;
+    width: 13rem;
+}
+

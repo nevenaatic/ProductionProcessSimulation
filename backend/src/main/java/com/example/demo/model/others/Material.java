@@ -1,14 +1,18 @@
 package com.example.demo.model.others;
 
 import com.example.demo.enums.MaterialUnits;
+import com.example.demo.model.productionProcess.ProcessStep;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Material {
+
     @Id
+    @SequenceGenerator(name = "materialSeqGen", sequenceName = "materialSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "materialSeqGen")
+    @Column(name = "id")
     private int id;
 
     @Column(unique = true)
@@ -20,6 +24,20 @@ public class Material {
     @Column(nullable = true)
     private MaterialUnits materialUnitType;
 
+    @ManyToMany
+    @JoinTable(
+            name = "step_material",
+            joinColumns = @JoinColumn(name = "material_id"),
+            inverseJoinColumns = @JoinColumn(name = "step_id"))
+    private List<ProcessStep> processSteps;
+
+    public List<ProcessStep> getProcessSteps() {
+        return processSteps;
+    }
+
+    public void setProcessSteps(List<ProcessStep> processSteps) {
+        this.processSteps = processSteps;
+    }
 
     public int getId() {
         return id;

@@ -1,5 +1,6 @@
 package com.example.demo.model.failure;
 
+import com.example.demo.dto.failures.FailuresPreviewDto;
 import com.example.demo.enums.FailureType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -9,6 +10,9 @@ import java.util.List;
 @Entity
 public class Failure {
     @Id
+    @SequenceGenerator(name = "failureSeqGen", sequenceName = "failureSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "failureSeqGen")
+    @Column(name = "id")
     private int id;
     @Column(nullable = true)
     private String name;
@@ -17,10 +21,18 @@ public class Failure {
     @Column(nullable = true)
     private double probability;
 
-    @OneToMany(mappedBy = "failure", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "failure", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("failure")
     private List<FailureInProcessStep> failureInPSList;
 
+
+    public Failure() {
+    }
+    public Failure(FailuresPreviewDto failure) {
+        this.name = failure.name;
+        this.probability = failure.probability;
+        this.failureType = failure.type;
+    }
     public List<FailureInProcessStep> getFailureInPSList() {
         return failureInPSList;
     }

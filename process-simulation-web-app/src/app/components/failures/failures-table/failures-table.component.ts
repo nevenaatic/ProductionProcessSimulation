@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Failure } from 'src/app/model/Failure.model';
 import { FailureService } from 'src/app/services/failure.service';
+import { NewFailureDialogComponent } from './new-failure-dialog/new-failure-dialog.component';
 @Component({
   selector: 'app-failures-table',
   templateUrl: './failures-table.component.html',
@@ -32,5 +33,13 @@ export class FailuresTableComponent implements OnInit {
       }
     )
   }
-  openDialog(){}
+  openDialog(){
+    const dialogRef =  this.dialog.open(NewFailureDialogComponent,{
+      height: 'max-content',
+      width: '400px',
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadFailures();
+    });
+  }
 }

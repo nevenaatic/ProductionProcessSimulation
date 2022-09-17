@@ -30,15 +30,19 @@ public class ProductionProcessService {
     private ProcessStepKindService processStepKindService;
     private StepOfProductionProcessService stepOfPPService;
     private ProcessEngineerService processEngineerService;
+    private MaterialService materialService;
 
-
-    public ProductionProcessService(ProductionProcessRepository productionProcessRepository, ProductService productService, ProcessStepService processStep, ProcessStepKindService processStepKindService, StepOfProductionProcessService stepOfPPService, ProcessEngineerService engineer) {
+    public ProductionProcessService(ProductionProcessRepository productionProcessRepository,
+                                    ProductService productService, ProcessStepService processStep,
+                                    ProcessStepKindService processStepKindService, StepOfProductionProcessService stepOfPPService,
+                                    ProcessEngineerService engineer, MaterialService materialService) {
         this.productionProcessRepository = productionProcessRepository;
         this.productService = productService;
         this.processStepService = processStep;
         this.processStepKindService = processStepKindService;
         this.stepOfPPService = stepOfPPService;
         this.processEngineerService = engineer;
+        this.materialService = materialService;
     }
 
     public ResponseEntity<HttpStatus> createProcess(NewProcessForCreateDto newProcess, User engineer) {
@@ -62,7 +66,7 @@ public class ProductionProcessService {
         if (savedProcess != null) {
             int num = 0;
             for (ProcessStep ps : steps) {
-               // stepOfPPService.saveStepOfProductionProcess(ps.getId(), savedProcess.getId(), ++num); //OVDE PRODJE
+                stepOfPPService.save(new StepOfProductionProcess(savedProcess, ps, ++num));
             }
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -82,16 +86,19 @@ public class ProductionProcessService {
         List<ProductionProcess> processes = this.productionProcessRepository.findAll();
         List<UnfinishedProcessDto> ret = new ArrayList<>();
         for (ProductionProcess p : processes) {
-            ProductionProcess pp = productionProcessRepository.processWithSteps(p.getId());
+            // ProductionProcess pp = productionProcessRepository.processWithSteps(p.getId());
             List<ProcessStepDto> steps = new ArrayList<>();
-             List<StepOfProductionProcess> stepOfPP = this.stepOfPPService.findStepsForProcess(p.getId());
-              for (StepOfProductionProcess s : stepOfPP) {
+            List<StepOfProductionProcess> stepOfPP = this.stepOfPPService.findStepsForProcess(p.getId());
+            for (StepOfProductionProcess s : stepOfPP) {
                 ProcessStep ps = processStepService.findStep(s.getProcessStep().getId());
                 ProcessStepDto stepDto = new ProcessStepDto(ps);
+                stepDto.materials = materialService.getMaterialsForStep(ps.getId());
                 steps.add(stepDto);
-}
-            UnfinishedProcessDto unfinishedProcessDto = new UnfinishedProcessDto(p.getId(), p.getName(), p.getDescription(), steps, p.getProduct().getName());
-            ret.add(unfinishedProcessDto);
+            }
+                UnfinishedProcessDto unfinishedProcessDto = new UnfinishedProcessDto(p.getId(), p.getName(), p.getDescription(), steps, p.getProduct().getName());
+                ret.add(unfinishedProcessDto);
+
+
         }
         return ret;
     }

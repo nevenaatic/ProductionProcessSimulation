@@ -15,7 +15,7 @@ public class Factory {
     private String name;
     @Column(nullable = false)
     private String pib;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Address address;
     @Column(nullable = true)
     private String telephone;

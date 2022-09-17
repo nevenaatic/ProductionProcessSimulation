@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { NewProcessDialogComponent } from './new-process-dialog/new-process-dialog.component';
+import { NewProcessDialogComponent } from '../new-process-dialog/new-process-dialog.component';
 
 @Component({
   selector: 'app-process-table',

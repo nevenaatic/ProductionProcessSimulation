@@ -13,19 +13,17 @@ import java.util.List;
 public class FailureInProcessStep {
     //class for TP between Failure, ProcessStep and QualityEngineer
     @Id
+    @SequenceGenerator(name = "failureipsSeqGen", sequenceName = "failureipsSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "failureipsSeqGen")
+    @Column(name = "id")
     private int id;
 
-    @ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="finaProcessStepId")
-    @JsonIgnoreProperties("finalProcessStep")
-    private FinalProcessStep finalProcessStep;
-  
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "failure_id")
     @JsonIgnoreProperties("failure")
     private Failure failure;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("processStep")
     private ProcessStep processStep;
 
@@ -37,6 +35,8 @@ public class FailureInProcessStep {
     @JoinColumn(name = "quality_engineer_id")
     @JsonIgnoreProperties("qualityEngineer")
     private QualityEngineer qualityEngineer;
+
+
 
     public QualityEngineer getQualityEngineer() {
         return qualityEngineer;
@@ -52,14 +52,6 @@ public class FailureInProcessStep {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public FinalProcessStep getFinalProcessStep() {
-        return finalProcessStep;
-    }
-
-    public void setFinalProcessStep(FinalProcessStep finalProcessStep) {
-        this.finalProcessStep = finalProcessStep;
     }
 
     public Failure getFailure() {

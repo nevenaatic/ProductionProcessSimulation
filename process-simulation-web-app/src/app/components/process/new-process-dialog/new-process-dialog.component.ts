@@ -44,13 +44,13 @@ export class NewProcessDialogComponent implements OnInit {
     this.process.description = this.newProcess.controls['processDescription'].value
     this.processService.createNewProcess(this.process).subscribe(res=> {
        this.snackbar.open('Process created!');
+        this.dialogRef.close();
     }, 
     err=>{
-      console.log(err)
+      console.log(err);
+      this.snackbar.open('Something went wrong, try again later');
     } )
    
-    console.log(this.process)
-    this.dialogRef.close();
   }
 
   readonly getStepKinds = ()=>

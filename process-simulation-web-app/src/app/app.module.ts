@@ -19,12 +19,17 @@ import { FailuresTableComponent } from './components/failures/failures-table/fai
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsTableComponent } from './components/products/products-table/products-table.component';
 import { ProductsModule } from './components/products/products.module';
+import { FactoryComponent } from './components/factory/factory.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ProductRevisionComponent } from './components/product-revision/product-revision.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     ChangePasswordComponent,
+    FactoryComponent,
+    ProductRevisionComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { ProductsModule } from './components/products/products.module';
     MatSnackBarModule,
     MatTableModule, 
     HttpClientModule,
-    ProductsModule
+    ProductsModule,
+    MatExpansionModule
   
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],

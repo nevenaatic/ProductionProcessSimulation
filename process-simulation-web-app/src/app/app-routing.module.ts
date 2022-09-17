@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FactoryComponent } from './components/factory/factory.component';
 import { FailuresComponent } from './components/failures/failures.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProcessComponent } from './components/process/process.component';
+import { ProductRevisionComponent } from './components/product-revision/product-revision.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
@@ -18,7 +20,9 @@ const routes: Routes = [
       { path: 'workers', component: WorkersComponent },
       { path: 'failures', component: FailuresComponent },
       { path: 'statistic', component: StatisticsComponent },
-      { path: 'products', component: ProductsComponent }
+      { path: 'products', component: ProductsComponent },
+      { path: 'factory', component: FactoryComponent },
+      {path: 'product-revision', component: ProductRevisionComponent}
     ]
   },
   { path: '', component: LoginPageComponent },

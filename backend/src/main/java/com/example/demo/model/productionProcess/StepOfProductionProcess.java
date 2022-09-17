@@ -30,6 +30,16 @@ public class StepOfProductionProcess  {
     @JsonIgnoreProperties("stepOfPP")
     private List<FinalProcessStep> finalProcessStepList;
 
+
+    public StepOfProductionProcess(ProductionProcess productionProcess, ProcessStep processStep, int num) {
+        this.productionProcess = productionProcess;
+        this.processStep= processStep;
+        this.processStepNumber = num;
+    }
+
+    public StepOfProductionProcess() {
+    }
+
     public ProcessStep getProcessStep() {
         return processStep;
     }

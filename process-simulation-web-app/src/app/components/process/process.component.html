@@ -1,22 +1,28 @@
 <div class="header-div"></div>
 <div class="process-table">
     <mat-card>
-        <div class="row">
-            <div class="col-md-9">
+        <div class="row" style="margin-right: 5px;">
+            <div class="col-md-8">
                 <button mat-button (click)="back()">
-                    <h3 style="color:purple; text-align: center;"> All processes </h3>
+                    <button mat-button style="text-align: right; margin-left: 10%;" (click)="getUnfinishedProcesses()">
+                        <h3 style="color:purple; text-align: center;"> All processes </h3>
+                    </button>
                 </button> 
             </div>
        
-        <div class="col"> 
+        <div class="col-sm-3"> 
             <button mat-button style="text-align: right; margin-left: 10%;" (click)="showFinishedProcesses()">
                 Finished processes
             </button>
         </div>
+        <div class="col-sm-1" > 
+            <button mat-button class="btn-new" (click)="createNewProcess()">+</button>
+        </div>
+        
      </div>
    
      <div *ngIf="!showFinished"> 
-        <mat-card *ngFor="let process of unfinishedList">
+        <mat-card *ngFor="let process of obs  | async">
 
             <mat-card-content>
                 <div class="row">
@@ -39,27 +45,36 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row" *ngFor="let step of process.steps" style="margin-left: 3%;">
-
-                    <div class="col-md-3">
-                        <mat-icon style="padding-top: 5px;">forward</mat-icon>
-                        {{step.name}}
-                    </div>
-                    <div class="col-md-7">
-                        {{step.description}}
-                    </div>
-                    <div class="col">
-                        <mat-icon style="padding-top: 5px;">group</mat-icon> {{step.numberOfPeople}}
-                    </div>
+                <div class="row" *ngFor="let step of process.steps" style="width:100%">
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header style="width:100%">
+                          <mat-panel-title>
+                            <mat-icon style="padding-top: 5px;">forward</mat-icon> {{step.name}}
+                          </mat-panel-title>
+                          <mat-panel-description>
+                           <div class="row" style="width: 100%;">
+                            <div class="col-md-10">
+                                {{step.description}}
+                            </div>
+                            <div class="col-md-1" style="text-align: right; width:100%">
+                                <mat-icon style="padding-top: 5px;">group</mat-icon> {{step.numberOfPeople}}
+                            </div>
+                           </div>
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p *ngFor="let material of step.materials" style="margin-left: 5%;"> {{material.label}} | {{material.name}}  |  {{material.price}} RSD | unit: {{material.unit}}</p>
+                      </mat-expansion-panel>
                 </div>
             </mat-card-content>
 
         </mat-card>
+         <mat-paginator [pageSizeOptions]="[1, 2,3]"></mat-paginator>
     </div>
     <mat-card  *ngIf="showFinished">
         <app-process-table> </app-process-table>
     </mat-card>
+   
 </mat-card>
- 
+
 </div>
 

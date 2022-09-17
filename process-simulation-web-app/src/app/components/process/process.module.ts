@@ -8,12 +8,13 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
-import { NewProcessDialogComponent } from "./process-table/new-process-dialog/new-process-dialog.component";
+import { NewProcessDialogComponent } from "./new-process-dialog/new-process-dialog.component";
 import { ProcessTableComponent } from "./process-table/process-table.component";
 import { ProcessComponent } from "./process.component";
 import {MatSelectModule} from '@angular/material/select';
 import { MatOptionModule } from "@angular/material/core";
 import { CommonModule } from "@angular/common";
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { CommonModule } from "@angular/common";
         MatPaginatorModule,
         MatSelectModule,
         MatOptionModule, 
-        CommonModule
+        CommonModule,
+        MatExpansionModule
     ],
     exports: [ProcessComponent],
     providers: [],
