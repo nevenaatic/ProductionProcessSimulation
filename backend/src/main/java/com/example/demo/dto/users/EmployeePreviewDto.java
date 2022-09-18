@@ -1,5 +1,6 @@
 package com.example.demo.dto.users;
 
+import com.example.demo.enums.Gender;
 import com.example.demo.model.others.Address;
 import com.example.demo.model.users.Employee;
 
@@ -14,6 +15,7 @@ public class EmployeePreviewDto {
     public String telephone;
     public Address address;
     public String profilePhoto;
+    public Gender gender;
 
     public EmployeePreviewDto(){}
 
@@ -26,5 +28,6 @@ public class EmployeePreviewDto {
         this.telephone = employee.getTelephone();
         this.email = employee.getEmail();
         this.profilePhoto = employee.getPicture();
+        this.gender= employee.getGender();
     }
 }

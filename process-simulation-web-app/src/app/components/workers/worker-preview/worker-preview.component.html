@@ -5,11 +5,11 @@
       <mat-card-title>{{worker.name}} {{worker.surname}}</mat-card-title>
       <mat-card-subtitle>{{worker.email}}</mat-card-subtitle>
       <img mat-card-sm-image [src]="worker.profilePhoto" *ngIf="worker.profilePhoto" >
-      <img mat-card-sm-image src="../../../../assets/user_profile.png" *ngIf="!worker.profilePhoto" >
+      <img *ngIf="worker.gender=='MALE'" mat-card-sm-image [src]="'http://xsgames.co/randomusers/assets/avatars/male/'+worker.id+'.jpg'"  >
+      <img *ngIf="worker.gender=='FEMALE'" mat-card-sm-image [src]="'http://xsgames.co/randomusers/assets/avatars/female/'+worker.id+'.jpg'"  >
     </mat-card-title-group>
     <mat-card-content>
     <p>{{worker.telephone}} </p>
-    <p>{{worker.gender}} </p>
     <p>{{worker.birthday | date}} </p>
     <p>{{worker.address.street}}  {{worker.address.number}}, {{worker.address.city}}</p>
     </mat-card-content>
