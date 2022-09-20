@@ -16,7 +16,7 @@
         <a routerLink="/homepage/workers"  class="simple-text logo-mini"><mat-icon>group</mat-icon>  </a>
         <a routerLink="/homepage/workers" class="simple-text logo-normal"> <mat-label> Workers </mat-label> </a>
     </div>
-    <div class="links" *ngIf="qualityEngineer" >
+    <div class="links" *ngIf="qualityEngineer || processEngineer" >
         <a routerLink="/homepage/failures"  class="simple-text logo-mini"><mat-icon>error</mat-icon>  </a>
         <a routerLink="/homepage/failures" class="simple-text logo-normal"> <mat-label> Failures </mat-label> </a>
     </div>
@@ -31,5 +31,9 @@
     <div class="links"  *ngIf="qualityEngineer">
         <a routerLink="/homepage/product-revision"  class="simple-text logo-mini"><mat-icon>check_box</mat-icon> </a>
         <a routerLink="/homepage/product-revision" class="simple-text logo-normal"> <mat-label> Product revision </mat-label> </a>
+    </div>
+    <div class="links"  *ngIf="productManager || processEngineer">
+        <a routerLink="/homepage/engagements"  class="simple-text logo-mini"><mat-icon>assignment_ind</mat-icon> </a>
+        <a routerLink="/homepage/engagements" class="simple-text logo-normal"> <mat-label> Workers engagements </mat-label> </a>
     </div>
 </div>

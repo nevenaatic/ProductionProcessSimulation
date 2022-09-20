@@ -21,7 +21,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
   constructor(private processService: ProcessService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getUnfinishedProcesses()
+    this.getUnfinishedProcesses();
   }
 
   ngOnDestroy(): void {
@@ -39,6 +39,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
       this.getUnfinishedProcesses()
     });
   }
+  
   public readonly getUnfinishedProcesses = () => this.processService.getUnfinishedProcesses()
     .subscribe(res => {
       const allProcesses = res;

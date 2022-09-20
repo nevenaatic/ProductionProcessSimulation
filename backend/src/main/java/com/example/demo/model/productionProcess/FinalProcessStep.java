@@ -11,6 +11,9 @@ import java.util.List;
 public class FinalProcessStep {
 
     @Id
+    @SequenceGenerator(name = "finalStepSeqGen", sequenceName = "finalStepSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "finalStepSeqGen")
+    @Column(name = "id")
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -23,12 +26,12 @@ public class FinalProcessStep {
     @JsonIgnoreProperties("failureInPS")
     private FailureInProcessStep failureInPS;
 
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-//    @JoinColumn(name="finalPP_id")
-//    @JsonIgnoreProperties("finalProductionProcess")
-//    private FinalProductionProcess finalProductionProcess;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name="finalPP_id")
+    @JsonIgnoreProperties("finalProductionProcess")
+    private FinalProductionProcess finalProductionProcess;
 
-    @OneToMany(mappedBy = "finalProcessStep", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "finalProcessStep", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("finalProcessStep")
     private List<EmployeeWithEngagement> employeesWithEngagements;
 
@@ -44,7 +47,6 @@ public class FinalProcessStep {
     public void setEmployeesWithEngagements(List<EmployeeWithEngagement> employeesWithEngagements) {
         this.employeesWithEngagements = employeesWithEngagements;
     }
-
 
     public Date getDateStart() {
         return dateStart;
@@ -84,5 +86,13 @@ public class FinalProcessStep {
 
     public void setFailureInPS(FailureInProcessStep failureInPS) {
         this.failureInPS = failureInPS;
+    }
+
+    public FinalProductionProcess getFinalProductionProcess() {
+        return finalProductionProcess;
+    }
+
+    public void setFinalProductionProcess(FinalProductionProcess finalProductionProcess) {
+        this.finalProductionProcess = finalProductionProcess;
     }
 }

@@ -29,7 +29,7 @@
                     <div class="col-md-5">
                         <h2> {{process.name}}</h2>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <p>Product: {{process.productName}}</p>
                     </div>
 
@@ -49,15 +49,16 @@
                     <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header style="width:100%">
                           <mat-panel-title>
-                            <mat-icon style="padding-top: 5px;">forward</mat-icon> {{step.name}}
+                            <mat-icon style="padding-top: 3px;">forward</mat-icon> {{step.name}}
                           </mat-panel-title>
                           <mat-panel-description>
-                           <div class="row" style="width: 100%;">
-                            <div class="col-md-10">
-                                {{step.description}}
+                           <div class="row" style="width: 100%; height:max-content">
+                            <div class="col-md-10"  >
+                                <p>{{step.description}}</p>
+                                
                             </div>
-                            <div class="col-md-1" style="text-align: right; width:100%">
-                                <mat-icon style="padding-top: 5px;">group</mat-icon> {{step.numberOfPeople}}
+                            <div class="col" style="text-align: right; width:100%">
+                                <mat-icon style="padding-top: 4px;">group</mat-icon> {{step.numberOfPeople}}
                             </div>
                            </div>
                           </mat-panel-description>

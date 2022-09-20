@@ -22,6 +22,7 @@ import { ProductsModule } from './components/products/products.module';
 import { FactoryComponent } from './components/factory/factory.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProductRevisionComponent } from './components/product-revision/product-revision.component';
+import { WorkersEngagementModule } from './components/workers-engagement/workers-engagement.module';
 
 @NgModule({
   declarations: [
@@ -47,8 +48,8 @@ import { ProductRevisionComponent } from './components/product-revision/product-
     MatTableModule, 
     HttpClientModule,
     ProductsModule,
-    MatExpansionModule
-  
+    MatExpansionModule,
+  WorkersEngagementModule
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],
   bootstrap: [AppComponent],

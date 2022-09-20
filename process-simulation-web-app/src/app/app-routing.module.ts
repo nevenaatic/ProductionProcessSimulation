@@ -10,6 +10,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { WorkersComponent } from './components/workers/workers.component';
+import { WorkersEngagementComponent } from './components/workers-engagement/workers-engagement.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
       { path: 'statistic', component: StatisticsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'factory', component: FactoryComponent },
-      {path: 'product-revision', component: ProductRevisionComponent}
+      {path: 'product-revision', component: ProductRevisionComponent},
+      {path: 'engagements', component: WorkersEngagementComponent}
     ]
   },
   { path: '', component: LoginPageComponent },

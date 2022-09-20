@@ -9,7 +9,8 @@ import java.util.Date;
 @Entity
 public class EmployeeWithEngagement {
     @Id
-    @Column(name = "id", nullable = false)
+    @SequenceGenerator(name = "engagementSeqGen", sequenceName = "engagementSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "engagementSeqGen")
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -17,14 +18,13 @@ public class EmployeeWithEngagement {
     @JsonIgnoreProperties("finalProcessStep")
     private FinalProcessStep finalProcessStep;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @Column
-    private Date dateStart;
-    @Column
-    private Date dateEnd;
+    private double  hours;
+
 
     public FinalProcessStep getFinalProcessStep() {
         return finalProcessStep;
@@ -34,20 +34,12 @@ public class EmployeeWithEngagement {
         this.finalProcessStep = finalProcessStep;
     }
 
-    public Date getDateStart() {
-        return dateStart;
+    public double getHours() {
+        return hours;
     }
 
-    public void setDateStart(Date dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
+    public void setHours(double hours) {
+        this.hours = hours;
     }
 
     public Employee getEmployee() {

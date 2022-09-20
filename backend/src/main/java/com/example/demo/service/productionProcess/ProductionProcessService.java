@@ -97,8 +97,16 @@ public class ProductionProcessService {
             }
                 UnfinishedProcessDto unfinishedProcessDto = new UnfinishedProcessDto(p.getId(), p.getName(), p.getDescription(), steps, p.getProduct().getName());
                 ret.add(unfinishedProcessDto);
+        }
+        return ret;
+    }
 
-
+    public UnfinishedProcessDto getProcessWithSteps(int id){
+        UnfinishedProcessDto ret = new UnfinishedProcessDto();
+        for(UnfinishedProcessDto up: getAllWithSteps()){
+            if(up.id == id){
+                ret = up;
+            }
         }
         return ret;
     }

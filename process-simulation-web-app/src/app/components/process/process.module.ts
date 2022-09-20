@@ -11,10 +11,10 @@ import { MatTableModule } from "@angular/material/table";
 import { NewProcessDialogComponent } from "./new-process-dialog/new-process-dialog.component";
 import { ProcessTableComponent } from "./process-table/process-table.component";
 import { ProcessComponent } from "./process.component";
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule} from '@angular/material/select';
 import { MatOptionModule } from "@angular/material/core";
 import { CommonModule } from "@angular/common";
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
     declarations: [

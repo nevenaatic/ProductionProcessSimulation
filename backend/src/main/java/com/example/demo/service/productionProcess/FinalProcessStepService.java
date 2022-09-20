@@ -1,14 +1,20 @@
 package com.example.demo.service.productionProcess;
 
-import com.example.demo.repository.product.FinalProductRepository;
+import com.example.demo.model.productionProcess.FinalProcessStep;
+import com.example.demo.repository.productionProcess.FinalProcessStepRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FinalProcessStepService {
 
-    private FinalProductRepository finalProductRepository;
+    private FinalProcessStepRepository finalProcessStepRepository;
 
-    public FinalProcessStepService(FinalProductRepository finalProductRepository) {
-        this.finalProductRepository = finalProductRepository;
+    public FinalProcessStepService(FinalProcessStepRepository finalProcessStepRepository) {
+        this.finalProcessStepRepository = finalProcessStepRepository;
+    }
+
+    public FinalProcessStep getStepWithEngagements(int idStep){
+        FinalProcessStep step = finalProcessStepRepository.getFinalStepEngagements(idStep);
+        return step;
     }
 }

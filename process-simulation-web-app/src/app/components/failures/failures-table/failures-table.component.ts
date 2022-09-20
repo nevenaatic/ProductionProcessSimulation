@@ -17,10 +17,12 @@ export class FailuresTableComponent implements OnInit {
   failures: any;
   dataSource : any;
   displayedColumns=['name', 'type', 'probability']
+  QE: boolean = false;
   constructor(private dialog: MatDialog, private failureService: FailureService) { }
 
   ngOnInit(): void {
    this.loadFailures();
+   this.whoAmI()
   }
 
   readonly loadFailures = ()=> {
@@ -41,5 +43,11 @@ export class FailuresTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.loadFailures();
     });
+  }
+
+  whoAmI(){
+    if(localStorage.getItem('role')=='ROLE_QUALITY_ENGINEER'){
+     this.QE = true;
+    }
   }
 }

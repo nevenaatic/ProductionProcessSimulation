@@ -1,16 +1,18 @@
 package com.example.demo.model.productionProcess;
 
 import com.example.demo.model.users.ProcessEngineer;
-import com.example.demo.model.users.QualityEngineer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 public class FinalProductionProcess {
 
     @Id
+    @SequenceGenerator(name = "finalProductionSeqGen", sequenceName = "finalProductionSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "finalProductionSeqGen")
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -23,9 +25,31 @@ public class FinalProductionProcess {
     @JsonIgnoreProperties("productionProcess")
     private ProductionProcess productionProcess;
 
-//    @OneToMany(mappedBy = "finalProductionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties("finalProductionProcess")
-//    private List<FinalProcessStep> finalProcessStepList;
+    @OneToMany(mappedBy = "finalProductionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("finalProductionProcess")
+    private List<FinalProcessStep> finalProcessStepList;
+
+    @Column
+    private  String label;
+
+    @Column
+    private Date dateStart;
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
 
     public ProcessEngineer getProcessEngineer() {
         return processEngineer;
@@ -35,13 +59,13 @@ public class FinalProductionProcess {
         this.processEngineer = processEngineer;
     }
 
-//    public List<FinalProcessStep> getFinalProcessStepList() {
-//        return finalProcessStepList;
-//    }
-//
-//    public void setFinalProcessStepList(List<FinalProcessStep> finalProcessStepList) {
-//        this.finalProcessStepList = finalProcessStepList;
-//    }
+    public List<FinalProcessStep> getFinalProcessStepList() {
+        return finalProcessStepList;
+    }
+
+    public void setFinalProcessStepList(List<FinalProcessStep> finalProcessStepList) {
+        this.finalProcessStepList = finalProcessStepList;
+    }
 
     public int getId() {
         return id;
