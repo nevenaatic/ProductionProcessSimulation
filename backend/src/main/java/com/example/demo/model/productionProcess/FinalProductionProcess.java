@@ -4,6 +4,7 @@ import com.example.demo.model.users.ProcessEngineer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class FinalProductionProcess {
     @JsonIgnoreProperties("productionProcess")
     private ProductionProcess productionProcess;
 
-    @OneToMany(mappedBy = "finalProductionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "finalProductionProcess", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("finalProductionProcess")
-    private List<FinalProcessStep> finalProcessStepList;
+    private List<FinalProcessStep> finalProcessStepList = new ArrayList<>();
 
     @Column
     private  String label;

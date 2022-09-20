@@ -11,8 +11,6 @@ import com.example.demo.repository.productionProcess.EngagementsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,35 +31,30 @@ public class EngagementService {
     }
 
     public List<EngagementsByEmployeeDto> getEngagementForPeriod(EngagementRequestDto dto) {
-        List<FinalProductionProcess> allProcesses = finalProcessService.getAllForPeriodWithSteps(dto.from, dto.to); //here we have infos about main process and steps
+        List<FinalProductionProcess> allProcesses = finalProcessService.getAllForPeriodWithSteps(dto.from, dto.to);
         List<EngagementsByEmployeeDto> ret = new ArrayList<>();
 
         for (FinalProductionProcess fp : allProcesses) {
-
             EngagementsByEmployeeDto engagement = new EngagementsByEmployeeDto();
             List<EngagementsStepsDto> stepsForOneProcess = new ArrayList<>();
 
             for (FinalProcessStep fps : fp.getFinalProcessStepList()) {
-
                 FinalProcessStep fpsWithEngagements = finalProcessStepService.getStepWithEngagements(fps.getId());
-
-
 
                 for (EmployeeWithEngagement e : fpsWithEngagements.getEmployeesWithEngagements()) {
 
                     if (e.getEmployee().getId() == dto.idEmployee) {
                         if (fps.getFailureInPS() != null) {
-                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), true);
+                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), true,e.getHours());
                             engagement.engagementsStepsDtoList.add(stepsDto);
                             engagement.failed = true;
                         } else {
-                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), false);
+                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), false, e.getHours());
                             stepsForOneProcess.add(stepsDto);
                             engagement.failed = false;
                         }
                     }
                 }
-
             }
             engagement.engagementsStepsDtoList=stepsForOneProcess;
             engagement.processLabel = fp.getLabel();
@@ -69,7 +62,11 @@ public class EngagementService {
             engagement.processName = fp.getProductionProcess().getName();
             ret.add(engagement);
         }
-
         return ret;
+    }
+
+
+    public void save(EmployeeWithEngagement engagement) {
+        engagementsRepository.save(engagement);
     }
 }

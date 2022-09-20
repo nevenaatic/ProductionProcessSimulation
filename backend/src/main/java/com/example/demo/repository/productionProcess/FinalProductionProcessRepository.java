@@ -11,4 +11,6 @@ public interface FinalProductionProcessRepository extends JpaRepository<FinalPro
     @Query("select f from FinalProductionProcess f left join fetch f.finalProcessStepList fs where f.id = ?1")
     FinalProductionProcess processWithFinalSteps(int idProcess);
 
+
+
 }

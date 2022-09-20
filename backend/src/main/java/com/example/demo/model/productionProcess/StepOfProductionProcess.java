@@ -3,6 +3,7 @@ package com.example.demo.model.productionProcess;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,7 +29,7 @@ public class StepOfProductionProcess  {
 
     @OneToMany(mappedBy = "stepOfPP", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("stepOfPP")
-    private List<FinalProcessStep> finalProcessStepList;
+    private List<FinalProcessStep> finalProcessStepList = new ArrayList<>();
 
 
     public StepOfProductionProcess(ProductionProcess productionProcess, ProcessStep processStep, int num) {

@@ -16,4 +16,8 @@ public class QualityEngineerService {
     public QualityEngineer findById(int id){
         return qualityEngineerRepository.findById(id);
     }
+
+    public QualityEngineer findWithProducts(int id){
+        return this.qualityEngineerRepository.findWithProducts(id);
+    }
 }

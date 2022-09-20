@@ -22,4 +22,7 @@ public interface ProductionProcessRepository extends JpaRepository<ProductionPro
 
     @Query("select p from ProductionProcess p join fetch p.stepOfPPList s where p.id =?1")
     ProductionProcess processWithSteps(int id);
+
+    @Query("select p from ProductionProcess p join fetch p.finalProductionProcessList fp where p.id =?1")
+    ProductionProcess processWithFinalProcesses(int id);
 }

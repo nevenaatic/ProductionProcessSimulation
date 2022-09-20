@@ -2,22 +2,23 @@
 
 <div class="engagement-table">
     <form [formGroup]="engagementGroup">
-    <mat-card> 
-      <div class="row" style="width: 70%; text-align: center;  margin-left: 5%;">
-        <div class="col-md-4">
-<mat-label> Select worker</mat-label>
-        </div>
-        <div class="col">
-        <mat-form-field appearance="fill" style="width: 100%;">
-            <mat-label>Select worker</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let worker of workersList" [value]="worker"
-                (onSelectionChange)="setWorker(worker.id)">{{worker.name}} {{worker.surname}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </div>
-</div>
-<!-- <div class="row" style="width: 70%; text-align: center; margin-left: 5%;">
+        <mat-card>
+            <div class="row" style="width: 70%; text-align: center;  margin-left: 5%;">
+                <div class="col-md-4">
+                    <mat-label> Select worker</mat-label>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Select worker</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let worker of workersList" [value]="worker"
+                                (onSelectionChange)="setWorker(worker.id)">{{worker.name}} {{worker.surname}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <!-- <div class="row" style="width: 70%; text-align: center; margin-left: 5%;">
     <div class="col-md-4">
         <mat-label> Select process</mat-label>
     </div>
@@ -31,72 +32,85 @@
       </mat-form-field>
 </div>
 </div> -->
-<div class="row" style="width: 70%; text-align: center; margin-left: 5%;">
-    <div class="col-md-4"><mat-label> Chose a period: </mat-label></div>
-    <div class="col-md-3">
-        <mat-form-field appearance="fill" style="width:230px" >
-            <mat-label>Choose a date from</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="from" >
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-  
-</div>
-<div class="col-md-1"></div>
-    <div class="col-md-3">
-        <mat-form-field appearance="fill" style="width:230px">
-            <mat-label>Choose a date to</mat-label>
-            <input matInput [matDatepicker]="picker2" formControlName="to">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-    </div>
-  
+            <div class="row" style="width: 70%; text-align: center; margin-left: 5%;">
+                <div class="col-md-4">
+                    <mat-label> Chose a period: </mat-label>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill" style="width:230px">
+                        <mat-label>Choose a date from</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="from">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
 
-</div>
-<div class="row" style="text-align: center;">
-    <button mat-button (click)="checkEngagement()" style="width: max-content; margin-left: 45%;"> Search</button>
-</div>
-    </mat-card>
-</form>
-<div *ngIf="sizeList != 0"> 
-    <div class="row" style="text-align: center;">
-        <div class="col-md-5">
-    <mat-card *ngFor="let engagement of obs  | async">
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill" style="width:230px">
+                        <mat-label>Choose a date to</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="to">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
 
-        <mat-card-content>
-            <div class="row">
-         
-                <div class="col">Process label:  {{engagement.processLabel}} </div>
 
-                <div class="col"> <p *ngIf="!engagement.failed" style="color: green;  font-weight: bold; text-align: right;" > VALID </p>
-                      <p *ngIf="engagement.failed" style="color: red; font-weight: bold;" > FAILED </p></div>
-             </div>
-         <div class="row">
-              <div class="col">Process name:  {{engagement.processName}}  </div>
-         </div>  
-         <div class="row">
-            <div class="col">Date start:  {{engagement.dateStart | date }}</div>
-         </div>
-         
-        <div class="row" style="margin-left: 3%;" *ngFor="let step of engagement.engagementsStepsDtoList">
-           <div class="col-md-1">  <mat-icon style="padding-top: 3px;">forward</mat-icon> 
-           </div>
-            <div class="col">
-                {{step.processStepName}}
             </div>
+            <div class="row" style="text-align: center;">
+                <button mat-button (click)="checkEngagement()" style="width: max-content; margin-left: 45%;">
+                    Search</button>
+            </div>
+        </mat-card>
+    </form>
+    <div *ngIf="sizeList != 0" class="mat-card-group">
+        <div class="row" >
+            <div class="col-md-4" *ngFor="let engagement of obs  | async">
+                <mat-card >
+
+                    <mat-card-content>
+                        <div class="row">
+
+                            <div class="col">Process label: {{engagement.processLabel}} </div>
+
+                            <div class="col">
+                                <p *ngIf="!engagement.failed"
+                                    style="color: green;  font-weight: bold; text-align: right;"> VALID </p>
+                                <p *ngIf="engagement.failed" style="color: red; font-weight: bold;"> FAILED </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Process name: {{engagement.processName}} </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Date start: {{engagement.dateStart | date }}</div>
+                        </div>
+
+                        <div class="row" style="margin-left: 3%;"
+                            *ngFor="let step of engagement.engagementsStepsDtoList">
+                            <div class="col-md-1">
+                                <mat-icon style="padding-top: 3px;">forward</mat-icon>
+                            </div>
+                            <div class="col">
+                                {{step.processStepName}}
+                            </div>
+                            <div class="col">
+                               <p *ngIf="step.hours >= 3.5" style="color:red"> {{step.hours}} hours</p>
+                               <p *ngIf="step.hours < 3.5" > {{step.hours}} hours</p>
+                            </div>
+                        </div>
+                        <hr>
+
+                    </mat-card-content>
+
+                </mat-card>
+            </div>
+
         </div>
-            <hr>
-          
-        </mat-card-content>
-
-    </mat-card>
+        <div *ngIf="sizeList == 0">
+            <p> This employee does not have engagement for this period</p>
         </div>
 
- </div>
-  <div *ngIf="sizeList == 0"> 
-    <p> This employee does not have engagement for this period</p> </div>
 
 
-  
-</div>
+    </div>

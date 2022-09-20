@@ -11,7 +11,7 @@ import java.util.List;
 @DiscriminatorValue("QE")
 public class QualityEngineer extends User {
 
-    @OneToMany(mappedBy = "qualityEngineer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "qualityEngineer", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("qualityEngineer")
     private List<FinalProduct> finalProductList;
 

@@ -9,7 +9,12 @@ import javax.persistence.*;
 @Entity
 public class FinalProduct {
     @Id
+    @SequenceGenerator(name = "finalProductSeqGen", sequenceName = "finalProductSeqGen", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "finalProductSeqGen")
     private int id;
+
+    @Column
+    private String label;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="product_id")
@@ -26,6 +31,15 @@ public class FinalProduct {
 
     @Column(nullable = true)
     private boolean checked;
+
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 
     public Product getProductForFinal() {
         return productForFinal;
@@ -49,14 +63,6 @@ public class FinalProduct {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Product getProduct() {
-        return productForFinal;
-    }
-
-    public void setProduct(Product product) {
-        this.productForFinal = product;
     }
 
     public ProductType getProductType() {

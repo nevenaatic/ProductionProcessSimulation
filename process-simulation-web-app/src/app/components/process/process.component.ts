@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { FinalProcessService } from 'src/app/services/final-process.service';
 import { ProcessService } from 'src/app/services/process.service';
 import { NewProcessDialogComponent } from './new-process-dialog/new-process-dialog.component';
 
@@ -18,7 +19,8 @@ export class ProcessComponent implements OnInit, OnDestroy {
   unfinishedList: any;
   showFinished: boolean= false;
 
-  constructor(private processService: ProcessService,private dialog: MatDialog) { }
+  constructor(private processService: ProcessService,private dialog: MatDialog, 
+    private finalProcessService: FinalProcessService) { }
 
   ngOnInit(): void {
     this.getUnfinishedProcesses();
@@ -52,4 +54,10 @@ export class ProcessComponent implements OnInit, OnDestroy {
     public readonly showFinishedProcesses = () => this.showFinished = true;
 
     public readonly back = () => this.showFinished = false;
+
+    public readonly startProcess = (id: number) => {
+      alert('cao')
+      this.finalProcessService.startProcess(id).subscribe( 
+        res => { console.log(res)});
+    }
 }

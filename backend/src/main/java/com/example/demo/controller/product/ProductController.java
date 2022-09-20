@@ -1,10 +1,8 @@
 package com.example.demo.controller.product;
 
-import com.example.demo.dto.ProductDto;
-import com.example.demo.dto.process.NewProcessForCreateDto;
+import com.example.demo.dto.products.ProductDto;
 import com.example.demo.model.product.Product;
 import com.example.demo.service.product.ProductService;
-import com.example.demo.service.productionProcess.ProcessStepService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

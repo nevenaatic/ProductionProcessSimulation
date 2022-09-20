@@ -45,6 +45,24 @@ public class ProductionProcessService {
         this.materialService = materialService;
     }
 
+    public List<ProductionProcess> getAllProcess(){
+        return productionProcessRepository.findAll();
+    }
+
+    //this can be written in ProcessStepService
+    public List<ProcessStep> getStepsForProductionProcess(int id){
+        ProductionProcess process = productionProcessRepository.processWithSteps(id);
+        List<ProcessStep> processSteps = new ArrayList<>();
+        for (StepOfProductionProcess s: process.getStepOfPPList()) {
+            processSteps.add(processStepService.findStep(s.getProcessStep().getId()));
+        }
+        return processSteps;
+    }
+
+    public ProductionProcess getProcessWithFinalList(int id){
+        return this.productionProcessRepository.processWithFinalProcesses(id);
+    }
+
     public ResponseEntity<HttpStatus> createProcess(NewProcessForCreateDto newProcess, User engineer) {
         ProductionProcess productionProcess = new ProductionProcess();
         productionProcess.setName(newProcess.name);

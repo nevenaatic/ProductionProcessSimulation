@@ -15,15 +15,13 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
-import { FailuresTableComponent } from './components/failures/failures-table/failures-table.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ProductsTableComponent } from './components/products/products-table/products-table.component';
 import { ProductsModule } from './components/products/products.module';
 import { FactoryComponent } from './components/factory/factory.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProductRevisionComponent } from './components/product-revision/product-revision.component';
 import { WorkersEngagementModule } from './components/workers-engagement/workers-engagement.module';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { ProductRevisionTableComponent } from './components/product-revision/product-revision-table/product-revision-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +29,7 @@ import { WorkersEngagementModule } from './components/workers-engagement/workers
     ChangePasswordComponent,
     FactoryComponent,
     ProductRevisionComponent,
+    ProductRevisionTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +48,10 @@ import { WorkersEngagementModule } from './components/workers-engagement/workers
     HttpClientModule,
     ProductsModule,
     MatExpansionModule,
-  WorkersEngagementModule
+  WorkersEngagementModule,
+  MatTabsModule
+  
+
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }],
   bootstrap: [AppComponent],

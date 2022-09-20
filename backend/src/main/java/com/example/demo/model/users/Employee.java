@@ -10,7 +10,7 @@ import java.util.List;
 @DiscriminatorValue("EE")
 public class Employee extends User{
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("employee")
     private List<EmployeeWithEngagement> engagementList;
 

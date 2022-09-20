@@ -1,1 +1,18 @@
-<p>product-revision works!</p>
+<div class="header-div"></div>
+<div class="tabs">
+    <mat-card>
+    <!-- <h3>Very slow animation</h3> -->
+    <mat-tab-group animationDuration="200ms">
+      <mat-tab label="Waithing for quality control">
+        <app-product-revision-table [dataSource]="this.uncheckedList"></app-product-revision-table>
+      </mat-tab>
+
+      <mat-tab label="Scrap products">
+        <app-product-revision-table [dataSource]="this.scrapList"> </app-product-revision-table>
+    </mat-tab>
+      <mat-tab label="Regular products">
+        <app-product-revision-table [dataSource]="this.regularList"></app-product-revision-table>
+    </mat-tab>
+    </mat-tab-group>
+</mat-card>
+</div>

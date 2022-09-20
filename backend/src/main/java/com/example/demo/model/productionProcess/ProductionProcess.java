@@ -34,11 +34,11 @@ public class ProductionProcess {
     @JsonIgnoreProperties("processEngineer")
     private ProcessEngineer processEngineer;
 
-    @OneToMany(mappedBy = "productionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "productionProcess", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("productionProcess")
     private List<FinalProductionProcess> finalProductionProcessList;
 
-    @OneToMany(mappedBy = "productionProcess", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "productionProcess", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("productionProcess")
     private List<StepOfProductionProcess> stepOfPPList;
 
@@ -48,6 +48,14 @@ public class ProductionProcess {
 
     public void setFinalProductionProcessList(List<FinalProductionProcess> finalProductionProcessList) {
         this.finalProductionProcessList = finalProductionProcessList;
+    }
+
+    public List<StepOfProductionProcess> getStepOfPPList() {
+        return stepOfPPList;
+    }
+
+    public void setStepOfPPList(List<StepOfProductionProcess> stepOfPPList) {
+        this.stepOfPPList = stepOfPPList;
     }
 
     public Product getProduct() {

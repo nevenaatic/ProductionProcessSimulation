@@ -33,7 +33,8 @@
                         <p>Product: {{process.productName}}</p>
                     </div>
 
-                    <div class="col" style="text-align: right;"> <button mat-button class="start-btn">
+                    <div class="col" style="text-align: right;">
+                         <button mat-button class="start-btn" (click)="startProcess(process.id)">
                             <mat-icon class="icon-color">touch_app</mat-icon> start process
                         </button></div>
 

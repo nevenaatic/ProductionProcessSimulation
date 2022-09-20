@@ -1,6 +1,5 @@
 package com.example.demo.service.product;
 
-import com.example.demo.dto.ProductDto;
 import com.example.demo.model.product.FinalProduct;
 import com.example.demo.model.product.Product;
 import com.example.demo.model.productionProcess.ProductionProcess;

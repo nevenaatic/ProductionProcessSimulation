@@ -17,4 +17,8 @@ public class FinalProcessStepService {
         FinalProcessStep step = finalProcessStepRepository.getFinalStepEngagements(idStep);
         return step;
     }
+
+    public FinalProcessStep save(FinalProcessStep finalProcessStep) {
+        return finalProcessStepRepository.save(finalProcessStep);
+    }
 }

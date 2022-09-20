@@ -12,4 +12,8 @@ public interface StepOfProductionProcessRepository extends JpaRepository<StepOfP
 
     @Query("select s from StepOfProductionProcess s where s.productionProcess.id = ?1 order by s.processStepNumber")
     List<StepOfProductionProcess> findStepsForProcess(int id);
+
+    @Query("select s from StepOfProductionProcess s  join fetch s.finalProcessStepList fs where s.id = ?1")
+    StepOfProductionProcess sofppWithFinalStepsList(int id);
+
 }

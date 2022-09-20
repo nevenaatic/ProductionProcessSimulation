@@ -58,10 +58,6 @@ VALUES (nextval('user_seq_gen'), 3,'EE', 'nikola@gmail.com',0,true, null, 'Nikol
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
 VALUES (nextval('user_seq_gen'), 3,'EE', 'dragana@gmail.com',1,true, null, 'Dragana', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 7, 4,'1990-09-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 0,'QE', 'lazar@gmail.com',0,true, null, 'Lazar', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Lukic', '06158565485', 8, 1,'1990-09-11 00:00', null,1);
-INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 2,'PM', 'marta@gmail.com',1,true, null, 'Marta', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 9, 3,'1990-09-11 00:00', null,1);
-INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
 VALUES (nextval('user_seq_gen'), 3,'EE', 'pera@gmail.com',0,true, null, 'Pera', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Peric', '06158565485', 10, 4,'1990-11-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
 VALUES (nextval('user_seq_gen'), 3,'EE', 'marija@gmail.com',1,true, null, 'Marija', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Matic', '06158565485', 11, 4,'1978-09-11 00:00', null,1);
@@ -73,7 +69,10 @@ INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_da
 VALUES (nextval('user_seq_gen'), 3,'EE', 'danijela@gmail.com',1,true, null, 'Danijela', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Anastasijevic', '06158565485', 14, 4,'1979-08-17 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
 VALUES (nextval('user_seq_gen'), 3,'EE', 'daca@gmail.com',0,true, null, 'Dalibor', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Petrovic', '06158565485', 15, 4,'1985-11-02 00:00', null,1);
-
+INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
+VALUES (nextval('user_seq_gen'), 0,'QE', 'lazar@gmail.com',0,true, null, 'Lazar', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Lukic', '06158565485', 8, 1,'1990-09-11 00:00', null,1);
+INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
+VALUES (nextval('user_seq_gen'), 2,'PM', 'marta@gmail.com',1,true, null, 'Marta', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 9, 3,'1990-09-11 00:00', null,1);
 --process step kind
 INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Priprema proizvoda', 4);
 INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Varenje',5);
