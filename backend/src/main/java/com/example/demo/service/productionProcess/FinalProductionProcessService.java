@@ -38,8 +38,8 @@ public class FinalProductionProcessService {
         this.productionProcessService = productionProcessService;
         this.stepOfProductionProcessService = stepOfProductionProcessService;
         this.employeeService = employeeService;
-     this.engagementsRepository = engagementsRepository;
-     this.finalProductRepository = finalProductRepository;
+        this.engagementsRepository = engagementsRepository;
+        this.finalProductRepository = finalProductRepository;
     }
 
     //without failure
@@ -55,18 +55,18 @@ public class FinalProductionProcessService {
         List<Employee> employees = employeeService.getEmployeesWithEngagements();
         Random rand = new Random();
 
-        for(StepOfProductionProcess s: stepsOfProcess){
+        for (StepOfProductionProcess s : stepsOfProcess) {
             FinalProcessStep finalProcessStep = new FinalProcessStep();
             finalProcessStep.setFinalProductionProcess(finalProductionProcess);
             finalProcessStep.setStepOfPP(s); //mozda treba da ga prvo sacuvam pa tek onda dodelim tom stepu
             finalProcessStep.setDateStart(new Date());
             finalProcessStep = finalProcessStepService.save(finalProcessStep);
 
-            for (int i = 1; i <= s.getProcessStep().getProcessStepKind().getNumberOfPeople(); i++){
+            for (int i = 1; i <= s.getProcessStep().getProcessStepKind().getNumberOfPeople(); i++) {
                 EmployeeWithEngagement engagement = new EmployeeWithEngagement();
-                Employee employee = employeeService.getEmployeeWithEngagement(i+1);
+                Employee employee = employeeService.getEmployeeWithEngagement(i + 1);
                 engagement.setEmployee(employee);
-                engagement.setHours(Math.round( (1.0 + (5 - 1.0) * rand.nextDouble())*10.0)/10.0 ); //maksimum ce biti pet sati za sve
+                engagement.setHours(Math.round((1.0 + (5 - 1.0) * rand.nextDouble()) * 10.0) / 10.0); //maksimum ce biti pet sati za sve
                 engagement.setFinalProcessStep(finalProcessStep);
                 engagementsRepository.save(engagement);
             }
@@ -81,19 +81,23 @@ public class FinalProductionProcessService {
         finalProductRepository.save(finalProduct);
     }
 
-    public List<FinalProductionProcess> getAllForPeriodWithSteps(Date from, Date to){
+    public List<FinalProductionProcess> getAllForPeriodWithSteps(Date from, Date to) {
         List<FinalProductionProcess> retWithSteps = new ArrayList<>();
         Calendar calFrom = Calendar.getInstance();
         calFrom.setTime(from);
         Calendar calTo = Calendar.getInstance();
         calTo.setTime(to);
-        for(FinalProductionProcess fp: finalProductionProcessRepository.findAll()){
+        for (FinalProductionProcess fp : finalProductionProcessRepository.findAll()) {
             Calendar processDate = Calendar.getInstance();
             processDate.setTime(fp.getDateStart());
-                if( processDate.getTime().after(calFrom.getTime()) && processDate.getTime().before(calTo.getTime())){
-                    retWithSteps.add(finalProductionProcessRepository.processWithFinalSteps(fp.getId()));
-                }
+            if (processDate.getTime().after(calFrom.getTime()) && processDate.getTime().before(calTo.getTime())) {
+                retWithSteps.add(finalProductionProcessRepository.processWithFinalSteps(fp.getId()));
+            }
         }
         return retWithSteps;
+    }
+
+    public List<FinalProductionProcess> getFinalProcesses() {
+        return this.finalProductionProcessRepository.findAll();
     }
 }

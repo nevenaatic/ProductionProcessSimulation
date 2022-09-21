@@ -1,29 +1,35 @@
-
-<table mat-table [dataSource]="dataSource" > 
+<table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="label">
-     <th mat-header-cell *matHeaderCellDef style="width: 200px; "> Product label </th>
-     <td mat-cell *matCellDef="let element"> {{element.label}} </td>
-   </ng-container>
- 
-   <ng-container matColumnDef="name">
-     <th mat-header-cell *matHeaderCellDef style="width: 300px; "> Name </th>
-     <td mat-cell  *matCellDef="let element"> {{element.name}} </td>
-   </ng-container>
- 
-  
-   <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef style="width: 150px; " >Type</th>
-    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-  </ng-container>
+        <th mat-header-cell *matHeaderCellDef style="width: 200px; "> Product label </th>
+        <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+    </ng-container>
 
-   <ng-container  matColumnDef="check">
-     <th mat-header-cell *matHeaderCellDef ></th>
-     <td mat-cell *matCellDef="let element" style="text-align: right;"> <button *ngIf="!element.checked" mat-button (click)="check(element.id)"> <mat-icon style="color: purple;">check_circle</mat-icon> approve </button>  <button *ngIf="element.checked" mat-button > <mat-icon style="color: green;">check_circle_outline</mat-icon> approved </button></td>
-   </ng-container>
- 
-   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
- 
-  </table>
-     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef style="width: 300px; "> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef style="width: 150px; ">Type</th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="check">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <button *ngIf="!element.checked" mat-button (click)="check(element.id)">
+                <mat-icon style="color: purple;">check_circle</mat-icon> approve
+            </button>
+            <button *ngIf="element.checked" mat-button>
+                <mat-icon style="color: green;">check_circle_outline</mat-icon> approved
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

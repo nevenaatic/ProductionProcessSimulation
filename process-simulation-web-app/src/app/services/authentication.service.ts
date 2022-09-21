@@ -20,7 +20,15 @@ export class AuthenticationService {
     return this._http.post<any>(`${this.baseUrl}/login`, body).subscribe(res => {
       localStorage.setItem("accessToken", res.accessToken);
       localStorage.setItem("role", res.role);
+      if(res.role == "ROLE_PROCESS_ENGINEER"){
       this.router.navigate(['homepage/process'])
+    } 
+    if(res.role == "ROLE_PRODUCTION_MANAGER"){
+      this.router.navigate(['homepage/statistic'])
+    }
+    if(res.role == "ROLE_QUALITY_ENGINEER"){
+      this.router.navigate(['homepage/product-revision'])
+    }
     },
       err => {
         Swal.fire("Ooopss...", "Wrong credentials. Try again.")
