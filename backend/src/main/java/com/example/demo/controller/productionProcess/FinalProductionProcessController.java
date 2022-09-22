@@ -1,6 +1,7 @@
 package com.example.demo.controller.productionProcess;
 
 import com.example.demo.dto.process.FinalProductionProcessDto;
+import com.example.demo.dto.report.ExecutionProcessInformationDto;
 import com.example.demo.model.productionProcess.FinalProductionProcess;
 import com.example.demo.model.users.User;
 import com.example.demo.service.productionProcess.FinalProductionProcessService;
@@ -56,5 +57,11 @@ public class FinalProductionProcessController {
 
 
         return  new ResponseEntity<>(this.finalProductionProcessService.processWithFailureInformation(), HttpStatus.OK);
+    }
+
+    @PostMapping("report")
+    public ResponseEntity<ExecutionProcessInformationDto> executionReport(@RequestBody int id){
+        return new ResponseEntity<>(this.finalProductionProcessService.completeInformationFromExecution(id),HttpStatus.OK);
+
     }
 }

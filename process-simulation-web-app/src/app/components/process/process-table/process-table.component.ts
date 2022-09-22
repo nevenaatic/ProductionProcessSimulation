@@ -41,8 +41,9 @@ getAll() {
 
 generateReport(id: number) {
   this.finalService.generateReport(id).subscribe( res => {
-    this.snackbar.open('Report generated!')
-  })
+   this.snackbar.open('Report generated!')
+ })
+
 }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

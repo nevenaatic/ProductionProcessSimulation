@@ -2,8 +2,12 @@ package com.example.demo.service.productionProcess;
 
 import com.example.demo.dto.process.FinalProductionProcessDto;
 import com.example.demo.dto.process.UnfinishedProcessDto;
+import com.example.demo.dto.report.EmployeeWithHoursDto;
+import com.example.demo.dto.report.ExecutionProcessInformationDto;
+import com.example.demo.dto.report.FPSInfoDto;
 import com.example.demo.enums.ProductType;
 import com.example.demo.model.failure.FailureInProcessStep;
+import com.example.demo.model.others.Material;
 import com.example.demo.model.product.FinalProduct;
 import com.example.demo.model.productionProcess.*;
 import com.example.demo.model.users.Employee;
@@ -31,6 +35,7 @@ public class FinalProductionProcessService {
     private EngagementsRepository engagementsRepository;
     private FailureInProcessStepService failureService;
     private FailureRepository failureRepository;
+    private MaterialService materialService;
 
     public FinalProductionProcessService(FinalProductionProcessRepository finalProductionProcessRepository,
                                          FinalProcessStepService finalProcessStepService, ProcessStepService processStepService,
@@ -38,7 +43,7 @@ public class FinalProductionProcessService {
                                          StepOfProductionProcessService stepOfProductionProcessService,
                                          EmployeeService employeeService, EngagementsRepository engagementsRepository,
                                          FinalProductRepository finalProductRepository, FailureInProcessStepService failureService,
-                                         FailureRepository failureRepository) {
+                                         FailureRepository failureRepository, MaterialService materialService) {
         this.finalProductionProcessRepository = finalProductionProcessRepository;
         this.finalProcessStepService = finalProcessStepService;
         this.processStepService = processStepService;
@@ -48,7 +53,8 @@ public class FinalProductionProcessService {
         this.engagementsRepository = engagementsRepository;
         this.finalProductRepository = finalProductRepository;
         this.failureService = failureService;
-        this.failureRepository =failureRepository;
+        this.failureRepository = failureRepository;
+        this.materialService = materialService;
     }
 
     //without failure
@@ -107,34 +113,33 @@ public class FinalProductionProcessService {
         boolean isFailed = false;
 
         for (StepOfProductionProcess s : stepsOfProcess) {
-            if(!isFailed){
+            if (!isFailed) {
 
 
-            FinalProcessStep finalProcessStep = new FinalProcessStep();
-            finalProcessStep.setFinalProductionProcess(finalProductionProcess);
-            finalProcessStep.setStepOfPP(s); //mozda treba da ga prvo sacuvam pa tek onda dodelim tom stepu
-            finalProcessStep.setDateStart(new Date());
-            List<FailureInProcessStep> getFailures = this.failureService.getFailureForPS(s.getProcessStep().getId()); //uzmem failure
+                FinalProcessStep finalProcessStep = new FinalProcessStep();
+                finalProcessStep.setFinalProductionProcess(finalProductionProcess);
+                finalProcessStep.setStepOfPP(s); //mozda treba da ga prvo sacuvam pa tek onda dodelim tom stepu
+                finalProcessStep.setDateStart(new Date());
+                List<FailureInProcessStep> getFailures = this.failureService.getFailureForPS(s.getProcessStep().getId()); //uzmem failure
 
 
-
-            if(getFailures.size()> 0){
-                int idFailure =rand.nextInt(getFailures.size() -1)+1;
-                FailureInProcessStep newFailure = failureService.getFailureWithFinalSteps(idFailure); //random greska
-               finalProcessStep.setFailureInPS(newFailure);
-                isFailed = true;
-            }
+                if (getFailures.size() > 0) {
+                    int idFailure = rand.nextInt(getFailures.size() - 1) + 1;
+                    FailureInProcessStep newFailure = failureService.getFailureWithFinalSteps(idFailure); //random greska
+                    finalProcessStep.setFailureInPS(newFailure);
+                    isFailed = true;
+                }
                 finalProcessStep = finalProcessStepService.save(finalProcessStep);
-           for (int i = 1; i <= s.getProcessStep().getProcessStepKind().getNumberOfPeople(); i++) {
+                for (int i = 1; i <= s.getProcessStep().getProcessStepKind().getNumberOfPeople(); i++) {
                     EmployeeWithEngagement engagement = new EmployeeWithEngagement();
                     Employee employee = employeeService.getEmployeeWithEngagement(i + 1);
                     engagement.setEmployee(employee);
                     engagement.setHours(Math.round((1.0 + (5 - 1.0) * rand.nextDouble()) * 10.0) / 10.0); //maksimum ce biti pet sati za sve
                     engagement.setFinalProcessStep(finalProcessStep);
                     engagementsRepository.save(engagement);
-           }
+                }
+            }
         }
-    }
         FinalProduct finalProduct = new FinalProduct();
         finalProduct.setProductForFinal(process.getProduct());
         finalProduct.setChecked(false);
@@ -173,14 +178,68 @@ public class FinalProductionProcessService {
             if (p.getValid()) {
 
                 ret.add(new FinalProductionProcessDto(p, time, null));
-            }else{
-                for(FinalProcessStep s : p.getFinalProcessStepList()){
-                    if(s.getFailureInPS() != null){
+            } else {
+                for (FinalProcessStep s : p.getFinalProcessStepList()) {
+                    if (s.getFailureInPS() != null) {
                         ret.add(new FinalProductionProcessDto(p, time, s.getFailureInPS().getFailure().getName()));
                     }
                 }
             }
         }
         return ret;
+    }
+
+
+    public ExecutionProcessInformationDto completeInformationFromExecution(int id) {
+        ExecutionProcessInformationDto ret = new ExecutionProcessInformationDto();
+        FinalProductionProcess finalProductionProcess = this.finalProductionProcessRepository.processWithFinalSteps(id);
+        ret.name = finalProductionProcess.getProductionProcess().getName();
+        ret.label = finalProductionProcess.getLabel();
+        ret.date = finalProductionProcess.getDateStart();
+        ret.isValid = finalProductionProcess.getValid();
+        ret.processEngineer = "Nevena Atic";
+        ret.productPrice = finalProductionProcess.getProductionProcess().getProduct().getFinalPrice();
+        ret.productName = finalProductionProcess.getProductionProcess().getProduct().getName();
+
+        for (FinalProcessStep finalProcessStep : finalProductionProcess.getFinalProcessStepList()) {
+            FPSInfoDto stepInfo = new FPSInfoDto();
+            FinalProcessStep step = this.finalProcessStepService.getStepWithEngagements(finalProcessStep.getId()); //uzmem engagements
+            stepInfo.processStepName = step.getStepOfPP().getProcessStep().getName();
+            if (step.getFailureInPS() != null) {
+                stepInfo.isValid = false;
+                stepInfo.failure = step.getFailureInPS().getFailure().getName(); //setujem ime greske
+            } else {
+                stepInfo.isValid = true;
+            }
+            //********************************
+            if (materialService.getMaterialForStep(step.getId()) != null) {
+                for (Material m : materialService.getMaterialForStep(step.getId())) {
+                    ret.materialMoney += m.getPrice();
+                }
+            }
+
+            //********************************
+            double durationStep = 0;
+            for (EmployeeWithEngagement e : step.getEmployeesWithEngagements()) {
+                EmployeeWithHoursDto employee = new EmployeeWithHoursDto();
+                employee.name = e.getEmployee().getName();
+                employee.surname = e.getEmployee().getSurname();
+                employee.hours = e.getHours();
+                durationStep = durationMax(durationStep, employee.hours); //provera na kraju
+                stepInfo.employees.add(employee);
+            }
+            stepInfo.duration = durationStep;
+            ret.finalProcessInfo.add(stepInfo);
+        }
+
+        return ret;
+    }
+
+    private double durationMax(double current, double next) {
+        if (current < next) {
+            return next;
+        } else {
+            return current;
+        }
     }
 }

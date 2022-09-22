@@ -21,7 +21,7 @@ export class FinalProcessService {
     return this.http.get<any>(`${this.failureUrl}/processes`,  { headers: this.headers() });
   }
   public readonly generateReport = (id: number) => {
-    return this.http.get<any>(`${this.failureUrl}/processes`,  { headers: this.headers() });
+    return this.http.post<any>(`${this.failureUrl}/report`, id, { headers: this.headers() });
   }
   private readonly headers = () => {
     return new HttpHeaders({ Authorization: "Bearer " + localStorage.getItem("accessToken")});
