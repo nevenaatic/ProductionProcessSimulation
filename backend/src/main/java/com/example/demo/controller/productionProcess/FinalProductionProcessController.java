@@ -35,16 +35,26 @@ public class FinalProductionProcessController {
         return  new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping(value = "startFailedProcess")
+    public ResponseEntity<HttpStatus> startFailedProcess(@RequestBody int id){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        finalProductionProcessService.startFailureProcess(id);
+        return  new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("processes")
     public ResponseEntity<List<FinalProductionProcessDto>> getAll(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
         List<FinalProductionProcessDto> ret = new ArrayList<>();
         Random rand = new Random();
-        for(FinalProductionProcess f : this.finalProductionProcessService.getFinalProcesses()){
-            double time = Math.round((10.0 + (28 - 10.0) * rand.nextDouble()) * 10.0) / 10.0;
-            ret.add(new FinalProductionProcessDto(f, time));
-        }
-        return  new ResponseEntity<>(ret, HttpStatus.OK);
+//        for(FinalProductionProcess f : this.finalProductionProcessService.getFinalProcesses()){
+//            double time = Math.round((10.0 + (28 - 10.0) * rand.nextDouble()) * 10.0) / 10.0;
+//            ret.add(new FinalProductionProcessDto(f, time));
+//        }
+
+
+        return  new ResponseEntity<>(this.finalProductionProcessService.processWithFailureInformation(), HttpStatus.OK);
     }
 }

@@ -14,8 +14,13 @@ export class FinalProcessService {
   public readonly startProcess = (id: number) => {
     return this.http.post(`${this.failureUrl}/startProcess`, id, { headers: this.headers() });
   }
-
+  public readonly startFailedProcess = (id: number) => {
+    return this.http.post(`${this.failureUrl}/startFailedProcess`, id, { headers: this.headers() });
+  }
   public readonly getAll = () => {
+    return this.http.get<any>(`${this.failureUrl}/processes`,  { headers: this.headers() });
+  }
+  public readonly generateReport = (id: number) => {
     return this.http.get<any>(`${this.failureUrl}/processes`,  { headers: this.headers() });
   }
   private readonly headers = () => {

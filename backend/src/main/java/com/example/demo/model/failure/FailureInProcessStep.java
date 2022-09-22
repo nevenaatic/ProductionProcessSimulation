@@ -7,6 +7,7 @@ import com.example.demo.model.users.QualityEngineer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,7 @@ public class FailureInProcessStep {
 
     @OneToMany(mappedBy = "failureInPS", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("failureInPS")
-    private List<FinalProcessStep> finalProcessStepList;
+    private List<FinalProcessStep> finalProcessStepList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "quality_engineer_id")

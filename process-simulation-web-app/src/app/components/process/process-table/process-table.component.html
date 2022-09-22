@@ -49,7 +49,19 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="validation">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Validation </th>
-      <td mat-cell *matCellDef="let element"> VALID</td>
+      <td mat-cell *matCellDef="let element"><p *ngIf="element.isValid"><mat-icon>check</mat-icon></p><p *ngIf="!element.isValid"><mat-icon>clear</mat-icon></p></td>
+    </ng-container>
+    <ng-container matColumnDef="failure">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Failure </th>
+      <td mat-cell *matCellDef="let element"><p *ngIf="element.failureName"> {{element.failureName}}</p></td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="report">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Generate report </th>
+      <td mat-cell *matCellDef="let element"> 
+<button mat-button (click)="generateReport(element.id)"><mat-icon style="color: purple;"> vertical_align_bottom</mat-icon><mat-icon style="color: purple;">picture_as_pdf</mat-icon> generate report</button>
+
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

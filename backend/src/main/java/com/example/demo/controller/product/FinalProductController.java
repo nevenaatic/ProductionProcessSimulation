@@ -39,10 +39,14 @@ public class FinalProductController {
     }
 
     @GetMapping("scrap")
-    public ResponseEntity<List<FinalProduct>> getScraps(){
+    public ResponseEntity<List<FinalProductDto>> getScraps(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
-        return  new ResponseEntity<>(this.productService.getScrapChecked(), HttpStatus.OK);
+        List<FinalProductDto> ret = new ArrayList<>();
+        for(FinalProduct f: this.productService.getScrapChecked()){
+            ret.add(new FinalProductDto(f.getId(), f.getLabel(), f.getProductForFinal().getName(), f.getProductType(), f.isChecked()));
+        }
+        return  new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @GetMapping("regular")
@@ -55,7 +59,6 @@ public class FinalProductController {
         }
         return  new ResponseEntity<>(ret, HttpStatus.OK);
     }
-
 
     @PostMapping("check")
     public ResponseEntity<HttpStatus> checkFinalProduct(@RequestBody int id){

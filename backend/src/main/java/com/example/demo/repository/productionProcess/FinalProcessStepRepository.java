@@ -13,4 +13,5 @@ public interface FinalProcessStepRepository extends JpaRepository<FinalProcessSt
     @Query("select fs from FinalProcessStep fs left join fetch fs.employeesWithEngagements ee where fs.id = ?1")
     FinalProcessStep getFinalStepEngagements(int idStep);
 
+    FinalProcessStep getById(int id);
 }

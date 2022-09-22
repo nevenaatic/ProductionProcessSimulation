@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FinalProcessService } from 'src/app/services/final-process.service';
@@ -15,11 +16,11 @@ export class ProcessTableComponent  implements OnInit{
   @ViewChild(MatSort) sort: MatSort | undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
- displayedColumns: string[] = ['label', 'name', 'start', 'validation', 'duration'];
+ displayedColumns: string[] = ['label', 'name', 'start', 'validation', 'duration','report','failure'];
  dataSource : any;
  sortedData: any;
 
-  constructor(private dialog: MatDialog, private finalService: FinalProcessService) { }
+  constructor(private dialog: MatDialog, private finalService: FinalProcessService, private snackbar: MatSnackBar) { }
   ngOnInit(): void {
     this.getAll();
   }
@@ -38,6 +39,11 @@ getAll() {
   })
 }
 
+generateReport(id: number) {
+  this.finalService.generateReport(id).subscribe( res => {
+    this.snackbar.open('Report generated!')
+  })
+}
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

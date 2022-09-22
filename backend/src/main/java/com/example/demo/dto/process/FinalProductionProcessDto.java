@@ -12,16 +12,18 @@ public class FinalProductionProcessDto {
     public Date start;
     public double duration;
     public boolean isValid;
+    public String failureName;
 
     public FinalProductionProcessDto() {
     }
 
-    public FinalProductionProcessDto(FinalProductionProcess process, double duration) {
+    public FinalProductionProcessDto(FinalProductionProcess process, double duration, String failureName) {
         this.id = process.getId();
         this.label = process.getLabel();
         this.name = process.getProductionProcess().getName();
         this.start = process.getDateStart();
-        this.isValid = true;
+        this.isValid = process.getValid();
         this.duration = duration;
+        this.failureName = failureName;
     }
 }

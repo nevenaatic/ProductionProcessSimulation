@@ -36,6 +36,18 @@ public class FinalProductionProcess {
     @Column
     private Date dateStart;
 
+
+    @Column
+    private Boolean isValid;
+
+    public Boolean getValid() {
+        return isValid;
+    }
+
+    public void setValid(Boolean valid) {
+        isValid = valid;
+    }
+
     public Date getDateStart() {
         return dateStart;
     }

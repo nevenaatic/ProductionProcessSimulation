@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { FinalProcessService } from 'src/app/services/final-process.service';
@@ -20,7 +21,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
   showFinished: boolean= false;
 
   constructor(private processService: ProcessService,private dialog: MatDialog, 
-    private finalProcessService: FinalProcessService) { }
+    private finalProcessService: FinalProcessService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getUnfinishedProcesses();
@@ -48,7 +49,6 @@ export class ProcessComponent implements OnInit, OnDestroy {
       this.unfinishedList =  new MatTableDataSource<any>(allProcesses);;
       this.unfinishedList.paginator = this.paginator;
       this.obs = this.unfinishedList.connect();
-      console.log(this.unfinishedList)
     });
 
     public readonly showFinishedProcesses = () => this.showFinished = true;
@@ -56,8 +56,13 @@ export class ProcessComponent implements OnInit, OnDestroy {
     public readonly back = () => this.showFinished = false;
 
     public readonly startProcess = (id: number) => {
-      alert('cao')
       this.finalProcessService.startProcess(id).subscribe( 
-        res => { console.log(res)});
+        res => { console.log(res); 
+        this.snackbar.open('Simulation done!')});
+    }
+    public readonly startFailedProcess = (id: number) => {
+      this.finalProcessService.startFailedProcess(id).subscribe( 
+        res => { console.log(res); 
+        this.snackbar.open('Simulation done!')});
     }
 }

@@ -18,7 +18,6 @@
         <div class="col-sm-1" > 
             <button mat-button class="btn-new" (click)="createNewProcess()">+</button>
         </div>
-        
      </div>
    
      <div *ngIf="!showFinished"> 
@@ -37,7 +36,10 @@
                          <button mat-button class="start-btn" (click)="startProcess(process.id)">
                             <mat-icon class="icon-color">touch_app</mat-icon> start process
                         </button></div>
-
+                        <div class="col" style="text-align: right;">
+                            <button mat-button class="start-btn" (click)="startFailedProcess(process.id)">
+                               <mat-icon class="icon-color">touch_app</mat-icon> start failed process
+                           </button></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"> About process:</div>
