@@ -17,6 +17,7 @@ public class ExecutionProcessInformationDto {
     public double duration;
     public String productName;
     public double productPrice;
+    public String dateString;
     public List<FPSInfoDto> finalProcessInfo = new ArrayList<>();
 
 }

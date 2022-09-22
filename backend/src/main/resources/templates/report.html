@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        h2{
+            color: blue;
+            margin-left:14%;
+            text-align:center;
+        }
+        .information{
+            margin-top: 3rem;
+        }
+         .text{
+            margin-left:25%;
+            font-size: 15px;
+            color: blue;
+        }
+    </style>
+    <title>Report of execution</title>
+</head>
+<body>
+    <h2> Izvestaj o izvrsenom proizvodnom procesu</h2>
+
+<div class="information" >
+    <div class="row">
+            <p th:text="'Naziv proizvodnog procesa: ' + ${process.name}"> </p>
+    </div>
+
+    <p th:text="'Sifra proizvodnog procesa: ' + ${process.label}"> </p>
+    <p th:text="'Naziv proizvoda i cena: ' + ${process.productName} + ' ' + ${process.productPrice} + ' RSD'"> </p>
+    <p th:text="'Datum pocetka proizvodnje: ' + ${process.dateString}"> </p>
+    <p th:text="'Rukovodeci procesni inzenjer: ' + ${process.processEngineer}"> </p>
+    <p th:text="'Utrosak sredstava za materijal: ' + ${process.materialMoney} + 'RSD'"> </p>
+    <p  th:if="${process.isValid == true}">Bez greske </p>
+    <p  th:if="${process.isValid == false}"> Desila se greska </p>
+    <hr/>
+
+    <p class="text"><i>Angazovanje radnika po procesnim koracima</i></p>
+    <div th:each="step, iterStat: ${process.finalProcessInfo}">
+         <p style="font-weight: bold;" th:text="${step.processStepName}"> </p>
+        <p  th:text="'Trajanje: ' + ${step.duration} + ' h'"> </p>
+        <p  th:text="'Cena utrosenog materijala: ' + ${step.materialPrice} + ' RSD'"> </p>
+        <p  th:if="${step.isValid == true}">Bez greske </p>
+        <p  th:if="${step.isValid == false}"> Desila se greska </p>
+        <p  th:if="${step.failure != null}" th:text="'Greska: ' + ${step.failure}"> </p>
+        <table style="margin-top:1%;border: 1px solid;width: 90%;border-collapse: collapse;margin-left:5%;">
+            <tr style="border: 1px solid;">
+                <th style="border: 1px solid;">#</th>
+                <th style="border: 1px solid;">Ime radnika</th>
+                <th style="border: 1px solid;">Prezime</th>
+                <th style="border: 1px solid;">Provedeni radni sati</th>
+            </tr>
+
+            <tr style="border: 1px solid;" th:each="item, iterStat: ${step.employees}">
+                <td style="border: 1px solid;" th:text="${iterStat.index + 1}"></td>
+                <td style="border: 1px solid;" th:text="${item.name}"></td>
+                <td style="border: 1px solid;" th:text="${item.surname}"></td>
+                <td style="border: 1px solid;" th:text="${item.hours}"></td>
+            </tr>
+        </table>
+        <hr/>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

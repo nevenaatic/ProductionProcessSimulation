@@ -16,10 +16,14 @@ import com.example.demo.repository.product.FinalProductRepository;
 import com.example.demo.repository.productionProcess.EngagementsRepository;
 import com.example.demo.repository.productionProcess.FinalProductionProcessRepository;
 import com.example.demo.service.failure.FailureInProcessStepService;
+import com.example.demo.service.pdf.PdfGeneratorService;
 import com.example.demo.service.users.EmployeeService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -36,6 +40,9 @@ public class FinalProductionProcessService {
     private FailureInProcessStepService failureService;
     private FailureRepository failureRepository;
     private MaterialService materialService;
+
+    @Autowired
+    private PdfGeneratorService pdfGeneratorService;
 
     public FinalProductionProcessService(FinalProductionProcessRepository finalProductionProcessRepository,
                                          FinalProcessStepService finalProcessStepService, ProcessStepService processStepService,
@@ -196,6 +203,7 @@ public class FinalProductionProcessService {
         ret.name = finalProductionProcess.getProductionProcess().getName();
         ret.label = finalProductionProcess.getLabel();
         ret.date = finalProductionProcess.getDateStart();
+        ret.dateString = this.formatDate(ret.date);
         ret.isValid = finalProductionProcess.getValid();
         ret.processEngineer = "Nevena Atic";
         ret.productPrice = finalProductionProcess.getProductionProcess().getProduct().getFinalPrice();
@@ -203,11 +211,11 @@ public class FinalProductionProcessService {
 
         for (FinalProcessStep finalProcessStep : finalProductionProcess.getFinalProcessStepList()) {
             FPSInfoDto stepInfo = new FPSInfoDto();
-            FinalProcessStep step = this.finalProcessStepService.getStepWithEngagements(finalProcessStep.getId()); //uzmem engagements
+            FinalProcessStep step = this.finalProcessStepService.getStepWithEngagements(finalProcessStep.getId());
             stepInfo.processStepName = step.getStepOfPP().getProcessStep().getName();
             if (step.getFailureInPS() != null) {
                 stepInfo.isValid = false;
-                stepInfo.failure = step.getFailureInPS().getFailure().getName(); //setujem ime greske
+                stepInfo.failure = step.getFailureInPS().getFailure().getName();
             } else {
                 stepInfo.isValid = true;
             }
@@ -217,7 +225,6 @@ public class FinalProductionProcessService {
                     ret.materialMoney += m.getPrice();
                 }
             }
-
             //********************************
             double durationStep = 0;
             for (EmployeeWithEngagement e : step.getEmployeesWithEngagements()) {
@@ -225,21 +232,31 @@ public class FinalProductionProcessService {
                 employee.name = e.getEmployee().getName();
                 employee.surname = e.getEmployee().getSurname();
                 employee.hours = e.getHours();
-                durationStep = durationMax(durationStep, employee.hours); //provera na kraju
+                durationStep = durationMax(durationStep, employee.hours);
                 stepInfo.employees.add(employee);
             }
             stepInfo.duration = durationStep;
             ret.finalProcessInfo.add(stepInfo);
         }
-
+        this.generatePdfReport(ret);
         return ret;
     }
 
+    private String formatDate(Date date){
+        DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm");
+        return df.format(date);
+    }
     private double durationMax(double current, double next) {
         if (current < next) {
             return next;
         } else {
             return current;
         }
+    }
+
+    private void generatePdfReport(ExecutionProcessInformationDto process) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("process", process);
+        pdfGeneratorService.generatePdfFile( data, "report.pdf");
     }
 }
