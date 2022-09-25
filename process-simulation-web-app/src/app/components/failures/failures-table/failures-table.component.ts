@@ -16,7 +16,7 @@ export class FailuresTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   failures: any;
   dataSource : any;
-  displayedColumns=['name', 'type', 'probability']
+  displayedColumns=['name', 'type', 'probability', 'steps']
   QE: boolean = false;
   constructor(private dialog: MatDialog, private failureService: FailureService) { }
 

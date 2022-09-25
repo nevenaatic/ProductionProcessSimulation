@@ -1,39 +1,39 @@
 <div class="sidenav"  style="height: 50rem;" > 
     <div class="links" >
         <a routerLink="/homepage/factory"  class="simple-text logo-mini"><mat-icon> business</mat-icon> </a>
-        <a routerLink="/homepage/factory" class="simple-text logo-normal"> <mat-label> Factory </mat-label> </a>
+        <a routerLink="/homepage/factory" class="simple-text logo-normal"> <mat-label> Fabrika </mat-label> </a>
     </div>
    
     <div class="links" >
         <a routerLink="/homepage/my-profile"  class="simple-text logo-mini"><mat-icon>account_circle</mat-icon>  </a>
-        <a routerLink="/homepage/my-profile" class="simple-text logo-normal"> <mat-label> My profile </mat-label> </a>
+        <a routerLink="/homepage/my-profile" class="simple-text logo-normal"> <mat-label> Moj profil </mat-label> </a>
     </div>
     <div class="links"  *ngIf="processEngineer">
         <a routerLink="/homepage/process"  class="simple-text logo-mini"><mat-icon>developer_board</mat-icon>  </a>
-        <a routerLink="/homepage/process" class="simple-text logo-normal"> <mat-label> Process </mat-label> </a>
+        <a routerLink="/homepage/process" class="simple-text logo-normal"> <mat-label> Procesi </mat-label> </a>
     </div>
     <div class="links" >
         <a routerLink="/homepage/workers"  class="simple-text logo-mini"><mat-icon>group</mat-icon>  </a>
-        <a routerLink="/homepage/workers" class="simple-text logo-normal"> <mat-label> Workers </mat-label> </a>
+        <a routerLink="/homepage/workers" class="simple-text logo-normal"> <mat-label> Radnici </mat-label> </a>
     </div>
     <div class="links" *ngIf="qualityEngineer || processEngineer" >
         <a routerLink="/homepage/failures"  class="simple-text logo-mini"><mat-icon>error</mat-icon>  </a>
-        <a routerLink="/homepage/failures" class="simple-text logo-normal"> <mat-label> Failures </mat-label> </a>
+        <a routerLink="/homepage/failures" class="simple-text logo-normal"> <mat-label> Greške </mat-label> </a>
     </div>
     <div class="links" *ngIf="productManager">
         <a routerLink="/homepage/statistic"  class="simple-text logo-mini"><mat-icon>bar_chart</mat-icon>  </a>
-        <a routerLink="/homepage/statistic" class="simple-text logo-normal"> <mat-label> Statistic </mat-label> </a>
+        <a routerLink="/homepage/statistic" class="simple-text logo-normal"> <mat-label> Statistika </mat-label> </a>
     </div>
     <div class="links"  *ngIf="productManager">
         <a routerLink="/homepage/products"  class="simple-text logo-mini"><mat-icon>shopping_cart</mat-icon> </a>
-        <a routerLink="/homepage/products" class="simple-text logo-normal"> <mat-label> Products </mat-label> </a>
+        <a routerLink="/homepage/products" class="simple-text logo-normal"> <mat-label> Proizvodi </mat-label> </a>
     </div>
     <div class="links"  *ngIf="qualityEngineer">
         <a routerLink="/homepage/product-revision"  class="simple-text logo-mini"><mat-icon>check_box</mat-icon> </a>
-        <a routerLink="/homepage/product-revision" class="simple-text logo-normal"> <mat-label> Product revision </mat-label> </a>
+        <a routerLink="/homepage/product-revision" class="simple-text logo-normal"> <mat-label> Kontrola proizvoda </mat-label> </a>
     </div>
     <div class="links"  *ngIf="productManager || processEngineer">
         <a routerLink="/homepage/engagements"  class="simple-text logo-mini"><mat-icon>assignment_ind</mat-icon> </a>
-        <a routerLink="/homepage/engagements" class="simple-text logo-normal"> <mat-label> Workers engagements </mat-label> </a>
+        <a routerLink="/homepage/engagements" class="simple-text logo-normal"> <mat-label> Angažovanje radnika </mat-label> </a>
     </div>
 </div>

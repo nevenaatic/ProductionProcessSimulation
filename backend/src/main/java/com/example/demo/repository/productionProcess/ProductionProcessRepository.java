@@ -16,6 +16,8 @@ public interface ProductionProcessRepository extends JpaRepository<ProductionPro
     @Query("select p from ProductionProcess p where p.finished = false")
     List<ProductionProcess> unfinishedProcesses();
 
+    ProductionProcess findById(int id);
+
    // vraca tri puta isti proces?
 //    @Query("select p from ProductionProcess p join fetch p.stepOfPPList ")
 //    List<ProductionProcess> processWithSteps();

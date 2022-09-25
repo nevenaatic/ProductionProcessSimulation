@@ -5,14 +5,14 @@
             <div class="col-md-8">
                 <button mat-button (click)="back()">
                     <button mat-button style="text-align: right; margin-left: 10%;" (click)="getUnfinishedProcesses()">
-                        <h3 style="color:purple; text-align: center;"> All processes </h3>
+                        <h3 style="color:purple; text-align: center;"> Svi procesi </h3>
                     </button>
                 </button> 
             </div>
        
         <div class="col-sm-3"> 
             <button mat-button style="text-align: right; margin-left: 10%;" (click)="showFinishedProcesses()">
-                Finished processes
+                Izvršeni procesi
             </button>
         </div>
         <div class="col-sm-1" > 
@@ -29,20 +29,20 @@
                         <h2> {{process.name}}</h2>
                     </div>
                     <div class="col-md-4">
-                        <p>Product: {{process.productName}}</p>
+                        <p>Proizvod: {{process.productName}}</p>
                     </div>
 
                     <div class="col" style="text-align: right;">
                          <button mat-button class="start-btn" (click)="startProcess(process.id)">
-                            <mat-icon class="icon-color">touch_app</mat-icon> start process
+                            <mat-icon class="icon-color">touch_app</mat-icon> pokreni proces
                         </button></div>
                         <div class="col" style="text-align: right;">
                             <button mat-button class="start-btn" (click)="startFailedProcess(process.id)">
-                               <mat-icon class="icon-color">touch_app</mat-icon> start failed process
+                               <mat-icon class="icon-color">touch_app</mat-icon> pokreni proces sa greškom
                            </button></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2"> About process:</div>
+                    <div class="col-md-2"> Opis procesa:</div>
                     <div class="col" style="font-style: italic;">
                         {{process.description}}
                     </div>

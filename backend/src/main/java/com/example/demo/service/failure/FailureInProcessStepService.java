@@ -48,13 +48,6 @@ public class FailureInProcessStepService {
         newFailureInPS = save(newFailureInPS);
     }
 
-//    public List<FailureInProcessStep> getFailureForPS(int id) {
-//        List<FailureInProcessStep> failures = new ArrayList<>();
-//        for(FailureInProcessStep f: failureInProcessStepRepository.getFailureForProcessStep(id) ){
-//            failures.add(failureInProcessStepRepository.getFailureWithFinalList(f.getId()));
-//        }
-//        return failures;
-//    }
 
         public List<FailureInProcessStep> getFailureForPS(int id) {
         List<FailureInProcessStep> failures = new ArrayList<>();

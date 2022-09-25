@@ -177,7 +177,7 @@ INSERT INTO step_material(material_id, step_id) VALUES (9,12);
 
 
 --failure
-INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Nestanak struje', 2, 0.5 );
+INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Nestanak struje', 2, 0.07 );
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Nedostatak materijala',1, 0.05);
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Los materijal (stara guma)', 1,0.15 );
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Neadekvatan rad',0, 0.2);
@@ -194,9 +194,17 @@ INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_eng
 INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_engineer_id) VALUES (nextval('failureips_seq_gen'), 7, 3, null);
 INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_engineer_id) VALUES (nextval('failureips_seq_gen'), 8, 3, null);
 
+INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_engineer_id) VALUES (nextval('failureips_seq_gen'), 1, 12, null);
+INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_engineer_id) VALUES (nextval('failureips_seq_gen'), 6, 6, null);
+INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_engineer_id) VALUES (nextval('failureips_seq_gen'), 4, 4, null);
+INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_engineer_id) VALUES (nextval('failureips_seq_gen'), 5, 11, null);
 
 --final production process
 INSERT INTO final_production_process(id, process_engineer_id, production_process_id, date_start, label, is_valid) VALUES (nextval('final_production_seq_gen'),1, 1,'2022-09-10 00:00', 'AKNUBU42',true );
+
+--proizvodnja besavnih cevi
+
+
 --final process step
 INSERT INTO final_process_step(id, sofpp_id, failure_inps_id, finalpp_id, date_start, date_end) VALUES (nextval('final_step_seq_gen'), 1,null, 1,'2022-09-11 00:00', '2022-09-13 00:00');
 INSERT INTO final_process_step(id, sofpp_id, failure_inps_id, finalpp_id, date_start, date_end) VALUES (nextval('final_step_seq_gen'), 2,null, 1,'2022-09-11 00:00', '2022-09-13 00:00');

@@ -1,22 +1,22 @@
-<h2 mat-dialog-title>Create new product</h2>
+<h2 mat-dialog-title>Kreiraj novi proizvod</h2>
 <div mat-dialog-content>
   <form [formGroup]="product">
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Product name</mat-label>
+        <mat-label>Ime proizvoda</mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Product description</mat-label>
+        <mat-label>Opis proizvoda</mat-label>
         <textarea matInput cdkTextareaAutosize formControlName="description" cdkAutosizeMinRows="1"
           cdkAutosizeMaxRows="5"></textarea>
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Final price for product</mat-label>
+        <mat-label>Krajnja cena</mat-label>
         <input matInput formControlName="price">
       </mat-form-field>
     </div>
@@ -24,6 +24,6 @@
 
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close (click)="onNoClick()" class="cancel-btn">Cancel</button>
-  <button mat-button mat-dialog-close (click)="createProduct()" class="save-btn">Save</button>
+  <button mat-button mat-dialog-close (click)="onNoClick()" class="cancel-btn">odustani</button>
+  <button mat-button mat-dialog-close (click)="createProduct()" class="save-btn">sačuvaj</button>
 </div>

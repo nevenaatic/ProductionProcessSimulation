@@ -1,21 +1,21 @@
-<h2 mat-dialog-title>Create failure for process step</h2>
+<h2 mat-dialog-title>Dodavanje greške procesnom koraku</h2>
 <div mat-dialog-content>
   <form [formGroup]="newFailure">
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Failure name</mat-label>
+        <mat-label>Naziv greške</mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Probability</mat-label>
+        <mat-label>Verovatnoća javljanja</mat-label>
         <input matInput formControlName="probability">
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Process step</mat-label>
+        <mat-label>Procesni korak</mat-label>
         <mat-select>
           <mat-option *ngFor="let step of processSteps" [value]="step.id" formControlName="processStepId"
             (onSelectionChange)="addStep(step.id)">{{step.name}}</mat-option>
@@ -24,11 +24,11 @@
     </div>
     <div class="row">
         <mat-form-field appearance="fill">
-          <mat-label>Failure type</mat-label>
+          <mat-label>Tip greške</mat-label>
           <mat-select formControlName="type">
-            <mat-option [value]="0" >Employee failure</mat-option>
-            <mat-option [value]="1" >Material failure</mat-option>
-            <mat-option [value]="2">Other</mat-option>
+            <mat-option [value]="0" >Greška radnika</mat-option>
+            <mat-option [value]="1" >Greška u materijalu</mat-option>
+            <mat-option [value]="2">Ostalo</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -36,6 +36,6 @@
 
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close (click)="onNoClick()" class="cancel-btn">Cancel</button>
-  <button mat-button mat-dialog-close (click)="createFailure()" class="change-btn">Save</button>
+  <button mat-button mat-dialog-close (click)="onNoClick()" class="cancel-btn">odustani</button>
+  <button mat-button mat-dialog-close (click)="createFailure()" class="change-btn">sačuvaj</button>
 </div>

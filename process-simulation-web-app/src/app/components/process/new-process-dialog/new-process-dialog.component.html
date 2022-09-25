@@ -1,22 +1,22 @@
-<h2 mat-dialog-title>Create new process</h2>
+<h2 mat-dialog-title>Kreiraj novi proces</h2>
 <div mat-dialog-content>
   <form [formGroup]="newProcess">
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Process name</mat-label>
+        <mat-label>Naziv</mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Process description</mat-label>
+        <mat-label>Opis procesa</mat-label>
         <textarea matInput cdkTextareaAutosize formControlName="processDescription" cdkAutosizeMinRows="1"
           cdkAutosizeMaxRows="5"></textarea>
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Product</mat-label>
+        <mat-label>Kranji proizvod</mat-label>
         <mat-select>
           <mat-option *ngFor="let product of productList" [value]="product"
             (onSelectionChange)="addProduct(product.id)">{{product.name}}</mat-option>
@@ -25,7 +25,7 @@
     </div>
     <div class="row">
       <mat-form-field appearance="fill">
-        <mat-label>Process step kind</mat-label>
+        <mat-label>Vrsta procesnog koraka</mat-label>
         <mat-select>
           <mat-option *ngFor="let stepKind of stepKindList" [value]="stepKind"
             (onSelectionChange)="addStepKind(stepKind)">{{stepKind.name}}</mat-option>
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-md-9">
         <mat-form-field appearance="fill" style="width: 100%;">
-          <mat-label>Process step description</mat-label>
+          <mat-label>Opis procesnog koraka</mat-label>
           <textarea matInput cdkTextareaAutosize formControlName="stepDescription" cdkAutosizeMinRows="1"
             cdkAutosizeMaxRows="5"> </textarea>
         </mat-form-field>
@@ -46,7 +46,7 @@
     </div>
   </form>
   <div *ngIf="process.processSteps.length > 0">
-    <mat-label style="margin-left: 40%; margin-bottom: 2px; font-weight: bold;"> Process steps: </mat-label>
+    <mat-label style="margin-left: 40%; margin-bottom: 2px; font-weight: bold;"> Procesni koraci: </mat-label>
     <div class="row" *ngFor="let step of this.process.processSteps">
       <div class="col">
         <p> {{step.name}}</p>
@@ -54,11 +54,14 @@
       <div class="col">
         <p> {{step.description}}</p>
       </div>
+      <div class="col">
+        <mat-icon>close</mat-icon>
+      </div>
     </div>
   </div>
 
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close (click)="onNoClick()" class="cancel-btn">Cancel</button>
-  <button mat-button mat-dialog-close (click)="createProcess()" class="change-btn">Save</button>
+  <button mat-button mat-dialog-close (click)="onNoClick()" class="cancel-btn">odustani</button>
+  <button mat-button mat-dialog-close (click)="createProcess()" class="change-btn">sačuvaj</button>
 </div>

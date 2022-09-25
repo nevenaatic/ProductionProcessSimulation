@@ -30,12 +30,8 @@ public class FailureController {
 
     @GetMapping("failures")
     public ResponseEntity<List<FailuresPreviewDto>> getAll() {
-        List<FailuresPreviewDto> failures = new ArrayList<>();
         this.loggedUser = authenticateMe();
-        for (Failure e : this.failureService.getAll()) {
-            failures.add(new FailuresPreviewDto(e));
-        }
-        return new ResponseEntity<>(failures, HttpStatus.OK);
+        return new ResponseEntity<>(failureService.getFailuresWithStepInformation(), HttpStatus.OK);
     }
 
     private User authenticateMe(){

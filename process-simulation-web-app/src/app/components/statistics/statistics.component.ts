@@ -52,7 +52,7 @@ initChart() {
             },
             title: {
               display: true,
-              text: 'Failures statistic in %'
+              text: 'Verovatnoća pojave najčešćih grešaka %'
             }
           }
         }
@@ -67,7 +67,7 @@ initProcessChart(){
         // labels: ['Proizvodnja membrana', 'Proivodnja besavnih cevi', 'AKZ cevi'],
         labels: this.processNameList,
         datasets: [{
-            label: 'Spent hours by production process',
+            label: 'Prosečno vreme izvršavanja',
             // data: [16.4, 30.1, 23.3, 5, 2, 3],
             data: [16.4, 30.1, 0, 0],
             backgroundColor: [

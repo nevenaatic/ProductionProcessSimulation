@@ -49,6 +49,9 @@ public class ProductionProcessService {
         return productionProcessRepository.findAll();
     }
 
+    public ProductionProcess getById(int id){
+        return  productionProcessRepository.findById(id);
+    }
     //this can be written in ProcessStepService
     public List<ProcessStep> getStepsForProductionProcess(int id){
         ProductionProcess process = productionProcessRepository.processWithSteps(id);
@@ -127,5 +130,9 @@ public class ProductionProcessService {
             }
         }
         return ret;
+    }
+
+    public void save(ProductionProcess process) {
+        productionProcessRepository.save(process);
     }
 }

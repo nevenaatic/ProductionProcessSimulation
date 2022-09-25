@@ -67,12 +67,14 @@ public class FinalProductionProcessService {
     //without failure
     public void startProcess(int id) {
         ProductionProcess process = productionProcessService.getProcessWithFinalList(id);
+      ProductionProcess proc = productionProcessService.getById(id);
         List<StepOfProductionProcess> stepsOfProcess = stepOfProductionProcessService.stepsForProcessAndFinalStepList(id);
         FinalProductionProcess finalProductionProcess = new FinalProductionProcess();
         finalProductionProcess.setLabel(RandomStringUtils.randomAlphabetic(8));
         finalProductionProcess.setDateStart(new Date());
         finalProductionProcess.setValid(true);
-        finalProductionProcess.setProductionProcess(process); //setovala sam nadjeni proces njemu
+     //   finalProductionProcess.setProductionProcess(process); //setovala sam nadjeni proces njemu
+        finalProductionProcess.setProductionProcess(proc); //setovala sam nadjeni proces njemu
         finalProductionProcess = finalProductionProcessRepository.save(finalProductionProcess);  //setovala sam sad na njega samog
 
         List<Employee> employees = employeeService.getEmployeesWithEngagements();
@@ -115,7 +117,8 @@ public class FinalProductionProcessService {
         finalProductionProcess.setProductionProcess(process); //setovala sam nadjeni proces njemu
         finalProductionProcess = finalProductionProcessRepository.save(finalProductionProcess);  //setovala sam sad na njega samog
 
-
+        process.getFinalProductionProcessList().add(finalProductionProcess);
+    productionProcessService.save(process);
         Random rand = new Random();
         boolean isFailed = false;
 
