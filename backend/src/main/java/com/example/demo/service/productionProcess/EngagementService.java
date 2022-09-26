@@ -4,6 +4,7 @@ package com.example.demo.service.productionProcess;
 import com.example.demo.dto.engagements.EngagementRequestDto;
 import com.example.demo.dto.engagements.EngagementsByEmployeeDto;
 import com.example.demo.dto.engagements.EngagementsStepsDto;
+import com.example.demo.enums.StatusOfWork;
 import com.example.demo.model.productionProcess.EmployeeWithEngagement;
 import com.example.demo.model.productionProcess.FinalProcessStep;
 import com.example.demo.model.productionProcess.FinalProductionProcess;
@@ -45,11 +46,11 @@ public class EngagementService {
 
                     if (e.getEmployee().getId() == dto.idEmployee) {
                         if (fps.getFailureInPS() != null) {
-                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), true,e.getHours());
+                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), true,e.getHours(), checkStatus(e.getHours(), fps.getStepOfPP().getProcessStep().getProcessStepKind().getPredictHours()));
                             engagement.engagementsStepsDtoList.add(stepsDto);
                             engagement.failed = true;
                         } else {
-                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), false, e.getHours());
+                            EngagementsStepsDto stepsDto = new EngagementsStepsDto(fps.getId(), fps.getStepOfPP().getProcessStep().getName(), false, e.getHours(),checkStatus(e.getHours(), fps.getStepOfPP().getProcessStep().getProcessStepKind().getPredictHours()));
                             stepsForOneProcess.add(stepsDto);
                             engagement.failed = false;
                         }
@@ -68,5 +69,20 @@ public class EngagementService {
 
     public void save(EmployeeWithEngagement engagement) {
         engagementsRepository.save(engagement);
+    }
+
+
+    private StatusOfWork checkStatus(double hoursForCheck, double predictedHours){
+        StatusOfWork status = null;
+        double percentOfHours = predictedHours / 10; //ten percent of predicted
+        if((predictedHours + percentOfHours) < hoursForCheck ){
+            status = StatusOfWork.SLOW;
+        }
+        if((predictedHours - percentOfHours) <= hoursForCheck && (predictedHours + percentOfHours) >= hoursForCheck ){
+            status = StatusOfWork.MIDDLE;
+        } if((predictedHours - percentOfHours) > hoursForCheck ){
+            status = StatusOfWork.FAST;
+        }
+        return  status;
     }
 }

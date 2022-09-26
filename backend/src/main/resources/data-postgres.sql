@@ -3,7 +3,7 @@ INSERT INTO role(name) VALUES ('ROLE_QUALITY_ENGINEER');
 INSERT INTO role(name) VALUES ('ROLE_PROCESS_ENGINEER');
 INSERT INTO role(name) VALUES ('ROLE_PRODUCTION_MANAGER');
 INSERT INTO role(name) VALUES ('ROLE_EMPLOYEE');
-
+INSERT INTO role(name) VALUES ('ROLE_ADMIN');
 
 --address
 INSERT INTO address(id, city,country, number,street )
@@ -37,6 +37,9 @@ VALUES (nextval('address_seq_gen'),'Platicevo', 'Srbija', '4','Sremska'); --13
 VALUES (nextval('address_seq_gen'),'Jarak', 'Srbija', '17','Nemanjina'); --14
  INSERT INTO address(id, city,country, number,street )
 VALUES (nextval('address_seq_gen'),'Platicevo', 'Srbija', '10','Isidore Sekulic'); --15
+
+ INSERT INTO address(id, city,country, number,street )
+VALUES (nextval('address_seq_gen'),'Valjevo', 'Srbija', '10','Isidore Sekulic'); --16
 
 --factory
 INSERT INTO factory(id, name, pib, address_id, telephone, email, description )
@@ -73,23 +76,27 @@ INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_da
 VALUES (nextval('user_seq_gen'), 0,'QE', 'lazar@gmail.com',0,true, null, 'Lazar', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Lukic', '06158565485', 8, 1,'1990-09-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
 VALUES (nextval('user_seq_gen'), 2,'PM', 'marta@gmail.com',1,true, null, 'Marta', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 9, 3,'1990-09-11 00:00', null,1);
+
+INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
+VALUES (nextval('user_seq_gen'), 5,'AD', 'admin@gmail.com',1,true, null, 'Jelena', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 16, 5,'1990-09-11 00:00', null,1); --admin
+
 --process step kind
-INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Priprema proizvoda', 4);
-INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Varenje',5);
-INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Vuklanizacija',2);  --bravar i gumar
-INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Gumiranje',4);
-INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Peskarenje',3);
+INSERT INTO process_step_kind(id, name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Priprema proizvoda', 4, 2);
+INSERT INTO process_step_kind(id, name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Varenje',5, 3.5);
+INSERT INTO process_step_kind(id, name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Vuklanizacija',2, 4);  --bravar i gumar
+INSERT INTO process_step_kind(id, name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Gumiranje',4, 4.1);
+INSERT INTO process_step_kind(id, name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Peskarenje',3, 3.9);
 
-INSERT INTO process_step_kind(id, name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'AKZ',3);
+INSERT INTO process_step_kind(id, name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'AKZ',3, 6);
 
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'),  'Priprema materijala', 3);
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Varenje i busenje', 3);
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Ciscenje, pranje i premazivanje', 2); --otprasivanje i pranje
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Premazivanje', 1);
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'AKZ spolja', 3);
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'AKZ unutra', 2);
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Krojenje i uvlacenje gume u cev', 2);
-INSERT INTO process_step_kind(id,  name, number_of_people) VALUES (nextval('process_step_kind_seq_gen'), 'Presovanje', 2);
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'),  'Priprema materijala', 3, 3.1);
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Varenje i busenje', 3, 4.1);
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Ciscenje, pranje i premazivanje', 2, 3.5); --otprasivanje i pranje
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Premazivanje', 1, 2);
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'AKZ spolja', 3, 5);
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'AKZ unutra', 2, 5);
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Krojenje i uvlacenje gume u cev', 2, 4.5);
+INSERT INTO process_step_kind(id,  name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Presovanje', 2, 6);
 
 
 --process step

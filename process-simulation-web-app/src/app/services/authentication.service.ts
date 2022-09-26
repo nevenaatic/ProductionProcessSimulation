@@ -20,6 +20,7 @@ export class AuthenticationService {
     return this._http.post<any>(`${this.baseUrl}/login`, body).subscribe(res => {
       localStorage.setItem("accessToken", res.accessToken);
       localStorage.setItem("role", res.role);
+      
       if(res.role == "ROLE_PROCESS_ENGINEER"){
       this.router.navigate(['homepage/process'])
     } 
@@ -28,6 +29,8 @@ export class AuthenticationService {
     }
     if(res.role == "ROLE_QUALITY_ENGINEER"){
       this.router.navigate(['homepage/product-revision'])
+    } else{
+      this.router.navigate(['homepage/workers'])
     }
     },
       err => {

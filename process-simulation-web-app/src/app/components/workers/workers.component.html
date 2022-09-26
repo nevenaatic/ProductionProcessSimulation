@@ -12,7 +12,7 @@
             </span>
         </div>
         <div class="col">
-            <button mat-button class="btn" (click)="openDialog()"> + </button>
+            <button mat-button class="btn" *ngIf="admin" (click)="openDialog()"> + </button>
         </div>
 
     </div>

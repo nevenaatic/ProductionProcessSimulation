@@ -16,7 +16,7 @@ export class ProcessTableComponent  implements OnInit{
   @ViewChild(MatSort) sort: MatSort | undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
- displayedColumns: string[] = ['label', 'name', 'start', 'validation', 'duration','report','failure'];
+ displayedColumns: string[] = ['label', 'name', 'start',  'duration','report','failure','validation'];
  dataSource : any;
  sortedData: any;
 

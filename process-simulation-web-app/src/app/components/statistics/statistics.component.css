@@ -19,3 +19,13 @@
     background-color: whitesmoke;
    
 }
+
+.informations{
+    height: max-content;
+    width:72%;
+    margin-top: 1rem;
+    margin-left: 1.5%;
+    margin-right: 7%;
+    background-color: whitesmoke;
+   
+}

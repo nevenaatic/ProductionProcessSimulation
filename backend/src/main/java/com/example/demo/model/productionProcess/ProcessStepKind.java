@@ -16,6 +16,8 @@ public class ProcessStepKind {
     private int numberOfPeople;
     @Column(nullable = true)
     private String name;
+    @Column(nullable = true)
+    private double predictHours;
 
     @OneToMany(mappedBy = "processStepKind", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("processStepKind")
@@ -51,5 +53,13 @@ public class ProcessStepKind {
 
     public void setProcessStepList(List<ProcessStep> processStepList) {
         this.processStepList = processStepList;
+    }
+
+    public double getPredictHours() {
+        return predictHours;
+    }
+
+    public void setPredictHours(double predictHours) {
+        this.predictHours = predictHours;
     }
 }

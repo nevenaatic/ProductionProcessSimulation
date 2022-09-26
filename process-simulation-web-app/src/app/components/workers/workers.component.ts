@@ -20,6 +20,7 @@ export class WorkersComponent implements OnInit, OnDestroy {
   paginator!: MatPaginator;
   workers: any;
   obs: Observable<any> | undefined;
+  admin= false;
   dataSorce: MatTableDataSource<Employee> = new MatTableDataSource<Employee>();
 
   constructor(private employeeSevice: EmployeeService, private dialog: MatDialog,) { }
@@ -31,6 +32,7 @@ export class WorkersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getEmployees();
+    this.whoAmI()
 
   }
   ngAfterViewInit() {
@@ -49,6 +51,12 @@ export class WorkersComponent implements OnInit, OnDestroy {
         this.dataSorce.paginator = this.paginator;
         this.obs = this.dataSorce.connect();
       })
+  }
+
+  readonly whoAmI = () => {
+if(localStorage.getItem("role")=='ROLE_ADMIN'){
+  this.admin = true;
+}
   }
 
   readonly openDialog=() => {
