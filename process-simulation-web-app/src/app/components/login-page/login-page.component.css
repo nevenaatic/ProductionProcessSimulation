@@ -28,7 +28,7 @@ mat-form-field {
 }
 mat-card-title{
     margin-bottom: 1rem;
-    margin-left: 40%;
+    margin-left: 22%;
 }
 
 .mat-card-actions:not(.mat-card-actions-align-end) .mat-button:first-child, .mat-card-actions:not(.mat-card-actions-align-end) .mat-raised-button:first-child, .mat-card-actions:not(.mat-card-actions-align-end) .mat-stroked-button:first-child {

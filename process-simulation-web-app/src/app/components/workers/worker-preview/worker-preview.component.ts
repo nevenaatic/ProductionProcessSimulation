@@ -12,6 +12,8 @@ export class WorkerPreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  
   }
 
 }

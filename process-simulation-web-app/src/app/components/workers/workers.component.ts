@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Employee } from 'src/app/model/Employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { NewWorkerDialogComponent } from './new-worker-dialog/new-worker-dialog.component';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class WorkersComponent implements OnInit, OnDestroy {
   obs: Observable<any> | undefined;
   dataSorce: MatTableDataSource<Employee> = new MatTableDataSource<Employee>();
 
-  constructor(private employeeSevice: EmployeeService) { }
+  constructor(private employeeSevice: EmployeeService, private dialog: MatDialog,) { }
   ngOnDestroy(): void {
     if (this.dataSorce) { 
       this.dataSorce.disconnect(); 
@@ -48,5 +50,13 @@ export class WorkersComponent implements OnInit, OnDestroy {
         this.obs = this.dataSorce.connect();
       })
   }
+
+  readonly openDialog=() => {
+    const dialogRef =  this.dialog.open(NewWorkerDialogComponent)
+    dialogRef.afterClosed().subscribe(() => {
+      this.getEmployees();
+    });
+  }
+
 
 }

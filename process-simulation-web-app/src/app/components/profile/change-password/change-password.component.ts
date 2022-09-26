@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import Validation from 'src/app/model/validation';
+import Validation from 'src/app/model/Validation';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -31,6 +31,7 @@ export class ChangePasswordComponent implements OnInit {
     this.passwordGroup.reset();
     this.dialogRef.close();
   }
+
   readonly changePassword = () => {
     this.submitted = true;
     // if (this.passwordGroup.invalid) {

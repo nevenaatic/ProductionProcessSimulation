@@ -9,7 +9,7 @@ import { FactoryService } from 'src/app/services/factory.service';
 export class FactoryComponent implements OnInit {
 
   factory: any;
-
+editMode: boolean= false;
   constructor(private factoryService: FactoryService) { }
 
   ngOnInit(): void {
@@ -20,5 +20,9 @@ export class FactoryComponent implements OnInit {
      this.factoryService.getFactory().subscribe(res => {
        this.factory = res;
      })
+  }
+
+  edit(){
+    this.editMode = true;
   }
 }

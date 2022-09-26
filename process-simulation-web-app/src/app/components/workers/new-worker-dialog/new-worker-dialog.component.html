@@ -1,1 +1,105 @@
 
+<h2 mat-dialog-title>Zapošljavanje </h2>
+<div mat-dialog-content>
+  <form [formGroup]="newWorker">
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Ime</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Prezime </mat-label>
+        <input matInput formControlName="surname">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Tip radnika</mat-label>
+        <mat-select>
+          <mat-option value="0" >Inženjer kvaliteta</mat-option>
+          <mat-option value="1" >Procesni inženjer</mat-option>
+          <mat-option value="2" >Menadžer proizvodnje</mat-option>
+          <mat-option value="3" >Radnik</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Imejl radnika </mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      
+        <mat-form-field appearance="fill" >
+          <mat-label>Datum rođenjenja</mat-label>
+           <input matInput [matDatepicker]="picker" formControlName="birthday" >
+          <mat-datepicker-toggle matSuffix [for]="picker" formControlName="birthday"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Ulica</mat-label>
+                <input matInput formControlName="street">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Broj</mat-label>
+                <input matInput formControlName="number">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Grad</mat-label>
+                <input matInput formControlName="city">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Država</mat-label>
+                <input matInput formControlName="country">
+            </mat-form-field>
+        </div>
+    </div>
+      <!-- <div class="row">
+        <mat-form-field class="example-full-width" appearance="fill">
+    <mat-radio-group  [(ngModel)]="gender">
+        <mat-label>Pol</mat-label>
+        <mat-radio-button [value]="1">Ž</mat-radio-button>
+        <mat-radio-button [value]="0">M</mat-radio-button>
+      </mat-radio-group>
+      </mat-form-field>
+  </div> -->
+  <div class="row">
+  <div class="col"> <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+             M
+            </label>
+          </div></div>
+       <div class="col"><div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Ž
+            </label>
+          </div></div>
+          
+
+</div>
+
+  </form>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick()" class="cancel-btn">odustani</button>
+  <button mat-button mat-dialog-close (click)="createWorker()" class="change-btn">sačuvaj</button>
+</div>
