@@ -9,37 +9,37 @@ INSERT INTO role(name) VALUES ('ROLE_ADMIN');
 INSERT INTO address(id, city,country, number,street )
  VALUES (nextval('address_seq_gen'),'Novi Sad', 'Srbija', '11','Bulevar Kralja Petra I'); --PE Nevena, adr 1
 INSERT INTO address(id, city,country, number,street )
-  VALUES (nextval('address_seq_gen'),'Skupljen', 'Srbija', '1','Filipa Visnjica'); --factory  adr 2
+  VALUES (nextval('address_seq_gen'),'Skupljen', 'Srbija', '1','Filipa Višnjica'); --factory  adr 2
 
 INSERT INTO address(id, city,country, number,street )
- VALUES (nextval('address_seq_gen'),'Obrenovac', 'Srbija', '15','Milutina Milankovica'); --3
+ VALUES (nextval('address_seq_gen'),'Obrenovac', 'Srbija', '15','Milutina Milankovića'); --3
 INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Nis', 'Srbija', '7','Kralja Milana');--4
+VALUES (nextval('address_seq_gen'),'Niš', 'Srbija', '7','Kralja Milana');--4
 INSERT INTO address(id, city,country, number,street )
 VALUES (nextval('address_seq_gen'),'Kostolac', 'Srbija', '8','Cara Lazara'); --5
 INSERT INTO address(id, city,country, number,street )
- VALUES (nextval('address_seq_gen'),'Mrdjenovac', 'Srbija', 'bb','bez ulice');  --6
+ VALUES (nextval('address_seq_gen'),'Mrđenovac', 'Srbija', 'bb','bez ulice');  --6
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Sabac', 'Srbija', '3','Prote Smiljanica'); --7
+VALUES (nextval('address_seq_gen'),'Šabac', 'Srbija', '3','Prote Smiljanica'); --7
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Sabac', 'Srbija', '68','Cerska');    --QE  adr8
+VALUES (nextval('address_seq_gen'),'Šabac', 'Srbija', '68','Cerska');    --QE  adr8
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Ub', 'Srbija', '11','Copiceva'); --9 PM
+VALUES (nextval('address_seq_gen'),'Ub', 'Srbija', '11','Ćopićeva'); --9 PM
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Debrc', 'Srbija', '16','Marka Kraljevica'); --10
+VALUES (nextval('address_seq_gen'),'Debrc', 'Srbija', '16','Marka Kraljevića'); --10
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Banjani', 'Srbija', '9','Isidore Sekulic'); --11
+VALUES (nextval('address_seq_gen'),'Banjani', 'Srbija', '9','Isidore Sekulić'); --11
  INSERT INTO address(id, city,country, number,street )
 VALUES (nextval('address_seq_gen'),'Vladimirci', 'Srbija', '14','Svetog Save'); --12
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Platicevo', 'Srbija', '4','Sremska'); --13
+VALUES (nextval('address_seq_gen'),'Platičevo', 'Srbija', '4','Sremska'); --13
  INSERT INTO address(id, city,country, number,street )
 VALUES (nextval('address_seq_gen'),'Jarak', 'Srbija', '17','Nemanjina'); --14
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Platicevo', 'Srbija', '10','Isidore Sekulic'); --15
+VALUES (nextval('address_seq_gen'),'Platičevo', 'Srbija', '10','Isidore Sekulić'); --15
 
  INSERT INTO address(id, city,country, number,street )
-VALUES (nextval('address_seq_gen'),'Valjevo', 'Srbija', '10','Isidore Sekulic'); --16
+VALUES (nextval('address_seq_gen'),'Valjevo', 'Srbija', '10','Isidore Sekulić'); --16
 
 --factory
 INSERT INTO factory(id, name, pib, address_id, telephone, email, description )
@@ -49,36 +49,36 @@ VALUES(1, 'Univerzal', '15487952', 2,'0157529128', 'univerzal@mail.com',
  --user
  --password nevena
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 1,'PE', 'nevena@gmail.com',1,true, null, 'Nevena', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Atic', '0555215', 1, 2,'2022-06-04 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 1,'PE', 'nevena@gmail.com',1,true, null, 'Nevena', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Atić', '0555215', 1, 2,'2022-06-04 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'marko@gmail.com',0,true, null, 'Marko', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Matic', '06982615412', 3, 4,'1980-08-14 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'marko@gmail.com',0,true, null, 'Marko', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Matić', '06982615412', 3, 4,'1980-08-14 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'darko@gmail.com',0,true, null, 'Darko', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Gajic', '06526505', 4, 4,'1982-04-24 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'darko@gmail.com',0,true, null, 'Darko', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Gajić', '06526505', 4, 4,'1982-04-24 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'jovan@gmail.com',0,true, null, 'Jovan', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovanovic', '06452625', 5, 4,'1975-03-13 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'jovan@gmail.com',0,true, null, 'Jovan', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovanović', '06452625', 5, 4,'1975-03-13 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'nikola@gmail.com',0,true, null, 'Nikola', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Nikolic', '06158565485', 6, 4,'1990-09-11 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'nikola@gmail.com',0,true, null, 'Nikola', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Nikolić', '06158565485', 6, 4,'1990-09-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'dragana@gmail.com',1,true, null, 'Dragana', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 7, 4,'1990-09-11 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'dragana@gmail.com',1,true, null, 'Dragana', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovičić', '06158565485', 7, 4,'1990-09-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'pera@gmail.com',0,true, null, 'Pera', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Peric', '06158565485', 10, 4,'1990-11-11 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'pera@gmail.com',0,true, null, 'Pera', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Perić', '06158565485', 10, 4,'1990-11-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'marija@gmail.com',1,true, null, 'Marija', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Matic', '06158565485', 11, 4,'1978-09-11 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'marija@gmail.com',1,true, null, 'Marija', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Matić', '06158565485', 11, 4,'1978-09-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'dragan@gmail.com',0,true, null, 'Dragan', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovovic', '06158565485', 12, 4,'1965-03-13 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'dragan@gmail.com',0,true, null, 'Dragan', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovović', '06158565485', 12, 4,'1965-03-13 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'zoran@gmail.com',0,true, null, 'Zoran', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Arsovic', '06158565485', 13, 4,'1983-08-07 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'zoran@gmail.com',0,true, null, 'Zoran', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Arsović', '06158565485', 13, 4,'1983-08-07 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'danijela@gmail.com',1,true, null, 'Danijela', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Anastasijevic', '06158565485', 14, 4,'1979-08-17 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'danijela@gmail.com',1,true, null, 'Danijela', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Anastasijević', '06158565485', 14, 4,'1979-08-17 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 3,'EE', 'daca@gmail.com',0,true, null, 'Dalibor', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Petrovic', '06158565485', 15, 4,'1985-11-02 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 3,'EE', 'daca@gmail.com',0,true, null, 'Dalibor', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Petrović', '06158565485', 15, 4,'1985-11-02 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 0,'QE', 'lazar@gmail.com',0,true, null, 'Lazar', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Lukic', '06158565485', 8, 1,'1990-09-11 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 0,'QE', 'lazar@gmail.com',0,true, null, 'Lazar', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Lukić', '06158565485', 8, 1,'1990-09-11 00:00', null,1);
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 2,'PM', 'marta@gmail.com',1,true, null, 'Marta', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 9, 3,'1990-09-11 00:00', null,1);
+VALUES (nextval('user_seq_gen'), 2,'PM', 'marta@gmail.com',1,true, null, 'Marta', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovičić', '06158565485', 9, 3,'1990-09-11 00:00', null,1);
 
 INSERT INTO users(id, type,dtype, email, gender, enabled, last_password_reset_date,name,password,  surname, telephone, address_id, role_id, birthday, picture, factory_id )
-VALUES (nextval('user_seq_gen'), 5,'AD', 'admin@gmail.com',1,true, null, 'Jelena', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovicic', '06158565485', 16, 5,'1990-09-11 00:00', null,1); --admin
+VALUES (nextval('user_seq_gen'), 2,'AD', 'admin@gmail.com',1,true, null, 'Jelena', '$2a$10$S6VHCehpPiJgV3NStRbB7OkqE3U4QjfxdFbVw2dSmTPTUkykY1rjy','Jovičić', '06158565485', 16, 5,'1990-09-11 00:00', null,1); --admin
 
 --process step kind
 INSERT INTO process_step_kind(id, name, number_of_people, predict_hours) VALUES (nextval('process_step_kind_seq_gen'), 'Priprema proizvoda', 4, 2);
@@ -144,9 +144,9 @@ INSERT INTO step_of_production_process(id, step_id, process_id, process_step_num
 
 --material
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'AB152', 2600,'Guma',0);
-INSERT INTO material(id, label_id, price, name,material_unit_type) VALUES (nextval('material_seq_gen'), 'AB146', 250,'Razredjivac',1);
-INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'A15152', 300,'Kiselinski razredjivac',1);
-INSERT INTO material(id, label_id, price, name, material_unit_type) VALUES (nextval('material_seq_gen'), 'ghu554', 650,'Celik',0);
+INSERT INTO material(id, label_id, price, name,material_unit_type) VALUES (nextval('material_seq_gen'), 'AB146', 250,'Razređivač',1);
+INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'A15152', 300,'Kiselinski razređivač',1);
+INSERT INTO material(id, label_id, price, name, material_unit_type) VALUES (nextval('material_seq_gen'), 'ghu554', 650,'Čelik',0);
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'uyigtuy1', 650,'Lepak',1);
 
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'FG243', 200,'Prirubnica',3);
@@ -154,12 +154,14 @@ INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextv
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'LJK879', 60,'Kvarcni pesak',1);
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'HYIBY3', 250,'Nafta',1);
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'LLHJ87', 350,'Trihloretilen',1);
-INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'PO9867', 1800,'Sirova guma bez cadji',0);
+INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'PO9867', 1800,'Sirova guma bez cađi',0);
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'PPOYT5', 850,'Svileno platno',0);
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'TTTYT5', 1200,'Toluol',1);
-INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'KIJUB', 120,'Srafovi',3);
+INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'KIJUB', 120,'Šrafovi',3);
 INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'CSDT5', 300,'Opruge',3);
-INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'CPPT5', 700,'Cefer platno',2);
+INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'CPPT5', 700,'Ćefer platno',2);
+
+INSERT INTO material(id, label_id, price,name, material_unit_type) VALUES (nextval('material_seq_gen'), 'WDNID', 0,'POLUGOTOV PROIZVOD',3); --17
 --step_material
 --proizvodnja membrani
 INSERT INTO step_material(material_id, step_id) VALUES (1,2);
@@ -168,6 +170,8 @@ INSERT INTO step_material(material_id, step_id) VALUES (14,2);
 INSERT INTO step_material(material_id, step_id) VALUES (15,2);
 INSERT INTO step_material(material_id, step_id) VALUES (16,2);
 
+INSERT INTO step_material(material_id, step_id) VALUES (17,3);
+INSERT INTO step_material(material_id, step_id) VALUES (17,4);
 --proizvodnja besavnih cevi
 INSERT INTO step_material(material_id, step_id) VALUES (4,6);
 INSERT INTO step_material(material_id, step_id) VALUES (6,6);
@@ -186,10 +190,10 @@ INSERT INTO step_material(material_id, step_id) VALUES (9,12);
 --failure
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Nestanak struje', 2, 0.07 );
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Nedostatak materijala',1, 0.05);
-INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Los materijal (stara guma)', 1,0.15 );
+INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Loš materijal (stara guma)', 1,0.15 );
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Neadekvatan rad',0, 0.2);
-INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Lose obradjena guma(risovi)',0, 0.02);
-INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Lose pripremljen alat',0, 0.01);
+INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Loše obradjena guma(risovi)',0, 0.02);
+INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Loše pripremljen alat',0, 0.01);
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Nedovoljno procenjen pritisak prese',0, 0.01);
 INSERT INTO failure(id, name, failure_type, probability ) VALUES (nextval('failure_seq_gen'), 'Nedovoljna tvrdoca gume kao krajnji ishod procesa obrade',0, 0.02);
 

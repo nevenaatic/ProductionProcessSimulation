@@ -69,7 +69,7 @@ initProcessChart(){
         datasets: [{
             label: 'Prosečno vreme izvršavanja',
             // data: [16.4, 30.1, 23.3, 5, 2, 3],
-            data: [16.4, 30.1, 0, 0],
+            data: [19.4, 30.1, 0, 0],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

@@ -208,7 +208,7 @@ public class FinalProductionProcessService {
         ret.date = finalProductionProcess.getDateStart();
         ret.dateString = this.formatDate(ret.date);
         ret.isValid = finalProductionProcess.getValid();
-        ret.processEngineer = "Nevena Atic";
+        ret.processEngineer = "Nevena Atić";
         ret.productPrice = finalProductionProcess.getProductionProcess().getProduct().getFinalPrice();
         ret.productName = finalProductionProcess.getProductionProcess().getProduct().getName();
 
@@ -246,7 +246,7 @@ public class FinalProductionProcessService {
     }
 
     private String formatDate(Date date){
-        DateFormat df = new SimpleDateFormat("dd-mm-yyyy hh:mm");
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy. hh:mm");
         return df.format(date);
     }
     private double durationMax(double current, double next) {

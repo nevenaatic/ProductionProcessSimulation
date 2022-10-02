@@ -12,6 +12,9 @@ export class FactoryService {
   public readonly getFactory = () => {
     return this._http.get(`${this.baseUrl}`, {headers:this.headers()});
   }
+  public readonly editFactory = (factory: any) => {
+    return this._http.post<any>(`${this.baseUrl}/factory`, factory, {headers:this.headers()});
+  }
   private readonly headers = () => {
     return new HttpHeaders({ Authorization: "Bearer " + localStorage.getItem("accessToken") });
   }

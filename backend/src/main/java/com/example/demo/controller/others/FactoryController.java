@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -27,6 +29,14 @@ public class FactoryController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
         FactoryDto factory = new FactoryDto(factoryService.getAll());
+        return  new ResponseEntity<>(factory, HttpStatus.OK);
+    }
+
+    @PostMapping("factory")
+    public ResponseEntity<FactoryDto> editFactory(@RequestBody FactoryDto factoryDto){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        FactoryDto factory = new FactoryDto(factoryService.editFactory(factoryDto));
         return  new ResponseEntity<>(factory, HttpStatus.OK);
     }
 }

@@ -1,109 +1,14 @@
 <div class="header-div"></div>
 
-<div *ngIf="!editMode"> 
-<mat-card class="card" style="height:max-content;" >
-    <div class="row">
-        <div class="col-md-6">
-            <mat-card-header>
-
-                <!-- Carousel -->
-                <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-                    <!-- Indicators/dots -->
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
-                    </div>
-
-                    <!-- The slideshow/carousel -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../../../assets/univerzalPocetna.PNG" width="450px" height="270px">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../../../assets/3.PNG" width="450px" height="270px">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../../../assets/2.PNG" width="450px" height="270px">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../../../assets/6.PNG" width="450px" height="270px">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../../../assets/slika1.PNG" width="450px" height="270px">
-                        </div>
-                    </div>
-
-                    <!-- Left and right controls/icons -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-
-                </div>
-
-
-            </mat-card-header>
-        </div>
-        <div class="col-md-5">
-            <div style="margin-left: 10%;">
-                <mat-card-title>
-                    <p> {{factory.name}} PP d.o.o </p>
-                    <br />
-                </mat-card-title>
-                <mat-card-content>
-                    <p> {{factory.telephone}} (kontakt telefon)</p>
-                    <p>{{factory.email}}</p>
-                    <p>{{factory.pib}} (PIB)</p>
-                    <p> {{factory.address.street}} {{factory.address.number}}, {{factory.address.city}}</p>
-                    <p> Vladimirci (opština)</p>
-                    <p> Godina otvaranja je  1987.</p>
-                </mat-card-content>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <mat-card-content>
-        <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header style="width:100%">
-                <mat-panel-title>
-                    Prikaži na mapi
-                </mat-panel-title>
-                <mat-panel-description>
-                    <div class="row" style="width: 100%; height: 90%;">
-                        <div class="col-md-10">
-                            <p> {{factory.address.street}} {{factory.address.number}}, {{factory.address.city}}</p>
-                        </div>
-
-                    </div>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-         <!-- <div style="text-align: center;"> <img src="../../../assets/univezalmapa.PNG" style="width: 730px; height: 310px; align-self: center;"></div> -->
-         <div style="text-align: center;"> <img src="../../../assets/map2.PNG" style="width: 100%; height: 100%; align-self: center;"></div>
-        </mat-expansion-panel>
-        <p style="font-size: medium; padding-top: 10px;"> {{factory.description}}</p>
-
-    </mat-card-content>
-
-</mat-card>
-</div>
-
-
-<div *ngIf="editMode"> 
-    <mat-card class="card" style="height:max-content;" *ngIf="!editMode">
+<div *ngIf="!editMode">
+    <mat-card class="card" style="height:max-content;">
         <div class="row">
             <div class="col-md-6">
                 <mat-card-header>
-    
+
                     <!-- Carousel -->
                     <div id="demo" class="carousel slide" data-bs-ride="carousel">
-    
+
                         <!-- Indicators/dots -->
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -112,7 +17,7 @@
                             <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
                             <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
                         </div>
-    
+
                         <!-- The slideshow/carousel -->
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -131,7 +36,7 @@
                                 <img src="../../../assets/slika1.PNG" width="450px" height="270px">
                             </div>
                         </div>
-    
+
                         <!-- Left and right controls/icons -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -139,52 +44,202 @@
                         <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
                             <span class="carousel-control-next-icon"></span>
                         </button>
-    
+
                     </div>
-    
-    
+
+
                 </mat-card-header>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div style="margin-left: 10%;">
                     <mat-card-title>
                         <p> {{factory.name}} PP d.o.o </p>
                         <br />
                     </mat-card-title>
                     <mat-card-content>
-                        <p> {{factory.telephone}} (contact number)</p>
+                        <p> {{factory.telephone}} (kontakt telefon)</p>
                         <p>{{factory.email}}</p>
-                        <p>{{factory.pib}} (taxID)</p>
+                        <p>{{factory.pib}} (PIB)</p>
                         <p> {{factory.address.street}} {{factory.address.number}}, {{factory.address.city}}</p>
-                        <p> Vladimirci (settlement)</p>
-                        <p> Year of opening is 1987.</p>
+                        <p> Vladimirci (opština)</p>
+                        <p> Godina otvaranja je 1994.</p>
                     </mat-card-content>
                 </div>
             </div>
+            <div class="col"> <button mat-button (click)="showEdit()" style="color: white;background-color:gray; margin-left:-2%"> Izmeni informacije </button></div>
         </div>
-    
+
         <hr>
         <mat-card-content>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header style="width:100%">
                     <mat-panel-title>
-                        Show on map
+                        Prikaži na mapi
                     </mat-panel-title>
                     <mat-panel-description>
                         <div class="row" style="width: 100%; height: 90%;">
                             <div class="col-md-10">
                                 <p> {{factory.address.street}} {{factory.address.number}}, {{factory.address.city}}</p>
                             </div>
-    
+
                         </div>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-             <!-- <div style="text-align: center;"> <img src="../../../assets/univezalmapa.PNG" style="width: 730px; height: 310px; align-self: center;"></div> -->
-             <div style="text-align: center;"> <img src="../../../assets/map2.PNG" style="width: 100%; height: 100%; align-self: center;"></div>
+                <!-- <div style="text-align: center;"> <img src="../../../assets/univezalmapa.PNG" style="width: 730px; height: 310px; align-self: center;"></div> -->
+                <div style="text-align: center;"> <img src="../../../assets/map2.PNG"
+                        style="width: 100%; height: 100%; align-self: center;"></div>
             </mat-expansion-panel>
             <p style="font-size: medium; padding-top: 10px;"> {{factory.description}}</p>
-    
+
         </mat-card-content>
-    
+
     </mat-card>
-    </div>
+</div>
+
+
+<div *ngIf="editMode">
+    <mat-card class="card" style="height:max-content;" *ngIf="editMode">
+        <form [formGroup]="factoryForm">
+        <div class="row">
+           
+            <div class="col-md-5">
+                    <div style="margin-left: 5%;">
+                        <div class="row">
+                            <div class="col">
+                                <mat-card-title>
+                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                                        <mat-label>Naziv fabrike</mat-label>
+                                        <input type="Ime" formControlName="name" matInput placeholder="Naziv fabrike">
+                                    </mat-form-field>
+                                </mat-card-title>
+                            </div>
+                            
+                        </div>
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Broj telefona</mat-label>
+                                        <input type="Ime" formControlName="telephone" matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Imejl </mat-label>
+                                        <input type="Ime" formControlName="email" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Pib</mat-label>
+                                        <input type="Ime" formControlName="pib" matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Godina otvaranja </mat-label>
+                                        <input type="Ime" formControlName="year" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Ulica</mat-label>
+                                        <input type="Ime" formControlName="street" matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Broj </mat-label>
+                                        <input type="Ime" formControlName="number" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Mesto</mat-label>
+                                        <input type="Ime" formControlName="city" matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Država </mat-label>
+                                        <input type="Ime" formControlName="country" matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </div>
+               
+            </div>
+
+            <div class="col">
+                
+                        <button mat-button style="margin-right: 0%; margin-left: 70%; color: white; background-color: gray;" (click)="edit()"> Sačuvaj izmene</button>
+                        <!-- <mat-form-field class="example-full-width" appearance="fill" style="margin-top: 14%; width: 100%; height: 10rem">
+                    <mat-label>Opis fabrike </mat-label>
+                    <textarea matInput formControlName="description" 
+                   > </textarea>
+                </mat-form-field> -->
+                  <!-- Carousel -->
+                  <div id="demo" class="carousel slide" data-bs-ride="carousel" style="margin-top: 15%; margin-left: 15%;">
+
+                    <!-- Indicators/dots -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
+                    </div>
+
+                    <!-- The slideshow/carousel -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../../../assets/univerzalPocetna.PNG" width="480px" height="270px">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../assets/3.PNG" width="485px" height="270px">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../assets/2.PNG" width="485px" height="270px">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../assets/6.PNG" width="485px" height="270px">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../../../assets/slika1.PNG" width="485px" height="270px">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls/icons -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+
+                </div>
+
+            
+            </div>
+      
+        </div>
+   
+        <hr>
+        <mat-card-content>
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%; height:max-content">
+                <mat-label>Opis fabrike </mat-label>
+                <textarea matInput formControlName="description"  
+               > </textarea>
+            </mat-form-field>
+        </mat-card-content>
+</form>
+    </mat-card>
+</div>
