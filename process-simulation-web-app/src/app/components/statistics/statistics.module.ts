@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { StatisticsComponent } from './statistics.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     StatisticsComponent,
@@ -25,6 +27,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     AppRoutingModule,
     RouterModule,
+    MatSelectModule,
+    MatOptionModule
     
   ],
   providers: [],

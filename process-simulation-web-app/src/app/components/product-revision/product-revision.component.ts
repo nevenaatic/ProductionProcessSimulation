@@ -33,4 +33,9 @@ export class ProductRevisionComponent implements OnInit {
       this.uncheckedList = res;
     })
   }
+
+   listDeleted ($event: any)  {
+    this.uncheckedList = this.uncheckedList.filter((x: { id: any; }) => x.id !== $event);
+
+         }
 }

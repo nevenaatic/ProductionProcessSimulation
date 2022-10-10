@@ -69,4 +69,12 @@ public class UserController {
         User user = (User)authentication.getPrincipal();
             return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/user")
+    public ResponseEntity<HttpStatus> newUser(@RequestBody UserProfileInfoDto employee){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User)authentication.getPrincipal();
+       this.userService.createNewUser(employee);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

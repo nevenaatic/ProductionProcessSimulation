@@ -58,11 +58,11 @@ export class ProcessComponent implements OnInit, OnDestroy {
     public readonly startProcess = (id: number) => {
       this.finalProcessService.startProcess(id).subscribe( 
         res => { console.log(res); 
-        this.snackbar.open('Simulation done!')});
+        this.snackbar.open('Izvršena regularna simulacija!')});
     }
     public readonly startFailedProcess = (id: number) => {
       this.finalProcessService.startFailedProcess(id).subscribe( 
         res => { console.log(res); 
-        this.snackbar.open('Simulation done!')});
+        this.snackbar.open('Izvršena simulacija sa greškom!')});
     }
 }

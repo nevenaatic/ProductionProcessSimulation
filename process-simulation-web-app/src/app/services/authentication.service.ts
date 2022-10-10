@@ -29,7 +29,7 @@ export class AuthenticationService {
     }
     if(res.role == "ROLE_QUALITY_ENGINEER"){
       this.router.navigate(['homepage/product-revision'])
-    } else{
+    } if(res.role == "ROLE_ADMIN"){
       this.router.navigate(['homepage/workers'])
     }
     },

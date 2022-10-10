@@ -68,4 +68,13 @@ private readonly getValues = () => {
   this.factory.telephone= this.controls.telephone.value;
 };
 
+
+whoAmI(){
+  if(localStorage.getItem('role')=='ROLE_ADMIN'){
+    return true
+  }else{
+    return false;
+  }
+  return
+}
 }

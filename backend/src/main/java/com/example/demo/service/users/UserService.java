@@ -69,4 +69,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(passwordDto.password));
         userRepository.save(user);
     }
+
+    public void createNewUser(UserProfileInfoDto employee) {
+
+    }
 }

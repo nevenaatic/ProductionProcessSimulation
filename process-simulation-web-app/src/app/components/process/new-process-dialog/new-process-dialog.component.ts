@@ -43,7 +43,7 @@ export class NewProcessDialogComponent implements OnInit {
     this.process.name = this.newProcess.controls['name'].value
     this.process.description = this.newProcess.controls['processDescription'].value
     this.processService.createNewProcess(this.process).subscribe(res=> {
-       this.snackbar.open('Process created!');
+       this.snackbar.open('Novi proces uspešno kreiran!');
         this.dialogRef.close();
     }, 
     err=>{

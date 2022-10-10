@@ -5,8 +5,9 @@
       <mat-card-title>{{worker.name}} {{worker.surname}}</mat-card-title>
       <mat-card-subtitle>{{worker.email}}</mat-card-subtitle>
       <img mat-card-sm-image [src]="worker.profilePhoto" *ngIf="worker.profilePhoto" >
-      <img *ngIf="worker.gender=='MALE'" mat-card-sm-image [src]="'http://xsgames.co/randomusers/assets/avatars/male/'+worker.id+'.jpg'"  >
-      <img *ngIf="worker.gender=='FEMALE'" mat-card-sm-image [src]="'http://xsgames.co/randomusers/assets/avatars/female/'+worker.id+'.jpg'"  >
+      <img *ngIf="worker.gender=='MALE' && worker.profilePhoto!=''" mat-card-sm-image [src]="'http://xsgames.co/randomusers/assets/avatars/male/'+worker.id+'.jpg'"  >
+      <img *ngIf="worker.gender=='FEMALE' " mat-card-sm-image [src]="'http://xsgames.co/randomusers/assets/avatars/female/'+worker.id+'.jpg'"  >
+      <img *ngIf="worker.profilePhoto==''" mat-card-sm-image src="../../../../assets/user_profile.png"  >
     </mat-card-title-group>
     <mat-card-content>
     <p>{{worker.telephone}} </p>
@@ -14,4 +15,3 @@
     <p>{{worker.address.street}}  {{worker.address.number}}, {{worker.address.city}}</p>
     </mat-card-content>
   </mat-card>
-

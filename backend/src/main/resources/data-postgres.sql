@@ -117,15 +117,15 @@ INSERT INTO process_step(id, description, name, process_step_kind_id) VALUES (ne
 INSERT INTO process_step(id, description, name, process_step_kind_id) VALUES (nextval('process_step_seq_gen'), 'Pecenje u autoklavu. Pece se na 145C, vazduh od 4Bar.', 'Vulkanizacija', 3);
 
 --products
-INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 5000, 'Membrane se proizvode u razlicitim dimenzijama u zavisnosti od namene, za membranske ventile ili nepovratne.','Membrane za membranski ventil');
-INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 5000, 'Membrane se proizvode u razlicitim dimenzijama u zavisnosti od namene, za membranske ventile ili nepovratne.','Membrana za nepovratne ventile');
+INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 5000, 'Membrane se proizvode u različitim dimenzijama u zavisnosti od namene, za membranske ventile ili nepovratne.','Membrane za membranski ventil');
+INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 5000, 'Membrane se proizvode u različitim dimenzijama u zavisnosti od namene, za membranske ventile ili nepovratne.','Membrana za nepovratne ventile');
 INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 4000, 'Šavne cevi su uzdužno elektrootporno zavarene cevi, hladno oblikovanog osnovnog materijala okruglog, kvadratnog i pravougaonog preseka','Cev (savna)');
-INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 3000, 'Besavna cev napravljena od jednog komada materijala, bez savova na povrsini.','Cev (besavna)');
-INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 6500, 'Cev na kojoj je izvrsena antikorozivna zastita.','Cev (akz)');
+INSERT INTO product(id, final_price, usage_description, name ) VALUES (nextval('product_seq_gen'), 3000, 'Bešavna cev napravljena od jednog komada materijala, bez šavova na površini.','Cev (bešavna)');
+INSERT INTO product(id, final_price, usage_description, name) VALUES (nextval('product_seq_gen'), 6500, 'Cev na kojoj je izvršena antikorozivna zaštita.','Cev (akz)');
 
 --production process
-INSERT INTO production_process(id, name, description, product_id, engineer_id) VALUES (nextval('production_process_seq_gen'), 'Proizvodnja membrani', 'Membrane se proizvode u razlicitim dimenzijama u zavisnosti od namene, za membranske ventile ili nepovratne', 1, 1);
-INSERT INTO production_process(id, name, description, product_id, engineer_id) VALUES (nextval('production_process_seq_gen'), 'Proizvodnja besavnih cevi ', 'Bešavne cevi služe za veća opterećenja, imaju bolja mehanička svojstva i visok stepen sigurnosti. Cevi bez šava dobijaju se toplim valjanjem ili hladnim vučenjem.Bešavne cevi mogu biti: hladno vučene bešavne cevi, OCTG – Casing and Tubing, bešavne konstrukcione cevi, bešavne cevi za naftu i gas (predizolovane cevi), bešavne provodne čelične cevi za povišene temperature, bešavne provodne čelične cevi za normalne temperature.', 4,1);
+INSERT INTO production_process(id, name, description, product_id, engineer_id) VALUES (nextval('production_process_seq_gen'), 'Proizvodnja membrani', 'Membrane se proizvode u različitim dimenzijama u zavisnosti od namene, za membranske ventile ili nepovratne', 1, 1);
+INSERT INTO production_process(id, name, description, product_id, engineer_id) VALUES (nextval('production_process_seq_gen'), 'Proizvodnja bešavnih cevi ', 'Bešavne cevi služe za veća opterećenja, imaju bolja mehanička svojstva i visok stepen sigurnosti. Cevi bez šava dobijaju se toplim valjanjem ili hladnim vučenjem.Bešavne cevi mogu biti: hladno vučene bešavne cevi, OCTG – Casing and Tubing, bešavne konstrukcione cevi, bešavne cevi za naftu i gas (predizolovane cevi), bešavne provodne čelične cevi za povišene temperature, bešavne provodne čelične cevi za normalne temperature.', 4,1);
 
 --step of production process (table between ProductionProcess and ProcessStep)
 INSERT INTO step_of_production_process(id, step_id, process_id, process_step_number) VALUES (nextval('sopp_seq_gen'), 1, 1, 1);
@@ -212,7 +212,7 @@ INSERT INTO failure_in_process_step(id, failure_id, process_step_id, quality_eng
 
 --final production process
 INSERT INTO final_production_process(id, process_engineer_id, production_process_id, date_start, label, is_valid) VALUES (nextval('final_production_seq_gen'),1, 1,'2022-09-10 00:00', 'AKNUBU42',true );
-
+INSERT INTO final_production_process(id, process_engineer_id, production_process_id, date_start, label, is_valid) VALUES (nextval('final_production_seq_gen'),1, 2,'2022-09-12 00:00', 'MSEFHUO9',true );
 --proizvodnja besavnih cevi
 
 

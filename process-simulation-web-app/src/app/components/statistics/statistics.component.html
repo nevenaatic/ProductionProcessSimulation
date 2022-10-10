@@ -1,5 +1,49 @@
-<div class="header-div"></div>
-<div style="width:1500px; height: 400px; margin-left: 10%;">
+<div class="header-div"></div> <div class="row" class="informations" style="width:1085px; height: max-content; margin-left: 12%;">
+      <mat-card >
+
+        <div class="row">
+        <div class="col"> <mat-form-field appearance="fill" style="width:100%">
+            <mat-label>Izaberite period za koji pregledate finansijsko stanje</mat-label>
+            <mat-select>
+              <mat-option
+                (onSelectionChange)="showInfo('mesecni')">MESEČNI</mat-option>
+                <mat-option
+                (onSelectionChange)="showInfo('godisnji')">GODIŠNJI</mat-option>
+            </mat-select>
+          </mat-form-field> </div>
+          <div class="col">
+            <button mat-button (click)="back()" style="margin-left: 80%;"> x</button>
+          </div>
+        
+         <!-- <div class="col-md-4">
+            Prihodi u proteklom vremenskom periodu:
+         </div>
+         <div class="col-md-2"> 150000 RSD</div>
+       
+        
+         <div class="col-md-4">
+            Gubici:
+         </div>
+         <div class="col-md-2"> 32000 RSD</div> -->
+      </div>
+       <div class="row">
+            <div class="col-md-5">
+            Broj uspešno izvršenih procesa tokom ovog meseca:  5 procesa 
+         </div>
+       <div class="col-md-1"> | </div>
+  <div class="col-md-5">
+            Broj neuspešno izvršenih procesa tokom ovog meseca:    2 procesa
+         </div>  
+       </div>
+   
+      </mat-card>
+
+      <mat-card *ngIf="year">
+    <canvas id="incomes" style="height: 40rem;" > </canvas>
+       </mat-card>
+   </div>
+  <div style="height: 1rem;"> </div> 
+<div style="width:1500px; height: 400px; margin-left: 10%;" >
    <div class="row" style="width:1200px; height: max-content;">
       <div class="col-md-5">
          <mat-card class="pie-chart">
@@ -12,30 +56,6 @@
          </mat-card>
       </div>
    </div>
-   <div class="row" class="informations">
-      <mat-card >
-        <div class="row">
-         <div class="col-md-4">
-            Prihodi u proteklom vremenskom periodu:
-         </div>
-         <div class="col-md-2"> 150000 RSD</div>
-       
-        
-         <div class="col-md-4">
-            Gubici:
-         </div>
-         <div class="col-md-2"> 32000 RSD</div>
-      </div>
-       <div class="row">
-            <div class="col-md-4">
-            Broj uspešno izvršenih procesa:
-         </div>
-         <div class="col-md-2"> 3</div>
-  <div class="col-md-4">
-            Broj neuspešno izvršenih procesa:
-         </div>  <div class="col-md-2"> 2</div>
-       </div>
-   
-      </mat-card>
-   </div>
+  
 </div>
+

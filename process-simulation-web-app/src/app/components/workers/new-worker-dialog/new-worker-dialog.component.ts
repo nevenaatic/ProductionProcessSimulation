@@ -24,6 +24,7 @@ export class NewWorkerDialogComponent implements OnInit {
 
   gender: any
 createWorker() {
+  this.snackbar.open("Novi radnik je zaposlen!")
    this.dialogRef.close();
 }
 onNoClick() {

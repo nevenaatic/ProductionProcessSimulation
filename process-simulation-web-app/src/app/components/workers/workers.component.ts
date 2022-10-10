@@ -21,6 +21,7 @@ export class WorkersComponent implements OnInit, OnDestroy {
   workers: any;
   obs: Observable<any> | undefined;
   admin= false;
+  dummy= { name:"Igor", surname: "Jovanov", email: "igorj@gmail.com", type:1, telephone: "01587956", birthday:new Date(1990, 12,12), address: {id: 0,  street: "Kraljice Marije", city:"Beograd", number: "5", country:"Srbija"}, profilePhoto: "", gender: "MALE", id: 0 }
   dataSorce: MatTableDataSource<Employee> = new MatTableDataSource<Employee>();
 
   constructor(private employeeSevice: EmployeeService, private dialog: MatDialog,) { }
@@ -48,7 +49,8 @@ export class WorkersComponent implements OnInit, OnDestroy {
       res => {
         this.workers = res;
         this.dataSorce = new MatTableDataSource<Employee>(this.workers);
-        this.dataSorce.paginator = this.paginator;
+        this.dataSorce.paginator = this.paginator; 
+        this.workers.push(this.dummy) //dummy for new employee
         this.obs = this.dataSorce.connect();
       })
   }
@@ -63,6 +65,7 @@ if(localStorage.getItem("role")=='ROLE_ADMIN'){
     const dialogRef =  this.dialog.open(NewWorkerDialogComponent)
     dialogRef.afterClosed().subscribe(() => {
       this.getEmployees();
+     
     });
   }
 

@@ -19,9 +19,10 @@
                         <p> {{user.telephone}} </p>
                         <p> {{user.type}}</p>
                         <p> {{user.email}}</p>
-                        <p> {{user.gender}}</p>
+                        <p *ngIf="user.gender=='FEMALE' "> Žensko</p>
+                        <p *ngIf="user.gender=='MALE' ">Muško</p>
                         <p> {{user.birthday | date }}</p>
-                        <p> {{user.address.street}} {{user.address.number}} {{user.address.city}}
+                        <p> {{user.address.street}} {{user.address.number}}, {{user.address.city}},
                             {{user.address.country}}</p>
                         <p> </p>
                     </mat-card-content>

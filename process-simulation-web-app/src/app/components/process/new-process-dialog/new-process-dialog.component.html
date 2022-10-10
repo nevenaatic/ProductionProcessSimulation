@@ -48,10 +48,10 @@
   <div *ngIf="process.processSteps.length > 0">
     <mat-label style="margin-left: 40%; margin-bottom: 2px; font-weight: bold;"> Procesni koraci: </mat-label>
     <div class="row" *ngFor="let step of this.process.processSteps">
-      <div class="col">
+      <div class="col-md-5">
         <p> {{step.name}}</p>
       </div>
-      <div class="col">
+      <div class="col-md-5">
         <p> {{step.description}}</p>
       </div>
       <div class="col">
