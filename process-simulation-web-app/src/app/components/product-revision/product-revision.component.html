@@ -3,14 +3,14 @@
     <mat-card>
     <!-- <h3>Very slow animation</h3> -->
     <mat-tab-group animationDuration="200ms">
-      <mat-tab label="Waithing for quality control">
+      <mat-tab label="Na čekanju za kontrolu kvaliteta">
         <app-product-revision-table [dataSource]="this.uncheckedList"></app-product-revision-table>
       </mat-tab>
 
-      <mat-tab label="Scrap products">
+      <mat-tab label="Škart proizvodi">
         <app-product-revision-table [dataSource]="this.scrapList"> </app-product-revision-table>
     </mat-tab>
-      <mat-tab label="Regular products">
+      <mat-tab label="Regularni gotovi proizvodi">
         <app-product-revision-table [dataSource]="this.regularList"></app-product-revision-table>
     </mat-tab>
     </mat-tab-group>

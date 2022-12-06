@@ -39,7 +39,6 @@ public class UserService {
             roleService.save(role);
         }
         u.setRole(role);
-
         u.setPassword(passwordEncoder.encode(user.getPassword()));
         u.setName(user.getName());
         u.setSurname(user.getSurname());
@@ -71,6 +70,6 @@ public class UserService {
     }
 
     public void createNewUser(UserProfileInfoDto employee) {
-
+        //TODO: write method for saving new user
     }
 }

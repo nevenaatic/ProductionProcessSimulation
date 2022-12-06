@@ -18,7 +18,6 @@ public class ProcessStepService{
     public List<ProcessStep> getAll(){
         return  processStepRepository.findAll();
     }
-
     public ProcessStep findStep(int id){
         return processStepRepository.findById(id);
     }

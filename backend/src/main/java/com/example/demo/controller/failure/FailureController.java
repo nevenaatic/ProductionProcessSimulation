@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "failure")
+@RequestMapping(value = "failures")
 public class FailureController {
 
     private FailureService failureService;
@@ -28,7 +28,7 @@ public class FailureController {
         this.failureService = failureService;
     }
 
-    @GetMapping("failures")
+    @GetMapping("/")
     public ResponseEntity<List<FailuresPreviewDto>> getAll() {
         this.loggedUser = authenticateMe();
         return new ResponseEntity<>(failureService.getFailuresWithStepInformation(), HttpStatus.OK);

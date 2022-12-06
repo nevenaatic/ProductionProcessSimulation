@@ -6,6 +6,7 @@ import com.example.demo.model.users.User;
 import com.example.demo.service.product.FinalProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "finalProduct")
+@RequestMapping(value = "final-products")
 public class FinalProductController {
 
     private FinalProductService productService;
@@ -28,9 +29,8 @@ public class FinalProductController {
     }
 
     @GetMapping("unchecked")
+    @PreAuthorize("hasAnyRole('QUALITY_ENGINEER')")
     public ResponseEntity<List<FinalProductDto>> getUnchecked(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
         List<FinalProductDto> ret = new ArrayList<>();
         for(FinalProduct f: this.productService.getUncheckedProducts()){
             ret.add(new FinalProductDto(f.getId(), f.getLabel(), f.getProductForFinal().getName(), f.getProductType(), f.isChecked()));
@@ -39,9 +39,8 @@ public class FinalProductController {
     }
 
     @GetMapping("scrap")
+    @PreAuthorize("hasAnyRole('QUALITY_ENGINEER')")
     public ResponseEntity<List<FinalProductDto>> getScraps(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
         List<FinalProductDto> ret = new ArrayList<>();
         for(FinalProduct f: this.productService.getScrapChecked()){
             ret.add(new FinalProductDto(f.getId(), f.getLabel(), f.getProductForFinal().getName(), f.getProductType(), f.isChecked()));
@@ -50,9 +49,8 @@ public class FinalProductController {
     }
 
     @GetMapping("regular")
+    @PreAuthorize("hasAnyRole('QUALITY_ENGINEER')")
     public ResponseEntity<List<FinalProductDto>> getRegular(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
         List<FinalProductDto> ret = new ArrayList<>();
         for(FinalProduct f: this.productService.getRegularChecked()){
             ret.add(new FinalProductDto(f.getId(), f.getLabel(), f.getProductForFinal().getName(), f.getProductType(), f.isChecked()));
@@ -61,6 +59,7 @@ public class FinalProductController {
     }
 
     @PostMapping("check")
+    @PreAuthorize("hasAnyRole('QUALITY_ENGINEER')")
     public ResponseEntity<HttpStatus> checkFinalProduct(@RequestBody int id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();

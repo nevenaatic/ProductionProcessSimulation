@@ -42,14 +42,11 @@ public class FailureInProcessStepService {
         FailureInProcessStep newFailureInPS = new FailureInProcessStep();
         newFailure = failureService.save(newFailure);
         newFailureInPS.setFailure(newFailure);
-        //     newFailureInPS.setQualityEngineer(engineerService.findById(userId));
         newFailureInPS.setProcessStep(processStepService.findStep(failure.id)); //used for processStep id in this case!
-
-        newFailureInPS = save(newFailureInPS);
+        save(newFailureInPS);
     }
 
-
-        public List<FailureInProcessStep> getFailureForPS(int id) {
+    public List<FailureInProcessStep> getFailureForPS(int id) {
         List<FailureInProcessStep> failures = new ArrayList<>();
         for(FailureInProcessStep f: failureInProcessStepRepository.findAll() ){
             if(f.getProcessStep().getId() == id){
@@ -60,7 +57,6 @@ public class FailureInProcessStepService {
     }
 
     public FailureInProcessStep getFailureWithFinalSteps(int id) {
-
        return  failureInProcessStepRepository.getFailureWithFinalList(id);
     }
 }

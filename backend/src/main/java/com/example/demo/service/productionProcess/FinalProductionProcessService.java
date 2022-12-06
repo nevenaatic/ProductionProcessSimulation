@@ -18,6 +18,7 @@ import com.example.demo.repository.productionProcess.FinalProductionProcessRepos
 import com.example.demo.service.failure.FailureInProcessStepService;
 import com.example.demo.service.pdf.PdfGeneratorService;
 import com.example.demo.service.users.EmployeeService;
+import com.example.demo.service.users.ProcessEngineerService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,7 @@ public class FinalProductionProcessService {
     private FailureInProcessStepService failureService;
     private FailureRepository failureRepository;
     private MaterialService materialService;
+    private ProcessEngineerService processEngineerService;
 
     @Autowired
     private PdfGeneratorService pdfGeneratorService;
@@ -50,7 +52,7 @@ public class FinalProductionProcessService {
                                          StepOfProductionProcessService stepOfProductionProcessService,
                                          EmployeeService employeeService, EngagementsRepository engagementsRepository,
                                          FinalProductRepository finalProductRepository, FailureInProcessStepService failureService,
-                                         FailureRepository failureRepository, MaterialService materialService) {
+                                         FailureRepository failureRepository, MaterialService materialService, ProcessEngineerService engineerService) {
         this.finalProductionProcessRepository = finalProductionProcessRepository;
         this.finalProcessStepService = finalProcessStepService;
         this.processStepService = processStepService;
@@ -62,42 +64,34 @@ public class FinalProductionProcessService {
         this.failureService = failureService;
         this.failureRepository = failureRepository;
         this.materialService = materialService;
+        this.processEngineerService = engineerService;
     }
 
-    //without failure
-    public void startProcess(int id) {
+    public void startProcess(int id, int engineerId) {
         ProductionProcess process = productionProcessService.getProcessWithFinalList(id);
-      ProductionProcess proc = productionProcessService.getById(id);
         List<StepOfProductionProcess> stepsOfProcess = stepOfProductionProcessService.stepsForProcessAndFinalStepList(id);
         FinalProductionProcess finalProductionProcess = new FinalProductionProcess();
+        finalProductionProcess.setProcessEngineer(processEngineerService.engineerWithProcessList(engineerId));
         finalProductionProcess.setLabel(RandomStringUtils.randomAlphabetic(8));
         finalProductionProcess.setDateStart(new Date());
         finalProductionProcess.setValid(true);
-     //   finalProductionProcess.setProductionProcess(process); //setovala sam nadjeni proces njemu
-        finalProductionProcess.setProductionProcess(proc); //setovala sam nadjeni proces njemu
-        finalProductionProcess = finalProductionProcessRepository.save(finalProductionProcess);  //setovala sam sad na njega samog
+        finalProductionProcess.setProductionProcess(process);
+        finalProductionProcess = finalProductionProcessRepository.save(finalProductionProcess);
 
-        List<Employee> employees = employeeService.getEmployeesWithEngagements();
         Random rand = new Random();
 
         for (StepOfProductionProcess s : stepsOfProcess) {
             FinalProcessStep finalProcessStep = new FinalProcessStep();
             finalProcessStep.setFinalProductionProcess(finalProductionProcess);
-            finalProcessStep.setStepOfPP(s); //mozda treba da ga prvo sacuvam pa tek onda dodelim tom stepu
+            finalProcessStep.setStepOfPP(s);
             finalProcessStep.setDateStart(new Date());
             finalProcessStep = finalProcessStepService.save(finalProcessStep);
 
             for (int i = 1; i <= s.getProcessStep().getProcessStepKind().getNumberOfPeople(); i++) {
-                EmployeeWithEngagement engagement = new EmployeeWithEngagement();
-                Employee employee = employeeService.getEmployeeWithEngagement(i + 1);
-                engagement.setEmployee(employee);
-                engagement.setHours(Math.round((1.0 + (5 - 1.0) * rand.nextDouble()) * 10.0) / 10.0); //maksimum ce biti pet sati za sve
-                engagement.setFinalProcessStep(finalProcessStep);
+                EmployeeWithEngagement engagement = new EmployeeWithEngagement(finalProcessStep, employeeService.getEmployeeWithEngagement(i + 1),Math.round((1.0 + (5 - 1.0) * rand.nextDouble()) * 10.0) / 10.0);
                 engagementsRepository.save(engagement);
             }
-
         }
-
         FinalProduct finalProduct = new FinalProduct();
         finalProduct.setProductForFinal(process.getProduct());
         finalProduct.setChecked(false);
@@ -106,46 +100,37 @@ public class FinalProductionProcessService {
         finalProductRepository.save(finalProduct);
     }
 
-
-    public void startFailureProcess(int id) {
+    public void startFailureProcess(int id, int engineerId) {
         ProductionProcess process = productionProcessService.getProcessWithFinalList(id);
         List<StepOfProductionProcess> stepsOfProcess = stepOfProductionProcessService.stepsForProcessAndFinalStepList(id);
         FinalProductionProcess finalProductionProcess = new FinalProductionProcess();
+        finalProductionProcess.setProcessEngineer(processEngineerService.getById(engineerId));
         finalProductionProcess.setLabel(RandomStringUtils.randomAlphabetic(8));
         finalProductionProcess.setDateStart(new Date());
         finalProductionProcess.setValid(false);
-        finalProductionProcess.setProductionProcess(process); //setovala sam nadjeni proces njemu
-        finalProductionProcess = finalProductionProcessRepository.save(finalProductionProcess);  //setovala sam sad na njega samog
-
+        finalProductionProcess.setProductionProcess(process);
+        finalProductionProcess = finalProductionProcessRepository.save(finalProductionProcess);
         process.getFinalProductionProcessList().add(finalProductionProcess);
-    productionProcessService.save(process);
+        productionProcessService.save(process);
         Random rand = new Random();
         boolean isFailed = false;
 
         for (StepOfProductionProcess s : stepsOfProcess) {
             if (!isFailed) {
-
-
                 FinalProcessStep finalProcessStep = new FinalProcessStep();
                 finalProcessStep.setFinalProductionProcess(finalProductionProcess);
-                finalProcessStep.setStepOfPP(s); //mozda treba da ga prvo sacuvam pa tek onda dodelim tom stepu
+                finalProcessStep.setStepOfPP(s);
                 finalProcessStep.setDateStart(new Date());
-                List<FailureInProcessStep> getFailures = this.failureService.getFailureForPS(s.getProcessStep().getId()); //uzmem failure
-
+                List<FailureInProcessStep> getFailures = this.failureService.getFailureForPS(s.getProcessStep().getId());
 
                 if (getFailures.size() > 0) {
                     int idFailure = rand.nextInt(getFailures.size() - 1) + 1;
-                    FailureInProcessStep newFailure = failureService.getFailureWithFinalSteps(idFailure); //random greska
-                    finalProcessStep.setFailureInPS(newFailure);
+                    finalProcessStep.setFailureInPS(failureService.getFailureWithFinalSteps(idFailure));
                     isFailed = true;
                 }
                 finalProcessStep = finalProcessStepService.save(finalProcessStep);
                 for (int i = 1; i <= s.getProcessStep().getProcessStepKind().getNumberOfPeople(); i++) {
-                    EmployeeWithEngagement engagement = new EmployeeWithEngagement();
-                    Employee employee = employeeService.getEmployeeWithEngagement(i + 1);
-                    engagement.setEmployee(employee);
-                    engagement.setHours(Math.round((1.0 + (5 - 1.0) * rand.nextDouble()) * 10.0) / 10.0); //maksimum ce biti pet sati za sve
-                    engagement.setFinalProcessStep(finalProcessStep);
+                    EmployeeWithEngagement engagement = new EmployeeWithEngagement(finalProcessStep, employeeService.getEmployeeWithEngagement(i + 1),Math.round((1.0 + (5 - 1.0) * rand.nextDouble()) * 10.0) / 10.0);
                     engagementsRepository.save(engagement);
                 }
             }
@@ -157,7 +142,6 @@ public class FinalProductionProcessService {
         finalProduct.setLabel(RandomStringUtils.randomAlphanumeric(5));
         finalProductRepository.save(finalProduct);
     }
-
 
     public List<FinalProductionProcess> getAllForPeriodWithSteps(Date from, Date to) {
         List<FinalProductionProcess> retWithSteps = new ArrayList<>();
@@ -199,7 +183,6 @@ public class FinalProductionProcessService {
         return ret;
     }
 
-
     public ExecutionProcessInformationDto completeInformationFromExecution(int id) {
         ExecutionProcessInformationDto ret = new ExecutionProcessInformationDto();
         FinalProductionProcess finalProductionProcess = this.finalProductionProcessRepository.processWithFinalSteps(id);
@@ -208,7 +191,7 @@ public class FinalProductionProcessService {
         ret.date = finalProductionProcess.getDateStart();
         ret.dateString = this.formatDate(ret.date);
         ret.isValid = finalProductionProcess.getValid();
-        ret.processEngineer = "Nevena Atić";
+        ret.processEngineer = finalProductionProcess.getProcessEngineer().getName() + " " + finalProductionProcess.getProcessEngineer().getSurname();
         ret.productPrice = finalProductionProcess.getProductionProcess().getProduct().getFinalPrice();
         ret.productName = finalProductionProcess.getProductionProcess().getProduct().getName();
 

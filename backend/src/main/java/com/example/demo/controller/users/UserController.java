@@ -8,6 +8,7 @@ import com.example.demo.service.users.UserService;
 import com.example.demo.utils.TokenUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,32 +17,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "user")
+@RequestMapping(value = "users")
 public class UserController {
 
     private UserService userService;
     private AuthenticationManager authenticationManager;
     private TokenUtils tokenUtils;
+
     public UserController(UserService userService, AuthenticationManager authenticationManager, TokenUtils tokenUtils){
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.tokenUtils = tokenUtils;
     }
 
-    @GetMapping("/userProfile")
+    @GetMapping("/profile-info")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER', 'ADMIN','QUALITY_ENGINEER','PRODUCTION_MANAGER')")
     public ResponseEntity<UserProfileInfoDto> getProfileInfo(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
         return new ResponseEntity<>(new UserProfileInfoDto(user), HttpStatus.OK);
     }
 
-    @PostMapping("/updateProfile")
+    @PutMapping("/")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER', 'ADMIN','QUALITY_ENGINEER','PRODUCTION_MANAGER')")
     public ResponseEntity<Void> updateProfile(@RequestBody UserProfileInfoDto updatedUser){
         userService.updateProfile(updatedUser);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/changePassword")
+    @PostMapping("/password")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER', 'ADMIN','QUALITY_ENGINEER','PRODUCTION_MANAGER')")
     public ResponseEntity<UserTokenState> changePassword(@RequestBody UserPasswordDto passwordDto){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
@@ -63,17 +68,17 @@ public class UserController {
 
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn, userAuth.getRole().getName(), user.isEnabled()));
     }
-    @PostMapping("/checkPassword")
+
+    @PostMapping("/check-password")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER', 'ADMIN','QUALITY_ENGINEER','PRODUCTION_MANAGER')")
     public ResponseEntity<HttpStatus> checkPassword(@RequestBody String password){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
-            return new ResponseEntity<>(HttpStatus.OK);
+        //TODO: implement this method
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/user")
+    @PostMapping("/")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<HttpStatus> newUser(@RequestBody UserProfileInfoDto employee){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
        this.userService.createNewUser(employee);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

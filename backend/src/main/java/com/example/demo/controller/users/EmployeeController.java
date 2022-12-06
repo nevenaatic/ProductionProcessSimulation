@@ -6,6 +6,7 @@ import com.example.demo.model.users.User;
 import com.example.demo.service.users.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @CrossOrigin
 @Controller
-@RequestMapping(value = "employee")
+@RequestMapping(value = "employees")
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -28,7 +29,8 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("employees")
+    @GetMapping("/")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER', 'ADMIN', 'QUALITY_ENGINEER', 'PRODUCTION_MANAGER')")
     public ResponseEntity<List<EmployeePreviewDto>> getAll() {
         List<EmployeePreviewDto> employees = new ArrayList<>();
         this.loggedUser = authenticateMe();

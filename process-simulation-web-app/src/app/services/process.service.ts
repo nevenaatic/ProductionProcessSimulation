@@ -9,7 +9,7 @@ import { NewProcess } from '../model/NewProcess.model';
 })
 export class ProcessService {
 
-  private readonly baseUrl = `${environment.apiUrl}/productionProcess`;
+  private readonly baseUrl = `${environment.apiUrl}/production-processes`;
   
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class ProcessService {
   }
   
   public readonly createNewProcess = (newProcess: NewProcess) => {
-    return this.http.post<any>(`${this.baseUrl}/process`,newProcess, { headers: this.headers()});
+    return this.http.post<any>(`${this.baseUrl}/`,newProcess, { headers: this.headers()});
   }
   
   private readonly headers = () => {

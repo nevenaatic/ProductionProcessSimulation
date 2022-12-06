@@ -14,7 +14,7 @@ export class EngagementService {
 
 
   public readonly getEngagement = (req: EngagementRequest) => {
-    return this.http.post<any>(`${this.baseUrl}/engagement`, req, {headers: this.headers()})
+    return this.http.post<any>(`${this.baseUrl}/`, req, {headers: this.headers()})
   }
 
 

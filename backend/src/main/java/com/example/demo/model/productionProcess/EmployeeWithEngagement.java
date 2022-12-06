@@ -25,7 +25,6 @@ public class EmployeeWithEngagement {
     @Column
     private double  hours;
 
-
     public FinalProcessStep getFinalProcessStep() {
         return finalProcessStep;
     }
@@ -57,4 +56,12 @@ public class EmployeeWithEngagement {
     public void setId(int id) {
         this.id = id;
     }
+
+    public EmployeeWithEngagement(FinalProcessStep finalProcessStep, Employee employee, double hours) {
+        this.finalProcessStep = finalProcessStep;
+        this.employee = employee;
+        this.hours = hours;
+    }
+
+    public EmployeeWithEngagement() {}
 }

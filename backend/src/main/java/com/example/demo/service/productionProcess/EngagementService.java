@@ -57,7 +57,7 @@ public class EngagementService {
                     }
                 }
             }
-            engagement.engagementsStepsDtoList=stepsForOneProcess;
+            engagement.engagementsStepsDtoList = stepsForOneProcess;
             engagement.processLabel = fp.getLabel();
             engagement.dateStart = fp.getDateStart();
             engagement.processName = fp.getProductionProcess().getName();
@@ -66,11 +66,9 @@ public class EngagementService {
         return ret;
     }
 
-
     public void save(EmployeeWithEngagement engagement) {
         engagementsRepository.save(engagement);
     }
-
 
     private StatusOfWork checkStatus(double hoursForCheck, double predictedHours){
         StatusOfWork status = null;

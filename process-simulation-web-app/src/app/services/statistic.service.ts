@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class StatisticService {
-  private readonly baseUrl = `${environment.apiUrl}/statistic`;
+  private readonly baseUrl = `${environment.apiUrl}/statistics`;
   constructor(private _http: HttpClient) { }
 
 

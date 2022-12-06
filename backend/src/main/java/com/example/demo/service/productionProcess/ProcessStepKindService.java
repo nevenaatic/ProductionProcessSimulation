@@ -18,13 +18,7 @@ public class ProcessStepKindService {
     public List<ProcessStepKind> getAll(){
         return processStepKindRepository.findAll();
     }
-
-    public ProcessStepKind getByName(String name){
-        return processStepKindRepository.getByName(name);
-    }
-
     public ProcessStepKind getById(int id){
         return processStepKindRepository.findById(id);
     }
-
 }

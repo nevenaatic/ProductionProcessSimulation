@@ -9,12 +9,12 @@ import { Employee } from '../model/Employee.model';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private readonly baseUrl = `${environment.apiUrl}/employee`;
+  private readonly baseUrl = `${environment.apiUrl}/employees`;
 
   constructor(private http: HttpClient) { }
 
   public readonly getEmployees = () => {
-    return this.http.get<Observable<IEmpolyee>>(`${this.baseUrl}/employees`, { headers: this.headers() });
+    return this.http.get<Observable<IEmpolyee>>(`${this.baseUrl}/`, { headers: this.headers() });
   }
   private readonly headers = () => {
     return new HttpHeaders({ Authorization: "Bearer " + localStorage.getItem("accessToken") });

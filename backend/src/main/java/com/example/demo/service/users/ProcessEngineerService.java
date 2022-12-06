@@ -14,12 +14,6 @@ public class ProcessEngineerService {
         this.engineerRepository = engineerRepository;
     }
 
-    public ProcessEngineer addProcessToEngineer(int id, ProductionProcess process){
-        ProcessEngineer processEngineer = engineerWithProcessList(id);
-        processEngineer.getProductionProcessList().add(process);
-        return engineerRepository.save(processEngineer);
-    }
-
     public ProcessEngineer getById(int id) {
         return this.engineerRepository.findById(id);
     }

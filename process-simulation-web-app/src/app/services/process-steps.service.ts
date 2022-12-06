@@ -7,16 +7,16 @@ import { environment } from 'src/environments/environment';
 })
 export class ProcessStepsService {
 
-    private readonly baseUri = `${environment.apiUrl}`;
+  private readonly baseUri = `${environment.apiUrl}`;
   constructor(private http: HttpClient) { }
 
 
   public readonly getStepKinds = () => {
-    return this.http.get(`${this.baseUri}/processStepKind/stepKinds`, {headers: this.headers()});
+    return this.http.get(`${this.baseUri}/process-step-kinds/`, { headers: this.headers() });
   }
 
   public readonly getProcessSteps = () => {
-    return this.http.get(`${this.baseUri}/processStep/steps`, {headers: this.headers()});
+    return this.http.get(`${this.baseUri}/process-steps/`, { headers: this.headers() });
   }
 
   private readonly headers = () => {

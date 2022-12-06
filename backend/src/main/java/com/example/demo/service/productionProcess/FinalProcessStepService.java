@@ -15,17 +15,11 @@ public class FinalProcessStepService {
     }
 
     public FinalProcessStep getStepWithEngagements(int idStep){
-        FinalProcessStep step = finalProcessStepRepository.getFinalStepEngagements(idStep);
-        return step;
+        return finalProcessStepRepository.getFinalStepEngagements(idStep);
     }
 
     public FinalProcessStep save(FinalProcessStep finalProcessStep) {
         return finalProcessStepRepository.save(finalProcessStep);
     }
 
-    public void saveFailure(FinalProcessStep finalProcessStep, FailureInProcessStep failure) {
-        FinalProcessStep foundedStep = this.finalProcessStepRepository.getById(finalProcessStep.getId());
-        foundedStep.setFailureInPS(failure);
-        finalProcessStepRepository.save(foundedStep);
-    }
 }

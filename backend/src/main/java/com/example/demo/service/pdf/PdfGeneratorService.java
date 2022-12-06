@@ -26,14 +26,14 @@ public class PdfGeneratorService {
 
         String htmlContent = templateEngine.process("report", context);
         try {
-            System.out.println("Pisem pdf.");
+            System.out.println("Pdf started.");
             FileOutputStream fileOutputStream = new FileOutputStream(pdfDirectory + pdfFileName);
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(htmlContent);
             renderer.layout();
             renderer.createPDF(fileOutputStream, false);
             renderer.finishPDF();
-            System.out.println("Napisao sam pdf.");
+            System.out.println("Pdf finished.");
         } catch (FileNotFoundException e) {
             System.out.println(e);
         } catch (com.lowagie.text.DocumentException e) {
@@ -42,5 +42,4 @@ public class PdfGeneratorService {
             e.printStackTrace();
         }
     }
-
 }

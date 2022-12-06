@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @Controller
 @RequestMapping(value = "auth")
-public class AuthentificationController {
+public class AuthenticationController {
 
     private AuthenticationManager authenticationManager;
     private UserService userService;
     private TokenUtils tokenUtils;
 
-    public AuthentificationController (AuthenticationManager authenticationManager, UserService userService, TokenUtils tokenUtils) {
+    public AuthenticationController(AuthenticationManager authenticationManager, UserService userService, TokenUtils tokenUtils) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.tokenUtils = tokenUtils;

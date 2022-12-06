@@ -16,10 +16,6 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product getById(int id) {
-        return productRepository.findById(id);
-    }
-
     public List<Product> getAll() {
         return productRepository.findAll();
     }
@@ -35,18 +31,11 @@ public class ProductService {
     }
 
     public void deleteById(int idProduct){
-        Product product = productRepository.findById(idProduct);
         productRepository.deleteById(idProduct);
     }
 
     public Product findProductForProcess(int idProcess){
         return productRepository.findProductForProcess(idProcess);
-    }
-
-    public Product addFinalProduct(int id, FinalProduct fProduct) {
-        Product product = getById(id); //IZMENI NA QUERY
-        product.getFinalProductList().add(fProduct);
-        return productRepository.save(product);
     }
 
     public Product productWithProcesses(int id){

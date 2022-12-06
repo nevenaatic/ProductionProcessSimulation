@@ -9,18 +9,18 @@ import { Product } from '../model/Product.model';
 export class ProductService {
  
 
-  private readonly productUrl = `${environment.apiUrl}/product`
-  private readonly finalProductUrl = `${environment.apiUrl}/finalProduct`
+  private readonly productUrl = `${environment.apiUrl}/products`
+  private readonly finalProductUrl = `${environment.apiUrl}/final-products`
   constructor(private http: HttpClient) { }
 
   public readonly getAllProducts = () => {
-    return this.http.get<any>(`${this.productUrl}/products`, { headers: this.headers() });
+    return this.http.get<any>(`${this.productUrl}/`, { headers: this.headers() });
   }
   public readonly createNewProduct = (product: Product) =>  {
-    return this.http.post(`${this.productUrl}/product`, product, {headers: this.headers()});
+    return this.http.post(`${this.productUrl}/`, product, {headers: this.headers()});
   } 
   deleteProduct(product: any) {
-    return this.http.delete(`${this.productUrl}/delete/${product.id}`, {headers:this.headers()});
+    return this.http.delete(`${this.productUrl}/${product.id}`, {headers:this.headers()});
   }
 
   public readonly getRegularProducts = () => {

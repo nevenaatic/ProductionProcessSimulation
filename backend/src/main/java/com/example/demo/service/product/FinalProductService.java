@@ -23,7 +23,6 @@ public class FinalProductService {
     public List<FinalProduct> getAll(){
         return finalProductRepository.findAll();
     }
-
     public List<FinalProduct> getScrapChecked(){
         return this.finalProductRepository.getScrapsChecked();
     }

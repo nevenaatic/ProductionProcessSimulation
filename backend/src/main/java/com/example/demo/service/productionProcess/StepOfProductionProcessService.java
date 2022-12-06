@@ -17,12 +17,6 @@ public class StepOfProductionProcessService {
         this.stepOfProductionProcessRepository = stepOfProductionProcess;
     }
 
-    //finish
-    public void addFailure(int id, Failure failure){
-        StepOfProductionProcess stepOfProductionProcess = stepOfProductionProcessRepository.getById(id);
-
-    }
-
     public List<StepOfProductionProcess> findStepsForProcess(int id){
         return stepOfProductionProcessRepository.findStepsForProcess(id);
     }

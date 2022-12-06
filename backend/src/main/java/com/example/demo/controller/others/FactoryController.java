@@ -6,6 +6,7 @@ import com.example.demo.model.users.User;
 import com.example.demo.service.others.FactoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,18 +26,15 @@ public class FactoryController {
     }
 
     @GetMapping()
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER', 'ADMIN', 'PRODUCTION_MANAGER', 'QUALITY_ENGINEER')")
     public ResponseEntity<FactoryDto> getFactory(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
-        FactoryDto factory = new FactoryDto(factoryService.getAll());
-        return  new ResponseEntity<>(factory, HttpStatus.OK);
+        return  new ResponseEntity<>(new FactoryDto(factoryService.getAll()), HttpStatus.OK);
     }
 
-    @PostMapping("factory")
+    @PostMapping("/")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<FactoryDto> editFactory(@RequestBody FactoryDto factoryDto){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
-        FactoryDto factory = new FactoryDto(factoryService.editFactory(factoryDto));
-        return  new ResponseEntity<>(factory, HttpStatus.OK);
+        return  new ResponseEntity<>(new FactoryDto(factoryService.editFactory(factoryDto)), HttpStatus.OK);
     }
+
 }

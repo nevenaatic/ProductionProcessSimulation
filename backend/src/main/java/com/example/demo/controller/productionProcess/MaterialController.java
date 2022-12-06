@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "material")
+@RequestMapping(value = "materials")
 public class MaterialController {
     
     private MaterialService materialService;

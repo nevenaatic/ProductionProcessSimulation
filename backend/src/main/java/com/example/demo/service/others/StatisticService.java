@@ -10,7 +10,6 @@ import java.util.List;
 @Service
 public class StatisticService {
 
-
     private ProductionProcessService productionProcessService;
 
     public StatisticService(ProductionProcessService productionProcessService) {

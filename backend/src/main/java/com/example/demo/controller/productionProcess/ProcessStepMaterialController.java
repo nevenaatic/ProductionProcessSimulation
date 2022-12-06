@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "processStepMaterial")
+@RequestMapping(value = "process-step-materials")
 public class ProcessStepMaterialController {
 
     private ProcessStepMaterialService processStepMaterialService;

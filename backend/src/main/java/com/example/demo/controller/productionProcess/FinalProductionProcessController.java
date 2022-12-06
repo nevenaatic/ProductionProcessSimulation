@@ -7,6 +7,7 @@ import com.example.demo.model.users.User;
 import com.example.demo.service.productionProcess.FinalProductionProcessService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 @Controller
-@RequestMapping(value = "finalProductionProcess")
+@RequestMapping(value = "final-production-processes")
 public class FinalProductionProcessController {
     private FinalProductionProcessService finalProductionProcessService;
 
@@ -28,40 +29,34 @@ public class FinalProductionProcessController {
         this.finalProductionProcessService = finalProductionProcessService;
     }
 
-    @PostMapping(value = "startProcess")
+    @PostMapping(value = "start-process")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER')")
     public ResponseEntity<HttpStatus> startProcess(@RequestBody int id){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
-        finalProductionProcessService.startProcess(id);
+        finalProductionProcessService.startProcess(id, authenticateMe().getId());
         return  new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value = "startFailedProcess")
+    @PostMapping(value = "start-failed-process")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER')")
     public ResponseEntity<HttpStatus> startFailedProcess(@RequestBody int id){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
-        finalProductionProcessService.startFailureProcess(id);
+        finalProductionProcessService.startFailureProcess(id, authenticateMe().getId());
         return  new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("processes")
+    @GetMapping("/")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER')")
     public ResponseEntity<List<FinalProductionProcessDto>> getAll(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User)authentication.getPrincipal();
-        List<FinalProductionProcessDto> ret = new ArrayList<>();
-        Random rand = new Random();
-//        for(FinalProductionProcess f : this.finalProductionProcessService.getFinalProcesses()){
-//            double time = Math.round((10.0 + (28 - 10.0) * rand.nextDouble()) * 10.0) / 10.0;
-//            ret.add(new FinalProductionProcessDto(f, time));
-//        }
-
-
         return  new ResponseEntity<>(this.finalProductionProcessService.processWithFailureInformation(), HttpStatus.OK);
     }
 
     @PostMapping("report")
+    @PreAuthorize("hasAnyRole('PROCESS_ENGINEER')")
     public ResponseEntity<ExecutionProcessInformationDto> executionReport(@RequestBody int id){
         return new ResponseEntity<>(this.finalProductionProcessService.completeInformationFromExecution(id),HttpStatus.OK);
+    }
 
+    private User authenticateMe(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (User)authentication.getPrincipal();
     }
 }

@@ -21,14 +21,6 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public List<Employee> getEmployeesWithEngagements(){
-        List<Employee> ret = new ArrayList<>();
-        for(Employee e: getAll()){
-            ret.add(employeeRepository.getEmployeeWithEngagements(e.getId()));
-        }
-        return ret;
-    }
-
     public Employee getEmployeeWithEngagement(int id){
         return employeeRepository.getEmployeeWithEngagements(id);
     }
